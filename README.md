@@ -15,12 +15,11 @@ Some factions adapt [Novigrad Tavern's](https://www.ebay.com/usr/novigrad_tavern
 * **Ofir:** This faction includes some card designs and abilities from [Novigrad Tavern](https://www.ebay.com/usr/novigrad_tavern) and [Gwent-electron](https://github.com/camerensmith/gwent-electron), sticking to character card designs based on The Witcher lore, specifically characters from the comic *The Witcher: Of Flesh and Flame*. Additionally, new abilities and various runes were incorporated that will make the gameplay more interesting.
 * **Novigrad:** This faction is based on the great work of Gwent-electron, but changing or incorporating character cards from Novigrad and removing those that do not belong there. In addition, new abilities were added, and several mechanics from other factions were recycled and adapted for this deck. This completely reworks the visual identity of the deck with a curated list of high-quality character cards that strictly belong to the Novigrad lore.
 
-### Faction Identity Reworks
+#### 🛡️ Faction Identity Reworks
 Addressed overlapping cards by giving each faction a unique and distinct gameplay identity:
 * **Syndicate (The Gold, Hypocrisy & Crime Faction):** Focuses on criminals and corrupt religious zealots working from the shadows.
 * **Novigrad (The Intellect, Resistance & Entertainment Faction):** Stripped of crime and religion, it highlights the wealthy bourgeoisie, outcast mages (Triss), dopplers (Dudu), and artists (Dandelion, Priscilla) uniting to resist the Syndicate and King Radovid.
 * **Redania (The Iron & Oppression Faction):** Pure, ruthless state power and King Radovid V's unstoppable war machine, free from street and religious elements.
-
 
 #### 🎨 Visuals & Customization
 * **Custom Boards:** Designed new custom boards featuring an interactive **Board Selector**.
