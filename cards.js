@@ -2226,27 +2226,7 @@ var ext_re_cards = {
         "filename": "redanian_elite",
         "count": "1",
         "quote": "I'll die for Redania, I'll kill for Redania… I'll even eat worms for Redania!"
-    },
-    "re_kurt": {
-        "name": "Kurt",
-        "deck": "redania",
-        "row": "close",
-        "strength": "5",
-        "ability": "witch_hunt",
-        "filename": "kurt",
-        "count": "1",
-        "quote": "Oy, Kurt, find out what Merigold's hollerin' about, if she needs anything. A hot iron to the tongue, maybe?"
-    },
-    "re_witch_hunter": {
-        "name": "Witch Hunter",
-        "deck": "redania",
-        "row": "close",
-        "strength": "5",
-        "ability": "witch_hunt",
-        "filename": "witch_hunter",
-        "count": "1",
-        "quote": "Long coats, wide-brimmed hats, and crooked grins – witch hunters are hard to miss."
-    },
+    },    
     "re_olgierd": {
         "name": "Olgierd von Everec",
         "deck": "redania",
@@ -2257,26 +2237,6 @@ var ext_re_cards = {
         "count": "1",
         "quote": "At least you now know I don't easily lose my head."
     },
-    "re_cyprian_wiley": {
-        "name": "Cyprian Wiley: Whoreson Junior",
-        "deck": "redania",
-        "row": "close",
-        "strength": "10",
-        "ability": "hero",
-        "filename": "cyprian_wiley",
-        "count": "1",
-        "quote": "A war with Whoreson will see Novigrad's gutters run red with blood."
-    },
-    "re_carlo_varese": {
-        "name": "Carlo Varese: Cleaver",
-        "deck": "redania",
-        "row": "close",
-        "strength": "10",
-        "ability": "hero",
-        "filename": "carlo_varese",
-        "count": "1",
-        "quote": "Me hogs willnae go hungry th' day thanks to ye."
-    },
     "re_trollololo": {
         "name": "Trollololo",
         "deck": "redania",
@@ -2286,16 +2246,6 @@ var ext_re_cards = {
         "filename": "trollololo",
         "count": "1",
         "quote": "Join me King Ravodid army. Order got – guard boatses."
-    },
-    "re_caleb_menge": {
-        "name": "Caleb Menge",
-        "deck": "redania",
-        "row": "agile_crs",
-        "strength": "0",
-        "ability": "hero witch_hunt",
-        "filename": "caleb_menge",
-        "count": "1",
-        "quote": "Deceivers, heretics, witches! They flood our city, corrupt our virtue, and threaten our very way of life!"
     },
     "re_gaunter_odimm": {
         "name": "Gaunter O'Dimm",
@@ -2351,26 +2301,6 @@ var ext_re_cards = {
         "count": "1",
         "quote": "There are more things in heaven and earth than all the world's philosophers have dreamt."
     },
-    "re_rico_meiersdorf": {
-        "name": "Rico Meiersdorf",
-        "deck": "redania",
-        "row": "ranged",
-        "strength": "7",
-        "ability": "spy",
-        "filename": "rico_meiersdorf",
-        "count": "1",
-        "quote": "I never did much like bees."
-    },
-    "re_moreelse": {
-        "name": "Moreelse",
-        "deck": "redania",
-        "row": "ranged",
-        "strength": "5",
-        "ability": "witch_hunt",
-        "filename": "moreelse",
-        "count": "1",
-        "quote": "Some witch hunters truly believed the eradication of mages and sorceresses would make the world a better place. Some did not require such justification."
-    },
     "re_graden": {
         "name": "Graden",
         "deck": "redania",
@@ -2422,26 +2352,6 @@ var ext_re_cards = {
         "count": "1",
         "quote": "My auction house is, above all, a gathering place for the elite of the elite."
     },
-    "re_eternal_fire_priest": {
-        "name": "Eternal Fire Priest",
-        "deck": "redania",
-        "row": "siege",
-        "strength": "5",
-        "ability": "witch_hunt",
-        "filename": "eternal_fire_priest",
-        "count": "1",
-        "quote": "Closer, my sheep, gather closer. May the Eternal Fire warm your souls!"
-    },
-    "re_nathaniel_pastodi": {
-        "name": "Nathaniel Pastodi",
-        "deck": "redania",
-        "row": "siege",
-        "strength": "5",
-        "ability": "witch_hunt",
-        "filename": "nathaniel_pastodi",
-        "count": "1",
-        "quote": "Novigrad – where the impossible becomes possible. A professional torturer turned reverend, for instance."
-    },
     "re_sigi_reuven": {
         "name": "Sigi Reuven",
         "deck": "redania",
@@ -2452,25 +2362,59 @@ var ext_re_cards = {
         "count": "1",
         "quote": "You sure he don't look the least bit familar...?"
     },
-    "re_francis_bedlam": {
-        "name": "Francis Bedlam: King of Beggars",
+    "re_phillippa": {
+        "name": "Phillippa Eilhart",
         "deck": "redania",
-        "row": "siege",
+        "row": "ranged",
         "strength": "10",
         "ability": "hero",
-        "filename": "francis_bedlam",
+        "filename": "phillippa",
         "count": "1",
-        "quote": "You say tribute, I say taxes."
+        "quote": "Philippa Eilhart, though very attractive, was decidedly very unkind."
     },
-    "re_cyrus_hemmelfart": {
-        "name": "Cyrus Hemmelfart: Hierarch of Novigrad",
+    "re_foot_soldier_1": {
+        "name": "Redanian Foot Soldier",
+        "id": 1,
         "deck": "redania",
-        "row": "siege",
-        "strength": "2",
-        "ability": "hero scorch",
-        "filename": "cyrus_hemmelfart",
+        "row": "close",
+        "strength": "4",
+        "ability": "muster",
+        "filename": "soldier1",
         "count": "1",
-        "quote": "Beneath all that lust, greed, and vanity, stands an honorable man."
+        "target": "re_foot_soldier",
+        "quote": "I've bled for Redania! I've killed for Redania... Dammit, I've even raped for Redania!"
+    },
+    "re_foot_soldier_2": {
+        "name": "Redanian Foot Soldier",
+        "id": 2,
+        "deck": "redania",
+        "row": "close",
+        "strength": "4",
+        "ability": "muster",
+        "filename": "soldier2",
+        "count": "1",
+        "target": "re_foot_soldier",
+        "quote": "I've bled for Redania! I've killed for Redania... Dammit, I've even raped for Redania!"
+    },
+    "re_agent": {
+        "name": "Redanian Agent",
+        "deck": "redania",
+        "row": "close",
+        "strength": "5",
+        "ability": "morale",
+        "filename": "agent",
+        "count": "1",
+        "quote": "Eight-time champion of solo hide-and-seek."
+    },
+    "re_archer": {
+        "name": "Redanian Archer",
+        "deck": "redania",
+        "row": "ranged",
+        "strength": "3",
+        "ability": "",
+        "filename": "archer",
+        "count": "1",
+        "quote": "The last thing you'll hear is the twang of the bowstring being let go."
     },
 };
 
@@ -4927,16 +4871,6 @@ var ext_lr_cards = {
         "count": "1",
         "quote": "A horseman's worth no less than his steed. And Lyrian horses are among the Continent's best."
     },
-    "lr_isbel_hagge": {
-        "name": "Isbel of Hagge",
-        "deck": "lyria_rivia",
-        "row": "ranged",
-        "strength": "4",
-        "ability": "medic",
-        "filename": "isbel_hagge",
-        "count": "1",
-        "quote": "I promised I would never again use magic to harm others."
-    },
     "lr_hajduk": {
         "name": "Lyrian Hajduk",
         "deck": "lyria_rivia",
@@ -5007,16 +4941,6 @@ var ext_lr_cards = {
         "count": "1",
         "quote": "There's no armor that can't be pierced."
     },
-    "lr_eavesdrop": {
-        "name": "Eavesdrop",
-        "deck": "lyria_rivia",
-        "row": "ranged",
-        "strength": "6",
-        "ability": "spy",
-        "filename": "eavesdrop",
-        "count": "1",
-        "quote": "There are always more ears in the room than those you can count."
-    },
     "lr_trebuchet": {
         "name": "Lyrian Trebuchet",
         "deck": "lyria_rivia",
@@ -5037,26 +4961,6 @@ var ext_lr_cards = {
         "count": "3",
         "target": "lr_arbalest",
         "quote": "I can find the bull's-eye from a hundred paces! Perhaps not with my first shot, mind you..."
-    },
-    "lr_spellweaver": {
-        "name": "Spellweaver",
-        "deck": "lyria_rivia",
-        "row": "ranged",
-        "strength": "7",
-        "ability": "",
-        "filename": "spellweaver",
-        "count": "1",
-        "quote": "Reality is so terribly tedious..."
-    },
-    "lr_forager": {
-        "name": "Forager",
-        "deck": "lyria_rivia",
-        "row": "ranged",
-        "strength": "5",
-        "ability": "",
-        "filename": "forager",
-        "count": "1",
-        "quote": "If you'll not be needin' it, I'm willin' to take it off your hands..."
     },
     "lr_sapper": {
         "name": "Rivian Sapper",
@@ -5123,20 +5027,20 @@ var ext_lr_cards = {
         "deck": "lyria_rivia",
         "row": "ranged",
         "strength": "3",
-        "ability": "decoy",
+        "ability": "morale",
         "filename": "scytheman",
         "count": "1",
-        "quote": "Our folk they feed, and our foes they bleed."
+        "quote": "My spirit's willing and how, but these damn boots are killing me."
     },
     "lr_scytheman_3": {
         "name": "Lyrian Scytheman",
         "deck": "lyria_rivia",
         "row": "siege",
         "strength": "3",
-        "ability": "decoy",
+        "ability": "medic",
         "filename": "scytheman",
         "count": "1",
-        "quote": "Our folk they feed, and our foes they bleed."
+        "quote": "There's a time to reap, a time to sow.. and a time to die.."
     },
     "lr_caldwell": {
         "name": "Count Caldwell",
@@ -5148,26 +5052,6 @@ var ext_lr_cards = {
         "count": "1",
         "quote": "Your Majesty... For the queen to question commoners, why, it's simply not proper..."
     },
-    "lr_physician": {
-        "name": "Physician",
-        "deck": "lyria_rivia",
-        "row": "siege",
-        "strength": "3",
-        "ability": "medic",
-        "filename": "physician",
-        "count": "1",
-        "quote": "Do not twitch, lie still..."
-    },
-    "lr_pyrokinesis": {
-        "name": "Pyrokinesis",
-        "deck": "lyria_rivia",
-        "row": "ranged",
-        "strength": "8",
-        "ability": "",
-        "filename": "pyrokinesis",
-        "count": "1",
-        "quote": "I really hope that's boot leather I smell burning..."
-    },
     "lr_carroballista": {
         "name": "Carroballista",
         "deck": "lyria_rivia",
@@ -5177,16 +5061,6 @@ var ext_lr_cards = {
         "filename": "carroballista",
         "count": "1",
         "quote": "This ballista's on the wagon."
-    },
-    "lr_artificer": {
-        "name": "Artificer",
-        "deck": "lyria_rivia",
-        "row": "ranged",
-        "strength": "2",
-        "ability": "medic",
-        "filename": "artificer",
-        "count": "1",
-        "quote": "What shall I call it? Perhaps Andúril..."
     },
     "lr_siege": {
         "name": "Siege",
@@ -5218,16 +5092,6 @@ var ext_lr_cards = {
         "count": "1",
         "quote": "Somethin' from nothin'... my speciality."
     },
-    "lr_peasant_militia": {
-        "name": "Peasant Militia",
-        "deck": "lyria_rivia",
-        "row": "close",
-        "strength": "4",
-        "ability": "",
-        "filename": "peasant_militia",
-        "count": "1",
-        "quote": "We's the militia. We keep the peace."
-    }
 };
 
 var ext_sy_cards = {
@@ -5330,16 +5194,6 @@ var ext_sy_cards = {
         "filename": "bare_knuckle_brawler",
         "count": "1",
         "quote": "Is tha' all that's left of 'im? Think I'm goin' tae boak..."
-    },
-    "sy_eibhear_hattori": {
-        "name": "Eibhear Hattori",
-        "deck": "syndicate",
-        "row": "ranged",
-        "strength": "2",
-        "ability": "medic",
-        "filename": "eibhear_hattori",
-        "count": "1",
-        "quote": "Only thing that can rival his swords? His dumplings."
     },
     "sy_witch_hunter": {
         "name": "Witch Hunter",
@@ -5537,16 +5391,6 @@ var ext_sy_cards = {
         "count": "1",
         "quote": "I prefer the term curator."
     },
-    "sy_sly_seductress": {
-        "name": "Sly Seductress",
-        "deck": "syndicate",
-        "row": "ranged",
-        "strength": "8",
-        "ability": "spy",
-        "filename": "sly_seductress",
-        "count": "1",
-        "quote": "The sweeter her words, the more bitter your losses."
-    },
     "sy_azar_javed": {
         "name": "Azar Javed: Renegade",
         "deck": "syndicate",
@@ -5556,28 +5400,6 @@ var ext_sy_cards = {
         "filename": "azar_javed",
         "count": "1",
         "quote": "The sorcerer not only deftly manipulates the power of fire, it can be said that fire has become a part of his very being."
-    },
-    "sy_fisstech_trafficker": {
-        "name": "Fisstech Trafficker",
-        "deck": "syndicate",
-        "row": "ranged",
-        "strength": "2",
-        "ability": "avenger",
-        "filename": "fisstech_trafficker",
-        "count": "1",
-        "target": "sy_fisstech",
-        "quote": "Addictive? Why, not at all! I've quit several times before!"
-    },
-    "sy_fisstech": {
-        "name": "Fisstech",
-        "deck": "syndicate",
-        "row": "siege",
-        "strength": "8",
-        "ability": "spy",
-        "filename": "fisstech",
-        "count": "1",
-        "target": "sy_fisstech",
-        "quote": "Large pupils, chattering teeth, a mad cackle... Aye, that's fisstech for ye."
     },
     "sy_savolla": {
         "name": "Savolla",
@@ -5734,16 +5556,6 @@ var ext_sy_cards = {
         "count": "1",
         "target": "sy_robber",
         "quote": "I-I already gave ye all me coin!"
-    },
-    "sy_dudu_biberveldt": {
-        "name": "Dudu Biberveldt",
-        "deck": "syndicate",
-        "row": "ranged",
-        "strength": "1",
-        "ability": "spy",
-        "filename": "dudu_biberveldt",
-        "count": "1",
-        "quote": "A mimic, among the many other names for his sort: changelings, doublings, vexlings… or dopplers."
     },
     "sy_tamara_strenger": {
         "name": "Tamara Strenger",
@@ -6192,16 +6004,6 @@ var ext_sy_cards = {
         "filename": "temple_guard",
         "count": "1",
         "quote": "Halt! Who goes there?! Firesworn or heretic?"
-    },
-    "sy_passiflora_peaches": {
-        "name": "Passiflora Peaches",
-        "deck": "syndicate",
-        "row": "close",
-        "strength": "9",
-        "ability": "spy",
-        "filename": "passiflora_peaches",
-        "count": "1",
-        "quote": "They'll mess with your head, break your heart and empty your purse."
     },
     "sy_lieutenant_herst": {
         "name": "Lieutenant von Herst",
@@ -7659,7 +7461,7 @@ var ext_nv_cards = {
         "deck": "novigrad",
         "row": "close",
         "strength": "8",
-        "ability": "spy",
+        "ability": "hero",
         "filename": "dijkstra",
         "count": "1",
         "quote": "Gwent's like politics, just more honest."
@@ -7694,66 +7496,6 @@ var ext_nv_cards = {
         "count": "1",
         "quote": "Only thing that can rival his swords? His dumplings."
     },
-    "nv_cleaver": {
-        "name": "Cleaver",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "6",
-        "ability": "hero",
-        "filename": "cleaver",
-        "count": "1",
-        "quote": "Those who try to cheat Cleaver are in for a rude awakening... And a rough landing."
-    },
-    "nv_francis_bedlam": {
-        "name": "Francis Bedlam: King of Beggars",
-        "deck": "novigrad",
-        "row": "siege",
-        "strength": "6",
-        "ability": "hero morale",
-        "filename": "francis",
-        "count": "1",
-        "quote": "I might just discover I look great without ears… or hands. Apparently the King of Beggars accepts both as partial payment."
-    },
-    "nv_whoreson_jr": {
-        "name": "Whoreson Junior",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "4",
-        "ability": "hero",
-        "filename": "whoresonjr",
-        "count": "1",
-        "quote": "A war with Whoreson will see Novigrad's gutters run red with blood."
-    },
-    "nv_thaler": {
-        "name": "Thaler",
-        "deck": "novigrad",
-        "row": "siege",
-        "strength": "7",
-        "ability": "spy",
-        "filename": "thaler",
-        "count": "1",
-        "quote": "Fuck off! We aren't all ploughin' philanderers. Some of us have depth..."
-    },
-    "nv_vernon": {
-        "name": "Vernon Roche",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "10",
-        "ability": "hero",
-        "filename": "vernon",
-        "count": "1",
-        "quote": "A partiot... and a real son of a bitch."
-    },
-    "nv_ves": {
-        "name": "Ves",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "7",
-        "ability": "",
-        "filename": "ves",
-        "count": "1",
-        "quote": "Better to live one day as a king than a whole life as a beggar."
-    },
     "nv_novigrad": {
         "name": "Novigrad",
         "deck": "novigrad",
@@ -7773,165 +7515,6 @@ var ext_nv_cards = {
         "filename": "damnation",
         "count": "0",
         "quote": "I can't bloody breathe! Won't they burn the wretches someplace else?"
-    },
-    "nv_flaming_rose_footman": {
-        "name": "Flaming Rose Footman",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "5",
-        "ability": "",
-        "filename": "flaming_rose_footman",
-        "count": "1",
-        "quote": "Anyone can join The Order – a knight, a peasant, even a witcher. "
-    },
-    "nv_caleb_menge": {
-        "name": "Caleb Menge",
-        "deck": "novigrad",
-        "row": "agile_cr",
-        "strength": "7",
-        "ability": "hero witch_hunt",
-        "filename": "caleb_menge",
-        "count": "1",
-        "quote": "Deceivers, heretics, witches! They flood our city, corrupt our virtue, and threaten our very way of life!"
-    },
-    "nv_eternal_fire_inquisitor": {
-        "name": "Eternal Fire Inquisitor",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "4",
-        "ability": "witch_hunt",
-        "filename": "eternal_fire_inquisitor",
-        "count": "1",
-        "quote": "The burning light of the Eternal Fire reveals all!"
-    },
-    "nv_kurt": {
-        "name": "Kurt",
-        "deck": "novigrad",
-        "row": "agile_crs",
-        "strength": "6",
-        "ability": "",
-        "filename": "kurt",
-        "count": "1",
-        "quote": "Oy, Kurt, find out what Merigold's hollerin' about, if she needs anything. A hot iron to the tongue, maybe?"
-    },
-    "nv_inquisitor_helveed": {
-        "name": "Grand Inquisitor Helveed",
-        "deck": "novigrad",
-        "row": "siege",
-        "strength": "6",
-        "ability": "hero scorch",
-        "filename": "inquisitor_helveed",
-        "count": "1",
-        "quote": "When mercy fails, fire prevails."
-    },
-    "nv_eternal_fire_priest_1": {
-        "name": "Eternal Fire Priest",
-        "id": 1,
-        "deck": "novigrad",
-        "row": "ranged",
-        "strength": "2",
-        "ability": "bond",
-        "filename": "eternal_fire_priest_1",
-        "count": "1",
-        "target": "nv_eternal_fire_priest",
-        "quote": "Closer, my sheep, gather closer. May the Eternal Fire warm your souls!"
-    },
-    "nv_eternal_fire_priest_2": {
-        "name": "Eternal Fire Priest",
-        "id": 2,
-        "deck": "novigrad",
-        "row": "ranged",
-        "strength": "3",
-        "ability": "bond",
-        "filename": "eternal_fire_priest_2",
-        "count": "1",
-        "target": "nv_eternal_fire_priest",
-        "quote": "Closer, my sheep, gather closer. May the Eternal Fire warm your souls!"
-    },
-    "nv_eternal_fire_priest_3": {
-        "name": "Eternal Fire Priest",
-        "id": 3,
-        "deck": "novigrad",
-        "row": "ranged",
-        "strength": "4",
-        "ability": "bond",
-        "filename": "eternal_fire_priest_3",
-        "count": "1",
-        "target": "nv_eternal_fire_priest",
-        "quote": "Closer, my sheep, gather closer. May the Eternal Fire warm your souls!"
-    },
-    "nv_roderick_wett": {
-        "name": "Roderick de Wett",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "6",
-        "ability": "hero",
-        "filename": "roderick_wett",
-        "count": "1",
-        "quote": "Count de Wett is exceptionally loathsome and arrogant, but at least he enjoys a little dice poker on the side."
-    },
-    "nv_moreelse": {
-        "name": "Moreelse",
-        "deck": "novigrad",
-        "row": "ranged",
-        "strength": "6",
-        "ability": "witch_hunt",
-        "filename": "moreelse",
-        "count": "1",
-        "quote": "Some witch hunters truly believed the eradication of mages and sorceresses would make the world a better place. Some did not require such justification."
-    },
-    "nv_nathaniel_pastodi": {
-        "name": "Nathaniel Pastodi",
-        "deck": "novigrad",
-        "row": "agile_rs",
-        "strength": "3",
-        "ability": "hero morale",
-        "filename": "nathaniel_pastodi",
-        "count": "1",
-        "quote": "Novigrad – where the impossible becomes possible. A professional torturer turned reverend, for instance."
-    },
-    "nv_cleric_flaming_rose": {
-        "name": "Cleric of the Flaming Rose",
-        "id": 1,
-        "deck": "novigrad",
-        "row": "ranged",
-        "strength": "4",
-        "ability": "muster",
-        "filename": "cleric_flaming_rose",
-        "count": "1",
-        "target": "sy_eternal_fire_disciple",
-        "quote": "We have two eyes, two ears, but only one tongue, so that we would look and listen twice more than we speak. "
-    },
-    "nv_eternal_fire_disciple": {
-        "name": "Eternal Fire Disciple",
-        "deck": "novigrad",
-        "row": "ranged",
-        "strength": "3",
-        "ability": "muster",
-        "filename": "eternal_fire_disciple",
-        "count": "1",
-        "target": "nv_firesworn_zealot",
-        "quote": "Look into your hearts, dear brethen. Does a contempt for injustice not burn within it?"
-    },
-"nv_firesworn_zealot": {
-        "name": "Firesworn Zealot",
-        "deck": "novigrad",
-        "row": "ranged",
-        "strength": "2",
-        "ability": "",
-        "filename": "firesworn_zealot",
-        "count": "1",
-        "quote": "Great is my faith, and great is my ire!"
-    },
-    "nv_temple_guard": {
-        "name": "Temple Guard",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "5",
-        "ability": "",
-        "filename": "temple_guard",
-        "count": "1",
-        "quote": "Halt! Who goes there?! Firesworn or heretic?"
     },
     "nv_field_marshal_duda": {
         "name": "Duda",
@@ -7963,16 +7546,6 @@ var ext_nv_cards = {
         "count": "1",
         "quote": "..."
     },
-    "nv_bomb_heaver": {
-        "name": "Bomb Heaver",
-        "deck": "novigrad",
-        "row": "siege",
-        "strength": "3",
-        "ability": "scorch_c",
-        "filename": "bomb_heaver",
-        "count": "1",
-        "quote": "Watch your heads!"
-    },
     "nv_corinne": {
         "name": "Corinne",
         "deck": "novigrad",
@@ -7982,16 +7555,6 @@ var ext_nv_cards = {
         "filename": "corinne",
         "count": "1",
         "quote": "Know when a legend turns into prophecy? When it gains believers."
-    },
-    "nv_adriano_mink": {
-        "name": "Adriano the Mink",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "6",
-        "ability": "",
-        "filename": "adriano_mink",
-        "count": "1",
-        "quote": "Right here, beautiful. Have a sit on daddy's lap."
     },
  "nv_renegade_mage": {
         "name": "Renegade Mage",
@@ -8034,26 +7597,6 @@ var ext_nv_cards = {
         "count": "0",
         "quote": "Novigrad requires rejuvenation – a rebirth!"
     },
-  "nv_saul_navarette": {
-        "name": "Saul de Navarette",
-        "deck": "novigrad",
-        "row": "siege",
-        "strength": "4",
-        "ability": "",
-        "filename": "saul_navarette",
-        "count": "1",
-        "quote": "A connoisseur with bottomless pockets and a soul black as tar."
-    },
- "nv_gudrun_bjornsdottir": {
-        "name": "Gudrun Bjornsdottir",
-        "deck": "novigrad",
-        "row": "siege",
-        "strength": "4",
-        "ability": "hero",
-        "filename": "gudrun_bjornsdottir",
-        "count": "1",
-        "quote": "She found her freedom among blue waters and salty wind."
-    },
     "nv_imke": {
         "name": "Imke",
         "deck": "novigrad",
@@ -8068,11 +7611,21 @@ var ext_nv_cards = {
         "name": "Dudu Biberveldt",
         "deck": "novigrad",
         "row": "ranged",
-        "strength": "1",
-        "ability": "spy",
+        "strength": "3",
+        "ability": "doppler",
         "filename": "dudu_biberveldt",
         "count": "1",
         "quote": "A mimic, among the many other names for his sort: changelings, doublings, vexlings… or dopplers."
+    },
+ "nv_doppler": {
+        "name": "Doppler",
+        "deck": "novigrad",
+        "row": "close",
+        "strength": "2",
+        "ability": "doppler",
+        "filename": "doppler",
+        "count": "1",
+        "quote": "Humans hate dopplers so much that mere execution isn't enough; they encase them in clay and bake them alive."
     },
     "nv_aphotecary": {
         "name": "Blindeye Apothecary",
@@ -8084,16 +7637,6 @@ var ext_nv_cards = {
         "count": "1",
         "quote": "After her husband died in a tragic carriage accident, she threw herself completely into her work."
     },
-    "nv_madame_luiza": {
-        "name": "Madame Luiza",
-        "deck": "novigrad",
-        "row": "siege",
-        "strength": "6",
-        "ability": "morale",
-        "filename": "madame_luiza",
-        "count": "1",
-        "quote": "We've bedded more men than all Redania's army barracks combined."
-    },
     "nv_caesar_bilzen": {
         "name": "Caesar Bilzen",
         "deck": "novigrad",
@@ -8103,16 +7646,6 @@ var ext_nv_cards = {
         "filename": "caesar_bilzen",
         "count": "1",
         "quote": "Avid angler, meticulous collector, and a real piece of work."
-    },
-    "nv_rico_meiersdorf": {
-        "name": "Rico Meiersdorf",
-        "deck": "novigrad",
-        "row": "agile_cr",
-        "strength": "1",
-        "ability": "morale",
-        "filename": "rico_meiersdorf",
-        "count": "1",
-        "quote": "I never did much like bees."
     },
     "nv_marquise_serenity": {
         "name": "Madam Marquise Serenity",
@@ -8140,7 +7673,7 @@ var ext_nv_cards = {
         "deck": "novigrad",
         "row": "close",
         "strength": "4",
-        "ability": "spy",
+        "ability": "morale",
         "filename": "passiflora_peaches",
         "count": "1",
         "quote": "They'll mess with your head, break your heart and empty your purse."
@@ -8159,31 +7692,11 @@ var ext_nv_cards = {
         "name": "Ferko the Sculptor",
         "deck": "novigrad",
         "row": "close",
-        "strength": "1",
-        "ability": "scorch",
+        "strength": "3",
+        "ability": "cull",
         "filename": "ferko",
         "count": "1",
         "quote": "Some call it base thuggery. But me, I consider it the highest art form."
-    },
-    "nv_igor_hook": {
-        "name": "Igor the Hook",
-        "deck": "novigrad",
-        "row": "siege",
-        "strength": "6",
-        "ability": "",
-        "filename": "igor_hook",
-        "count": "1",
-        "quote": "In the left corner, a bloodthirsty shaelmaar, and in the right co--oh bollocks... Fight's over, hold your bets!"
-    },
-    "nv_sausage_maker": {
-        "name": "Sausage Maker",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "6",
-        "ability": "morale",
-        "filename": "sausage_maker",
-        "count": "1",
-        "quote": "Body disposal and sausage makin', that's what I do."
     },
     "nv_zoltan": {
         "name": "Zoltan Chivay",
@@ -8199,8 +7712,8 @@ var ext_nv_cards = {
         "name": "Sarah",
         "deck": "novigrad",
         "row": "siege",
-        "strength": "7",
-        "ability": "spy",
+        "strength": "3",
+        "ability": "",
         "filename": "sarah",
         "count": "1",
         "quote": "Little Sarah wants to play!"
@@ -8215,27 +7728,6 @@ var ext_nv_cards = {
         "count": "1",
         "quote": "A djinn, good sirs, fulfills but three wishes. Thus freed, it flees to dimensions unknown."
     },
-   "nv_kelpie": {
-        "name": "Kelpie",
-        "deck": "novigrad",
-        "row": "siege",
-        "strength": "0",
-        "ability": "avenger",
-        "filename": "kelpie",
-        "count": "1",
-        "target": "ntr_ciri",
-        "quote": "In the north 'Kelpie' was a sea monster..."
-    },
-    "nv_witch_hunter": {
-        "name": "Witch Hunter",
-        "deck": "novigrad",
-        "row": "agile_cs",
-        "strength": "1",
-        "ability": "witch_hunt",
-        "filename": "witch_hunter",
-        "count": "1",
-        "quote": "Long coats, wide-brimmed hats, and crooked grins – witch hunters are hard to miss."
-    },
     "nv_kalkstein": {
         "name": "Adalbertus Kalkstein",
         "deck": "novigrad",
@@ -8245,39 +7737,6 @@ var ext_nv_cards = {
         "filename": "kalkstein",
         "count": "1",
         "quote": "Before Kalkstein departed this world, he left us with some rather unflattering words about our gracious king..."
-    },
-    "nv_deserter_1": {
-        "name": "Deserter",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "4",
-        "ability": "muster",
-        "filename": "deserter_1",
-        "count": "1",
-        "target": "nv_deserter",
-        "quote": "It is interesting that every second deserter is a volunteer."
-    },
-    "nv_deserter_2": {
-        "name": "Deserter",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "3",
-        "ability": "muster",
-        "filename": "deserter_2",
-        "count": "1",
-        "target": "nv_deserter",
-        "quote": "It is interesting that every second deserter is a volunteer."
-    },
-    "nv_deserter_3": {
-        "name": "Deserter",
-        "deck": "novigrad",
-        "row": "close",
-        "strength": "3",
-        "ability": "muster",
-        "filename": "deserter_3",
-        "count": "1",
-        "target": "nv_deserter",
-        "quote": "It is interesting that every second deserter is a volunteer."
     },
     "nv_salma": {
         "name": "Salma",

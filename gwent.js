@@ -403,9 +403,9 @@ class ControllerAI {
             await this.player.playCardToRow(c, this.bestAgileRowChange(c).row);
         else if (c.faction === "special" && c.abilities.includes("bank"))
             await this.bank(c);
-        else if (c.faction === "special" && c.skelligeFleet)
+        else if (c.faction === "special" && c.abilities.includes("skellige_fleet"))
             await this.skelligeFleet(c);
-        else if (c.faction === "special" && c.royalDecree)
+        else if (c.faction === "special" && c.abilities.includes("royal_decree"))
             await this.royalDecree(c);
         else
             await this.player.playCard(c);
@@ -4244,6 +4244,10 @@ html, body, #click-background {
 	left: 18.2%;
 }
 
+#end-screen>p {
+top: 48% !important;
+
+}
 
 #card-deck-title,
 #card-bank-title {

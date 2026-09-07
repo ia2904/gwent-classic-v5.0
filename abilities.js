@@ -1145,48 +1145,76 @@ await board.getRow(card, "ranged", card.holder).leaderHorn(card);
         }
     },
     birna: {
-        description: "Draw from your deck any card with Mardroeme or Werewolf ability and play it immediatly.",
-        activated: async card => {
-tocar("leader", false);
-            let targetCard = null;
-            if (card.holder.controller instanceof ControllerAI) {
-                let berserkers = card.holder.deck.cards.filter(c => c.abilities.includes("berserker"));
-                let mard = card.holder.deck.cards.filter(c => c.abilities.includes("mardroeme"));
-                let ownedberserkers = card.holder.hand.cards.filter(c => c.abilities.includes("berserker")).concat(card.holder.getAllRowCards().filter(c => c.abilities.includes("berserker")));
-                let ownedmard = card.holder.hand.cards.filter(c => c.abilities.includes("mardroeme"))
-                    .concat(card.holder.getAllRowCards().filter(c => c.abilities.includes("mardroeme")))
-                    .concat(card.holder.getAllSpecialRowCards().filter(c => c.abilities.includes("mardroeme")));
-                // We try to pick a card we are missing
-                if (ownedberserkers.length > 0 && ownedmard.length == 0 && mard.length > 0) {
-                    targetCard = mard[0];
-                } else if (ownedberserkers.length == 0 && ownedmard.length > 0 && berserkers.length > 0) {
-                    targetCard = berserkers.sort((a,b) => b.basePower - a.basePower)[0];
-                } else if (berserkers.length > 0) {
-                    targetCard = berserkers.sort((a, b) => b.basePower - a.basePower)[0];
-                } else {
-                    targetCard = mard[0];
+    description: "Draw from your deck any card with Mardroeme or Werewolf ability. Units are played immediately, specials are added to your hand.",
+    activated: async card => {
+        tocar("leader", false);
+        let targetCard = null;
+
+        if (card.holder.controller instanceof ControllerAI) {
+            let berserkers = card.holder.deck.cards.filter(c => c.abilities.includes("berserker"));
+            let mard = card.holder.deck.cards.filter(c => c.abilities.includes("mardroeme"));
+
+            let ownedberserkers = card.holder.hand.cards.filter(c => c.abilities.includes("berserker"))
+                .concat(card.holder.getAllRowCards().filter(c => c.abilities.includes("berserker")));
+
+            let ownedmard = card.holder.hand.cards.filter(c => c.abilities.includes("mardroeme"))
+                .concat(card.holder.getAllRowCards().filter(c => c.abilities.includes("mardroeme")))
+                .concat(card.holder.getAllSpecialRowCards().filter(c => c.abilities.includes("mardroeme")));
+
+            // Selección de carta según lo que falte
+            if (ownedberserkers.length > 0 && ownedmard.length == 0 && mard.length > 0) {
+                targetCard = mard[0];
+            } else if (ownedberserkers.length == 0 && ownedmard.length > 0 && berserkers.length > 0) {
+                targetCard = berserkers.sort((a, b) => b.basePower - a.basePower)[0];
+            } else if (berserkers.length > 0) {
+                targetCard = berserkers.sort((a, b) => b.basePower - a.basePower)[0];
+            } else if (mard.length > 0) {
+                targetCard = mard[0];
+            }
+
+            if (targetCard) {
+                // Mover de deck a mano
+                card.holder.deck.removeCard(targetCard);
+                card.holder.hand.addCard(targetCard);
+
+                // Si es unidad → jugar inmediatamente en su fila
+                if (targetCard.isUnit && targetCard.isUnit()) {
+                    let rows = card.holder.getAllRows();
+                    let row = rows.find(r => r.key === targetCard.row) || rows[0];
+                    if (row) {
+                        await card.holder.playCardToRow(targetCard, row, false);
+                    }
                 }
-                if (targetCard) {
-                    // Move from deck to hand
+                // Si es especial → se queda en la mano
+            }
+        } else {
+            try {
+                Carousel.curr.cancel();
+            } catch (err) { }
+            await ui.queueCarousel(
+                card.holder.deck,
+                1,
+                (c, i) => targetCard = c.cards[i],
+                c => c.abilities.includes("berserker") || c.abilities.includes("mardroeme"),
+                true
+            );
+
+            if (targetCard) {
+                // Jugador humano: si es unidad, elige fila; si es especial, se queda en mano
+                if (targetCard.isUnit && targetCard.isUnit()) {
+                    card.holder.selectCardDestination(targetCard, card.holder.deck);
+                } else {
                     card.holder.deck.removeCard(targetCard);
                     card.holder.hand.addCard(targetCard);
-                    let rows = targetCard.getPlayableRows();
-                    // Lazy approach, can be improved
-                    await card.holder.playCardToRow(targetCard, rows[0], false);
                 }
-            } else {
-                try {
-                    Carousel.curr.cancel();
-                } catch (err) { }
-                await ui.queueCarousel(card.holder.deck, 1, (c, i) => targetCard = c.cards[i], c => c.abilities.includes("berserker") || c.abilities.includes("mardroeme"), true);
-                // let player select where to play the card
-                card.holder.selectCardDestination(targetCard, card.holder.deck);
             }
-        },
-        weight: (card, ai) => {
-            return 10;
         }
     },
+    weight: (card, ai) => {
+        return 10;
+    }
+},
+
     madman_lugos: {
         description: "Once per game at the beginning of any round your opponent must show you 2 random cards in his hand. Pick one of them and discard it.",
         placed: card => {
@@ -1589,31 +1617,50 @@ targetCard.autoplay(card.holder.grave);
             return 10;
         }
     },
-    anna_henrietta_little_weasel: {
-        description: "Choose an enemy hero card and remove its Hero status.",
-        activated: async card => {
-            let heros = card.holder.opponent().getAllRowCards().filter(c => c.hero).sort((a, b) => b.power - a.power);
-            if (heros.length == 0)
-                return false;
-            let targetCard = null;
-            if (card.holder.controller instanceof ControllerAI) {
-                targetCard = heros[0]; // should be the strongest
-            } else {
-                await ui.queueCarousel({ cards: heros }, 1, (c, i) => targetCard = c.cards[i], c => true, true, false, "Choose the enemy hero to demote.");
-            }
-            if (targetCard) {
-            tocar("leader", false);
-                targetCard.hero = false;
-                let el = targetCard.createCardElem(targetCard);
-                targetCard.elem.replaceWith(el);
-                targetCard.elem = el;
-            }
-            return true;
-        },
-        weight: (card, ai) => {
-            return 8;
+anna_henrietta_little_weasel: {
+    description: "Choose an enemy hero card and remove its Hero status.",
+    activated: async card => {
+        let heros = card.holder.opponent().getAllRowCards()
+            .filter(c => c.hero)
+            .sort((a, b) => b.power - a.power);
+
+        if (heros.length === 0) {
+            return;
         }
+
+        let targetCard = null;
+
+        if (card.holder.controller instanceof ControllerAI) {
+            targetCard = heros[0]; // strongest
+        } else {
+            await ui.queueCarousel(
+                { cards: heros },
+                1,
+                (c, i) => targetCard = c.cards[i],
+                c => true,
+                true,
+                false,
+                "Choose the enemy hero to demote."
+            );
+        }
+
+        if (targetCard) {
+            tocar("leader", false);
+            targetCard.hero = false;
+            let el = targetCard.createCardElem(targetCard);
+            targetCard.elem.replaceWith(el);
+            targetCard.elem = el;
+        }
+
+        return true;
     },
+    weight: (card, ai) => {
+        let heros = card.holder.opponent().getAllRowCards().filter(c => c.hero);
+        if (heros.length === 0) return 0; 
+        return heros.sort((a, b) => b.power - a.power)[0].power;
+    }
+},
+
 lady_wood_whispess: {
         description: "Take from your discard pile in your hand 3 or less unit cards, that died in the current round.",
         activated: async card => {
@@ -1705,34 +1752,46 @@ card.holder.selectCardDestination(targetCard, card.holder.deck);
             
         }
     },
-    eredin_commander: {
-        description: "Choose on your battlefield two or less unit and/or hero cards and take them into your hand.",
-        activated: async card => {
-            let cards = card.holder.getAllRowCards().filter(c => c.hero || c.isUnit());
-            if (cards.length == 0)
-                return false;
-            let targetCards = [];
-            let cardsCount = Math.min(2, cards.length);
-            if (card.holder.controller instanceof ControllerAI) {
-                targetCards = card.holder.controller.selectBestCards(cards, cardsCount, { "spy": 10, "zirael": 10, "medic": 8, "sage": 4, "scorch_c": 4, "scorch_r": 4 }).map(c => c.card);
-            } else {
-                await ui.queueCarousel({ cards: cards }, cardsCount, (c, i) => targetCards.push(c.cards[i]), c => true, true, true, "Choose up to " + String(cardsCount)+" cards to take back into your hand.");
-            }
-            if (targetCards.length > 0) {
-            tocar("leader", false);
-                targetCards.forEach(async c => {
-                    await board.moveTo(c, card.holder.hand, c.currentLocation);
-                });
-            }
-        },
-        weight: card => {
-            let cards = card.holder.getAllRowCards().filter(c => c.hero || c.isUnit());
-            if (cards.length == 0)
-                return card.holder.controller.selectBestCards(cards, Math.min(2, cards.length), { "spy": 10, "medic": 8, "sage": 4, "scorch_c": 4 }).reduce((a,c) => a + c.weight,0);
-            return 5;
+eredin_commander: {
+    description: "Choose on your battlefield two or less unit and/or hero cards and take them into your hand.",
+    activated: async card => {
+        let cartasValidas = card.holder.getAllRowCards().filter(c => c.hero || c.isUnit());
+        if (cartasValidas.length === 0) return false;
 
+        let targetCards = [];
+        let cardsCount = Math.min(2, cartasValidas.length);
+
+        if (card.holder.controller instanceof ControllerAI) {
+            targetCards = cartasValidas.slice(0, cardsCount);
+        } else {
+            await ui.queueCarousel(
+                { cards: cartasValidas },
+                cardsCount,
+                (c, i) => targetCards.push(c.cards[i]),
+                c => true,
+                true,
+                true,
+                "Choose up to " + String(cardsCount) + " cards to take back into your hand."
+            );
         }
+
+        if (targetCards.length > 0) {
+            tocar("leader", false);
+            for (const c of targetCards) {
+                let origen = (c && c.currentLocation) ? c.currentLocation : card.holder.board;
+                await board.toHand(c, origen);
+            }
+            return true;
+        }
+        return false;
     },
+    weight: card => {
+        let cartasValidas = card.holder.getAllRowCards().filter(c => c.hero || c.isUnit());
+        if (cartasValidas.length === 0) return 0;
+        return 5;
+    }
+},
+
     auberon_king: {
         description: "Draw from your deck or graveyard any number of Navigator cards. Then choose in your hand the same number of cards and put them back in any place of the deck.",
                 activated: async card => {
@@ -3014,6 +3073,7 @@ cyrus_hemmelfart1: {
             }
         }
     },
+    
 omen: {
 		name: "Omen",
 		description: "Create a copy of Cat and Dog and add it to your hand.",
@@ -4516,6 +4576,65 @@ wish3: {
     }
 },
 
+doppler: {
+    name: "Doppler",
+    description: "Choose an enemy unit (not hero or special) from the opposite row and transform into a basic copy of it (stats only, no abilities).",
+    placed: async function(card, row) {
+        if (!card || !card.holder || card.isLocked()) return;
+
+        let enemyRow = card.currentLocation.getOppositeRow();
+        if (!enemyRow || !enemyRow.cards) return;
+
+        let units = enemyRow.cards.filter(c => c && c.isUnit() && !c.hero && c.faction !== "special");
+        if (units.length === 0) return;
+
+        let targetCard = null;
+
+        if (card.holder.controller instanceof ControllerAI) {
+            targetCard = units.sort((a, b) => b.basePower - a.basePower)[0];
+        } else {
+            try { Carousel.curr.cancel(); } catch (err) {}
+            await new Promise(resolve => {
+                ui.queueCarousel({ cards: units }, 1, (container, index) => {
+                    targetCard = container.cards[index];
+                    resolve();
+                }, c => true, true, false, "Choose an enemy unit from the opposite row to transform Doppler into.");
+            });
+        }
+
+        if (targetCard) {
+            tocar("doppler", false);
+            await card.animate("doppler");
+         
+
+            row.removeCard(card);
+
+            let copyData = { ...card_dict[targetCard.key] };
+            copyData.abilities = [];   // limpiar array
+            copyData.ability = "";     // limpiar string
+
+            let copy = new Card(targetCard.key, copyData, card.holder);
+            copy.basePower = targetCard.basePower;
+            copy.power = targetCard.basePower;
+
+            await row.addCard(copy);
+
+            if (board.updateScore) {
+                board.updateScore();
+            }
+        }
+    },
+    weight: (card, ai) => {
+        let enemyRow = card.currentLocation.getOppositeRow();
+        if (!enemyRow || !enemyRow.cards) return 0;
+
+        let validUnits = enemyRow.cards.filter(c => c && c.isUnit() && !c.hero && c.faction !== "special");
+        if (validUnits.length === 0) return 0;
+
+        let strongest = validUnits.sort((a, b) => b.basePower - a.basePower)[0];
+        return strongest.basePower;
+    }
+},
 
 
 novigrad_sigismund: {
