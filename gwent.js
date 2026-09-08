@@ -2620,40 +2620,16 @@ class Weather extends CardContainer {
             this.clearWeather();
         } else {
             this.changeWeather(card, x => ++this.types[x].count === 1, (r, t) => r.addOverlay(t.name));
-        for (let i = this.cards.length - 2; i >= 0; --i) {
-            let prevCard = this.cards[i];
-
-            for (let ability of card.abilities) {
-                if (ability in this.types) {
-                    let newRows = this.types[ability].rows;
-
-                    for (let prevAbility of prevCard.abilities) {
-                        if (prevAbility in this.types) {
-                            let prevRows = this.types[prevAbility].rows;
-
-                            if (newRows.some(r => prevRows.includes(r))) {
-                                for (let r of newRows) {
-                                    if (prevRows.includes(r)) {
-                                        r.removeOverlay(this.types[prevAbility].name);
-                                    }
-                                }
-
-                                let remainingRows = prevRows.filter(r => !newRows.includes(r));
-                                if (remainingRows.length === 0) {
-                                    await sleep(750);
-                                    await board.toGrave(prevCard, this);
-                                }
-                                break;
-                            }
-                        }
-                    }
+            for (let i = this.cards.length - 2; i >= 0; --i) {
+                if (card.abilities.at(-1) === this.cards[i].abilities.at(-1)) {
+                    await sleep(750);
+                    await board.toGrave(card, this);
+                    break;
                 }
             }
         }
+        await sleep(750);
     }
-
-    await sleep(750);
-}
 
     // Override
     removeCard(card, withEffects = true) {
