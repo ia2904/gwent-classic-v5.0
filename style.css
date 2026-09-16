@@ -1546,6 +1546,7 @@ border-radius: 0.5vw;
 	font-size: 1vw;
 	color: #fff;
 	top: 15%;
+font-weight: bold
 }
 
 
@@ -1766,7 +1767,7 @@ font-weight: bold;
 	background-size: contain;
 }
 
-.card-array .card-lg .card-large-name {
+/*.card-array .card-lg .card-large-name {
 	display: flex;
 	justify-content: center;
 	text-align: center;
@@ -1781,10 +1782,30 @@ font-weight: bold;
 	background-size: contain;
 	color: #000;
 	line-height: 0.8vw;
+} */
+
+.card-array .card-lg .card-large-name {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	position: absolute;
+	top: 77%;                  
+	left: 0%;
+	width: 100%;
+	height: 6vw;               
+	font-size: 1.14vw;         
+	font-weight: bold;        
+	background-position: left;
+	background-repeat: no-repeat;
+	background-size: contain;
+	color: #26211C;            
+	line-height: 1.2;        
 }
 
+
 .card-array .card-lg .card-large-quote {
-	display: flex;
+	display: none;/* Cambié de flex a none para ocultarlo */
+	/* 
 	justify-content: center;
 	text-align: center;
 	position: absolute;
@@ -1797,6 +1818,7 @@ font-weight: bold;
 	background-repeat: no-repeat;
 	background-size: contain;
 	color: #000;
+*/
 }
 
 .card-array .card-lg .card-large-power {
@@ -1903,12 +1925,13 @@ font-weight: bold;
 	left: 0%;
 	width: 100%;
 	height: 5vw;
-	font-size: 1.4vw;
+	font-size: 1.3vw;
 	background-position: left;
 	background-repeat: no-repeat;
 	background-size: contain;
-	color: #000;
+	color: #26211C;
 	line-height: 1.1vw;
+font-weight: bold;
 }
 
 .card-preview .card-lg .card-large-quote {
@@ -2047,7 +2070,8 @@ font-weight: bold;
 	background-position: left;
 	background-repeat: no-repeat;
 	background-size: contain;
-	color: #000;
+	color: #26211C;
+        font-weight: bold;
 }
 
 #carousel .card-lg .card-large-quote {
@@ -2235,13 +2259,14 @@ font-weight: bold;
 	position: absolute;
 	top: 75%;
 	left: 0%;
-	width: 100%;
+	width: 97%;
 	height: 5vw;
-	font-size: 0.9vw;
+	font-size: 0.83vw;
 	background-position: left;
 	background-repeat: no-repeat;
 	background-size: contain;
-	color: #000;
+	color: #26211C;
+        font-weight: bold;
 }
 
 #card-leader .card-large-quote {
@@ -2361,7 +2386,7 @@ border-radius: .5vw;
 
 .card-contianer-title {
 	position: absolute;
-	width: 10%;
+	width: 12%;
 	height: 3%;
 	font-size: 1.3vw;
 	color: #959595;
@@ -2369,7 +2394,7 @@ border-radius: .5vw;
 
 #card-bank-title {
 	top: 17.5%;
-	left: 21%;
+	left: 20%;
 color: #b48c44 !important;
 }
 

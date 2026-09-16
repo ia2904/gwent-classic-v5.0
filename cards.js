@@ -47,10 +47,22 @@ var default_cards = {
         "deck": "neutral",
         "row": "close",
         "strength": "12",
-        "ability": "hero",
+        "ability": "hero invoke",
         "filename": "geralt",
         "count": "1",
+        "target": "ntr_roach",
         "quote": "If that's what it takes to save the world, it's better to let that world die."
+    },
+    "ntr_roach": {
+        "name": "Roach",
+        "deck": "neutral",
+        "row": "close",
+        "strength": "3",
+        "ability": "",
+        "filename": "roach",
+        "count": "1",
+        "target": "ntr_roach",
+        "quote": "Come on, Roach! Faster!"
     },
   "ntr_ciri": {
         "name": "Cirilla Fiona Elen Riannon",
@@ -2153,6 +2165,26 @@ var ext_re_cards = {
         "count": "3",
         "quote": "...do hereby decree the following..."
     },
+    "spe_decoration": {
+        "name": "Decoration",
+        "deck": "special redania",
+        "row": "",
+        "strength": "",
+        "ability": "decoration",
+        "filename": "decoration",
+        "count": "1",
+        "quote": "Not wealth or fame but intentions true -- that’s what makes a hero of you!"
+    },
+    "spe_royal_guards": {
+        "name": "Radovid's Royal Guards",
+        "deck": "special redania",
+        "row": "",
+        "strength": "",
+        "ability": "shield",
+        "filename": "royal_guards",
+        "count": "1",
+        "quote": "They'll do anything for their king. They know what he'll do to them if they refuse."
+    },
     "re_radovid_king_redania": {
         "name": "Radovid: King of Redania",
         "deck": "redania",
@@ -3222,7 +3254,7 @@ var ext_wh_cards = {
         "quote": "It is the beginning of the end!"
     },
     "wh_eredin_commander": {
-        "name": "Eredin Bréacc Glas: Commander of Dearg Ruadhri",
+        "name": "Eredin: Commander of Dearg Ruadhri",
         "deck": "wild_hunt",
         "row": "leader",
         "strength": "",
@@ -4298,11 +4330,10 @@ var ext_wu_cards = {
         "name": "Kelpie",
         "deck": "witcher_universe",
         "row": "siege",
-        "strength": "0",
-        "ability": "avenger",
+        "strength": "3",
+        "ability": "",
         "filename": "kelpie",
         "count": "1",
-        "target": "ntr_ciri",
         "quote": "In the north 'Kelpie' was a sea monster..."
     },
     "wu_vysogota": {
@@ -4376,17 +4407,6 @@ var ext_wu_cards = {
         "filename": "nenneke",
         "count": "1",
         "quote": "Few know more about healing than Nenneke."
-    },
-    "wu_roach": {
-        "name": "Roach",
-        "deck": "witcher_universe",
-        "row": "close",
-        "strength": "0",
-        "ability": "avenger",
-        "filename": "roach",
-        "count": "1",
-        "target": "ntr_geralt",
-        "quote": "Geralt, we gotta have a man–to–horse talk. No offense, but your riding skills? They leave a bit to be desired, buddy."
     },
     "wu_kalkstein": {
         "name": "Adalbertus Kalkstein",

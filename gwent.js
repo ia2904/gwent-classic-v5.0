@@ -407,6 +407,8 @@ class ControllerAI {
             await this.skelligeFleet(c);
         else if (c.faction === "special" && c.abilities.includes("royal_decree"))
             await this.royalDecree(c);
+        else if (c.faction === "special" && c.abilities.includes("decoration"))
+        await this.decoration(c);
         else
             await this.player.playCard(c);
     }
@@ -630,6 +632,13 @@ async cull(card, max, data) {
     async royalDecree(card) {
         await this.player.playRoyalDecree(card);
     }
+    
+    // Plays the Decoration special card
+    async decoration(card) {
+    await this.player.playDecoration(card);
+    }
+
+
     async veles(card) {
         await this.player.playVeles(card);
     }
@@ -1011,7 +1020,7 @@ async cull(card, max, data) {
                 let rows = this.player.getAllRows();
                 return Math.max(...rows.map(r => this.weightMardroemeRow(card, r)));
             }
-                    if (["cintra_slaughter", "seize", "lock", "shield", "knockback", "shield_c", "shield_r", "shield_s", "bank", "omen", "ofiri_envoy", "skellige_fleet","immortal","royal_decree","summon_one_of","curse", "veles", "chernobog", "perun", "svarog", "morana", "zoria", "stribog", "devana", "triglav"].includes(abi.at(-1))) {
+                    if (["cintra_slaughter", "seize", "lock", "shield", "knockback", "shield_c", "shield_r", "shield_s", "bank", "omen", "ofiri_envoy", "skellige_fleet", "immortal", "royal_decree", "decoration", "summon_one_of", "curse", "veles", "chernobog", "perun", "svarog", "morana", "zoria", "stribog", "devana", "triglav"].includes(abi.at(-1))) {
             return ability_dict[abi.at(-1)].weight(card, this, max);
         }
             if (abi.includes("witch_hunt")) {
@@ -1360,6 +1369,12 @@ async playCull(card) {
     async playRoyalDecree(card) {
         await this.playCardAction(card, async () => await ability_dict["royal_decree"].activated(card));
     }
+
+// Play the Decoration card
+async playDecoration(card) {
+    await this.playCardAction(card, async () => await ability_dict["decoration"].activated(card));
+}
+
     async playVeles(card) {
         await this.playCardAction(card, async () => await ability_dict["veles"].activated(card));
     }
@@ -2717,26 +2732,13 @@ class Board {
                 destroy = false;
             }
 
-            // Checking Protection abilities such as Comrade
-            if (destroy) {
-                protectors = card.holder.getAllRowCards().filter(c => c.abilities.includes("comrade") && c.protects);
-                if (protectors.length > 0) {
-                    let choice = false;
-                    if (!(card.holder.controller instanceof ControllerAI)) {
-                        choice = await ui.popup("Save it [E]", () => true, "Let it die [Q]", () => false, "Do you want to save this unit?", "Comrade ability can prevent the destruction of the following card: " + card.name + " (strength: " + card.power + "). Do you want to save it?");
-                        if (choice) {
-                            destroy = false;
-                            protectors[0].protects = false;
-                        }
-                    } else {
-                        if (card.power > 5) {
-                            protectors[0].protects = false;
-                            destroy = false;
-                        }
-                    }
-                }
-            }
-            
+        // Comrade:
+        if (destroy && card.comradeShield) {
+            destroy = false;             
+            card.comradeShield = false;                         
+            card.animate("comrade");
+        }
+
             // For Wild Hunt faction: Imlerith protects navigators
             if (destroy && card.abilities.includes("door_o") && card.holder.leader.key === "wh_imlerith_general") {
                 destroy = false;
@@ -3582,7 +3584,7 @@ if (!ab) continue;
 
       // Returns true if card is sent to a Row's special slot
     isSpecial() {
-        return ["spe_horn", "spe_mardroeme", "spe_sign_quen", "spe_sign_yrden", "spe_toussaint_wine", "spe_lyria_rivia_morale", "spe_wyvern_shield", "spe_mantlet", "spe_garrison", "spe_watchman", "spe_dimeritium_shackles", "spe_curse", "spe_ofir_horn"].includes(this.key);
+        return ["spe_horn", "spe_mardroeme", "spe_sign_quen", "spe_sign_yrden", "spe_toussaint_wine", "spe_lyria_rivia_morale", "spe_wyvern_shield", "spe_mantlet", "spe_garrison", "spe_watchman", "spe_dimeritium_shackles", "spe_curse", "spe_ofir_horn", "spe_royal_guards"].includes(this.key);
     }
 
 
@@ -4036,7 +4038,7 @@ let cardLeaderMenu = document.getElementById("card-leader");
 
 				let startGameBtn = document.getElementById("start-game");
 				if (startGameBtn) {
-					startGameBtn.style.transform = "translateY(-5.8vw)";
+					startGameBtn.style.transform = "translateY(-5.3vw)";
 				}
 
 				let startAIGameBtn = document.getElementById("start-ai-game");
@@ -4132,7 +4134,7 @@ let startPvPGameBtn = document.getElementById("start-pvp-game");
 					width: 180% !important;
 					left: -40% !important;
 				}
-				.card-array .card-large-name {
+				/* .card-array .card-large-name {
 					top: 73.9% !important;
 					font-size: 13px !important;
 					line-height: 0.9 !important;
@@ -4140,35 +4142,104 @@ let startPvPGameBtn = document.getElementById("start-pvp-game");
 					transform-origin: top center !important;
 					width: 180% !important;
 					left: -40% !important;
+				} */
+
+				.card-array .card-lg .card-large-name {
+					top: 77% !important;
+					font-size: 13px !important;
+					line-height: 1.2 !important;
+					transform: scale(0.65) !important;
+					transform-origin: top center !important;
+                                        left: -27%;
+                                        width: 156%;
 				}
+
 				#card-leader .card-large-name {                                
 					top: 74.2% !important;				
 					font-size: 13px !important;
 					line-height: 1 !important;
-					transform: scale(0.52) !important;
-					transform-origin: top center !important;
-					width: 180% !important;
-					left: -40% !important;
-				}
-                               #carousel .card-large-name {
-					top: 74.2% !important;
-					font-size: 15px !important;
-					line-height: 0.9 !important;
-					transform: scale(0.58) !important;
+					transform: scale(0.5) !important;
 					transform-origin: top center !important;
 					width: 170% !important;
 					left: -35% !important;
 				}
+                               #carousel .card-lg .card-large-name {
+					top: 74.8% !important;
+					font-size: 15px !important;
+					/* line-height: 0.9 !important; */
+					transform: scale(0.53) !important;
+					transform-origin: top center !important;
+					width: 190% !important;
+					left: -45% !important;
+				}
+
+#carousel > :nth-child(1) > :nth-child(2n) .card-large-name {
+	font-size: 15px !important;
+transform: scale(0.48) !important;
+width: 182% !important;
+left: -40% !important;
+}
+
+#carousel > :nth-child(1) > :nth-child(2n) .card-large-quote {
+	font-size: 15px !important;
+transform: scale(0.45) !important;
+width: 195% !important;
+left: -47% !important;
+height: 3vw;
+}
+
+
+#carousel > :nth-child(1) > :nth-child(4n - 3) .card-large-name {
+	font-size: 15px !important;
+transform: scale(0.39) !important;
+width: 265% !important;
+left: -82% !important;
+}
+
+#carousel > :nth-child(1) > :nth-child(4n - 3) .card-large-quote {
+	font-size: 15px !important;
+transform: scale(0.35) !important;
+width: 265% !important;
+left: -82% !important;
+height: 3vw;
+top: 79% !important;
+}
+
                                 #carousel {
 					top: -30px !important;
 				}
 
-                                #carousel .card-large-quote {
-					top: 82% !important;
+                                #carousel .card-lg .card-large-quote {
+					top: 80% !important;
+                                        font-size: 15px !important;
+                                        line-height: 1 !important;
+                                        transform: scale(0.51) !important;
+                                        width: 190%;
+                                        left: -45% !important;
 				}
 				.card-preview .card-lg {
 					top: 2.5vw !important;
 				}
+
+
+.card-preview .card-lg .card-large-name {
+             /* font-size: 15px !important;
+             top: 75% !important;
+             transform: scale(0.7) !important;
+             transform-origin: top center !important;
+             width: 127% !important;
+             left: -14% !important; */
+             line-height: 0.8 !important;
+}
+
+.card-preview .card-lg .card-large-quote {
+    top: 78.5% !important;
+    font-size: 15px !important;
+    line-height: 1 !important;
+    transform: scale(0.48) !important;
+    width: 190%;
+    left: -45% !important;
+}
 				.card-preview .card-description {
 					top: 32.5vw !important;
 transform: scale(0.95) !important;
@@ -4176,7 +4247,7 @@ transform: scale(0.95) !important;
 				#carousel .card-description {
 					top: 74% !important;
 font-size: 11px !important;
-					line-height: 0.83 !important;
+					line-height: 0.87 !important;
 					transform: scale(0.82) !important;
 					transform-origin: top center !important;
 					}
@@ -4469,6 +4540,9 @@ let row = this.lastRow;
         } else if (card.faction === "special" && card.abilities.includes("royal_decree")) {
             this.hidePreview();
             await ability_dict["royal_decree"].activated(card);
+        } else if (card.faction === "special" && card.abilities.includes("decoration")) {
+            this.hidePreview();
+            await ability_dict["decoration"].activated(card);  
         } else {
             await board.moveTo(card, row, card.holder.hand);
         }
@@ -4779,7 +4853,7 @@ navigator.vibrate(50);
 			return;
 		}
         // Affects only own side of board
-        if (card.faction === "special" && (card.abilities.includes("cintra_slaughter") || card.abilities.includes("bank") || card.abilities.includes("skellige_fleet") || card.abilities.includes("royal_decree") || card.abilities.includes("veles"))) {
+        if (card.faction === "special" && (card.abilities.includes("cintra_slaughter") || card.abilities.includes("bank") || card.abilities.includes("skellige_fleet") || card.abilities.includes("royal_decree") || card.abilities.includes("veles") || card.abilities.includes("decoration"))) {
             for (let i = 0; i < 6; i++) {
                 let r = board.row[i];
                 if ((!game.isPvP() && i > 2) || (game.isPvP() && ((card.holder.tag === player_me.tag && i > 2) || (card.holder.tag === player_op.tag && i < 3)))) {
@@ -6869,7 +6943,11 @@ function iconURL(name, ext = "png") {
     }
     
     if (name === "card_ability_cull") {
-        name = "card_ability_cull"; // 
+        name = "card_ability_cull";  
+    }
+
+    if (name === "card_ability_decoration") {
+        name = "power_decoration";  
     }
 
     if (name === "card_ability_sandstorm") {
@@ -7318,8 +7396,8 @@ function actualizarPosicionMusicaMovel() {
         let musicToggle = document.getElementById("toggle-music");
         if (musicToggle) {
             if (musicToggle.classList.contains("music-customization")) {
-                musicToggle.style.transform = "translate(22.6vw, -3.5vw)";
-musicToggle.style.gap = "30px";
+                musicToggle.style.transform = "translate(22.6vw, -2.8vw)";
+musicToggle.style.gap = "35px";
                 musicToggle.style.fontSize = "4.0vw";
             } else {
                 musicToggle.style.transform = "translate(-23.5vw, -4.5vw)";

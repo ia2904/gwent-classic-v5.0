@@ -2542,16 +2542,53 @@ cyrus_hemmelfart1: {
         name: "Inspire",
         description: "All units with Inspire ability take the highest base strength of the Inspire units on your side of the board. Still affected by weather.",
     },
-    comrade: {
-        name: "Comrade",
-        description: "Once per round, this card can prevent the destruction of another card on its side of the board, including itself.",
-        placed: async card => {
-            if (card.isLocked())
-                return;
-            card.protects = true;
-            return card;
+
+comrade: {
+    name: "Comrade",
+    description: "Once per round, this card can prevent the destruction of another card on its side of the board, including itself.",
+    placed: async card => {
+        if (card.isLocked()) return;
+
+        let units = card.holder.getAllRowCards().filter(c => c.isUnit());
+        if (units.length === 0) return;
+
+        let target = null; 
+        if (card.holder.controller instanceof ControllerAI) {
+            target = units.sort((a, b) => Number(b.power) - Number(a.power))[0];
+        } else {
+            try { Carousel.curr.cancel(); } catch (err) {}
+            await ui.queueCarousel({ cards: units }, 1, (container, index) => {
+                target = container.cards[index];
+            }, c => true, true, false, "Choose a card to protect with Comrade.");
         }
-    },
+
+        if (target) {
+            target.comradeShield = true; 
+            target.protectedBy = card;   
+            
+            if (!(card.holder.controller instanceof ControllerAI)) {
+                let choice = await ui.popup(
+                    "Save it [E]", () => true,
+                    "Let it die [Q]", () => false,
+                    "Do you want to save Comrade too?",
+                    "You protected " + target.name + ". Do you also want to use the ability to save this Comrade card (" + card.name + ") from going to grave?"
+                );
+
+                if (choice) {
+                    card.comradeShield = true; // ¡Blindamos también la Carta 1 (Comrade)!
+                }
+            } else {
+                if (card.power > 5) {
+                    card.comradeShield = true;
+                }
+            }
+            
+            card.protects = false; // Desactivamos el disparador ya que procesamos la habilidad
+        }
+    }
+},
+
+
         invoke: {
         name: "Invoke",
         description: "Invokes one of the available associated cards from the deck.",
@@ -2676,7 +2713,7 @@ cyrus_hemmelfart1: {
     },
     ambush: {
         name: "Ambush",
-        description: "Place on your or opponent's battlefield (on any row). If opponent plays a unit or hero card on this row, you will instantly draw 2 cards from your deck into your hand. Remove the ambush to the discard pile when it has happened.",
+        description: "Place on any row. If the opponent plays a unit or hero on this row, draw 2 cards and send this card to the discard pile",
         placed: async card => {
             if (card.isLocked())
                 return;
@@ -2733,54 +2770,65 @@ cyrus_hemmelfart1: {
             return card.holder.controller.weightLeader(card.holder.leader, data_max, data_board);
         }
     },
-    summon_one_of: {
-        name: "Summon One Of",
-        description: "Summons from anywhere (deck, grave or hand) one of the associated card of choice",
-        placed: async card => {
-            let targets = [];
-            if (card.isLocked())
-                return;
-            if (card.target) {
-                if (Array.isArray(card.target))
-                    targets = card.target;
-                else
-                    targets = card.target.split(" ");
-            }
-            let cards = card.holder.deck.cards.filter(c => targets.includes(c.key))
-                .concat(card.holder.hand.cards.filter(c => targets.includes(c.key)))
-                .concat(card.holder.grave.cards.filter(c => targets.includes(c.key)));
-            if (cards.length > 0) {
-                let targetCard = null;
-                if (cards.length > 1) {
-                    if (card.holder.controller instanceof ControllerAI) {
-                        targetCard = card.holder.controller.getHighestWeightCard(cards);
+summon_one_of: {
+    name: "Summon One Of",
+    description: "Summons from anywhere (deck, grave or hand) one of the associated card of choice",
+    placed: async card => {
+        let targets = [];
+        if (card.isLocked())
+            return;
+        if (card.target) {
+            if (Array.isArray(card.target))
+                targets = card.target;
+            else
+                targets = card.target.split(" ");
+        }
+        let cards = card.holder.deck.cards.filter(c => targets.includes(c.key))
+            .concat(card.holder.hand.cards.filter(c => targets.includes(c.key)))
+            .concat(card.holder.grave.cards.filter(c => targets.includes(c.key)));
+
+        if (cards.length > 0) {
+            let targetCard = null;
+            if (cards.length > 1) {
+                if (card.holder.controller instanceof ControllerAI) {
+                    // IA: elegir solo UNA carta (la mejor)
+                    let chosen = card.holder.controller.getHighestWeightCard(cards);
+                    if (Array.isArray(chosen)) {
+                        targetCard = chosen[0]; // tomar la primera
                     } else {
-                        await ui.queueCarousel({ cards: cards }, 1, async (c, i) => targetCard = c.cards[i], () => true, true, false, "Choose one card to play.");
+                        targetCard = chosen;
                     }
                 } else {
-                    targetCard = cards[0];
+                    // Humano: carrusel para elegir una
+                    await ui.queueCarousel({ cards: cards }, 1, async (c, i) => targetCard = c.cards[i], () => true, true, false, "Choose one card to play.");
                 }
-                if (targetCard) {
-                    await targetCard.autoplay(targetCard.currentLocation);
-                }
+            } else {
+                targetCard = cards[0];
             }
-        },
-        weight: (card) => {
-            let targets = [];
-            if (card.target) {
-                if (Array.isArray(card.target))
-                    targets = card.target;
-                else
-                    targets = card.target.split(" ");
+
+            if (targetCard) {
+                await targetCard.autoplay(targetCard.currentLocation);
             }
-            let cards = card.holder.deck.cards.filter(c => targets.includes(c.key))
-                .concat(card.holder.hand.cards.filter(c => targets.includes(c.key)))
-                .concat(card.holder.grave.cards.filter(c => targets.includes(c.key)));
-            if (cards.length > 0)
-                return 10;
-            return 0;
         }
     },
+    weight: (card) => {
+        let targets = [];
+        if (card.target) {
+            if (Array.isArray(card.target))
+                targets = card.target;
+            else
+                targets = card.target.split(" ");
+        }
+        let cards = card.holder.deck.cards.filter(c => targets.includes(c.key))
+            .concat(card.holder.hand.cards.filter(c => targets.includes(c.key)))
+            .concat(card.holder.grave.cards.filter(c => targets.includes(c.key)));
+
+        if (cards.length > 0)
+            return 10;
+        return 0;
+    }
+},
+
     immortal: {
         name: "Immortal",
         description: "Card stays on the battlefield for 2 rounds and cannot be destroyed by another ability",
@@ -3278,7 +3326,7 @@ ofiri_envoy: {
                         else if (player_op.updateTotal) player_op.updateTotal(0);
                         return result;
                     };
-                    player_op.deck.draw._isPatched = true; // Candado anti-duplicación
+                    player_op.deck.draw._isPatched = true; 
                 }
             }
             
@@ -3814,7 +3862,7 @@ await board.moveToNoEffects(targetCard, targetRow, targetCard.currentLocation);
                         if (targetCard) {
                             let poderBaseActual = Number(targetCard.basePower || targetCard.power || 1);
                             if (poderBaseActual > 0) {
-                                targetCard.multiplier = 1 / poderBaseActual; // fuerza final = 1
+                                targetCard.multiplier = 1 / poderBaseActual; 
 await targetCard.animate("morana", true, true);
                             }
                         }
@@ -4523,7 +4571,7 @@ wish3: {
         if (enemyTarget) {
             let enemyRow = board.getRow(enemyTarget, enemyTarget.row, opponent);
             if (enemyRow && ((typeof enemyRow.isShielded === "function" && enemyRow.isShielded()) || enemyRow.shielded)) {
-                return; // si tiene escudo, no se destruye
+                return; 
             }
 
             if (typeof enemyTarget.animate === "function") {
@@ -4633,6 +4681,62 @@ doppler: {
 
         let strongest = validUnits.sort((a, b) => b.basePower - a.basePower)[0];
         return strongest.basePower;
+    }
+},
+
+
+decoration: {
+    name: "Decoration",
+    description: "Promote a friendly unit to Hero status",
+    activated: async (card) => {
+        if (typeof abilities !== "undefined" && abilities["decoration"] && typeof abilities["decoration"].placed === "function") {
+            await abilities["decoration"].placed(card);
+        } else if (typeof ability_dict !== "undefined" && ability_dict["decoration"]) {
+            await ability_dict["decoration"].placed(card);
+        }
+
+        if (typeof board !== "undefined" && typeof board.toGrave === "function") {
+            await board.toGrave(card, card.holder.hand);
+        }
+    },
+    placed: async (card) => {
+        if (!card || !card.holder) return;
+
+        let units = card.holder.getAllRowCards().filter(c => c && !c.hero);
+        if (units.length === 0) return;
+
+        let targetCard = null;
+        if (card.holder.controller instanceof ControllerAI) {
+            targetCard = units.sort((a, b) => Number(b.basePower) - Number(a.basePower))[0];
+        } else {
+            try { Carousel.curr.cancel(); } catch (err) {}
+            await ui.queueCarousel({ cards: units }, 1, (container, index) => {
+                targetCard = container.cards[index];
+            }, c => true, true, false, "Choose a unit to promote to Hero.");
+        }
+
+        if (targetCard) {
+            tocar("decoration", false);
+            await targetCard.animate("decoration", true, true);
+            targetCard.hero = true;
+
+            if (targetCard.elem && typeof targetCard.createCardElem === "function") {
+                let el = targetCard.createCardElem(targetCard);
+                targetCard.elem.replaceWith(el);
+                targetCard.elem = el;
+            }
+
+            if (typeof board !== "undefined" && board.updateScore) {
+                board.updateScore();
+            }
+        }
+    },
+    weight: (card) => {
+        if (!card.holder || typeof board === "undefined" || !board.row) return 0;
+        let units = card.holder.controller.player.getAllRowCards().filter(c => c && !c.hero);
+        if (units.length === 0) return 0;
+        let strongest = units.sort((a, b) => Number(b.basePower) - Number(a.basePower))[0];
+        return Number(strongest.basePower) + 8;
     }
 },
 
