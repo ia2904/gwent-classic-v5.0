@@ -4176,16 +4176,17 @@ let startPvPGameBtn = document.getElementById("start-pvp-game");
 #carousel > :nth-child(1) > :nth-child(2n) .card-large-name {
 	font-size: 15px !important;
 transform: scale(0.48) !important;
-width: 182% !important;
-left: -40% !important;
+width: 201% !important;
+left: -50% !important;
+line-height: 1.0 !important;
 }
 
 #carousel > :nth-child(1) > :nth-child(2n) .card-large-quote {
 	font-size: 15px !important;
 transform: scale(0.45) !important;
-width: 195% !important;
-left: -47% !important;
-height: 3vw;
+width: 201% !important;
+left: -50% !important;
+height: 2.5vw;
 }
 
 
@@ -4201,12 +4202,12 @@ left: -82% !important;
 transform: scale(0.35) !important;
 width: 265% !important;
 left: -82% !important;
-height: 3vw;
+height: 2.5vw;
 top: 79% !important;
 }
 
                                 #carousel {
-					top: -30px !important;
+					top: -39px !important;
 				}
 
                                 #carousel .card-lg .card-large-quote {
@@ -4214,8 +4215,8 @@ top: 79% !important;
                                         font-size: 15px !important;
                                         line-height: 1 !important;
                                         transform: scale(0.51) !important;
-                                        width: 190%;
-                                        left: -45% !important;
+                                        width: 192%;
+                                        left: -46% !important;
 				}
 				.card-preview .card-lg {
 					top: 2.5vw !important;
@@ -4229,7 +4230,7 @@ top: 79% !important;
              transform-origin: top center !important;
              width: 127% !important;
              left: -14% !important; */
-             line-height: 0.8 !important;
+             line-height: 0.9 !important;
 }
 
 .card-preview .card-lg .card-large-quote {
@@ -4240,20 +4241,32 @@ top: 79% !important;
     width: 190%;
     left: -45% !important;
 }
-				.card-preview .card-description {
-					top: 32.5vw !important;
+				
+.card-preview .card-description {
+top: 32.5vw !important;
 transform: scale(0.95) !important;
-				}
-				#carousel .card-description {
-					top: 74% !important;
-font-size: 11px !important;
-					line-height: 0.87 !important;
-					transform: scale(0.82) !important;
-					transform-origin: top center !important;
-					}
+    width: 31.12vw;
+    left: 65.96%;
+height: 12.5vw;
+}
+
+#carousel .card-description {
+top: 73.8% !important;
+line-height: 1.1 !important;
+transform: scale(0.95) !important;
+transform-origin: top center !important;
+width: 31.5vw;
+left: 33.9%;
+}
+
+.card-description>p {
+    font-size: 1.0vw;
+}
+
 #button_start {
        margin-top: -43px !important;
 }
+
 #end-screen button {
     margin: -6.5% -1% 0;
     }
@@ -4283,14 +4296,6 @@ html, body, #click-background {
 	transform: translate(-10px, 20px) !important;
 }
 
-#load-internal-deck {
-   left: 70.5%;
-}
-
-#download-deck {
-	left: 18.2%;
-}
-
 #end-screen>p {
 top: 48% !important;
 
@@ -4317,6 +4322,57 @@ left: 6% !important;
 top: 58% !important;
 }
 
+.deck-options {
+font-size: 9.5px;
+top: 14%;
+}
+
+#deck-customization h1 {
+font-size: 1.5vw;
+}
+
+#faction-description {
+font-size: 8.7px;
+left: 5%;
+width: 90%;
+}
+
+#change-faction {
+	left: 45.5%;
+}
+#select-board {
+    left: 23.5%;
+}
+#select-deck {
+	left: 33.5%;
+}
+#select-op-deck {
+	left: 57.1%;
+}
+
+#op-deck-name {
+	left: 57.1%;
+        top: 15.9%;
+	color: #cccccc;
+	font-style: italic;
+}
+
+#manage-deck-container {
+    left: 72.4%;
+    top: 14%; 
+    position: absolute;
+}
+
+.submenu-item {
+    font-size: 9.5px;
+}
+
+#start-game {
+top: 85.8%;
+    left: 46%;
+    height: 5%;
+    font-size: 1.2vw;
+}
 
 .drop-container {	
 	display: flex !important;
@@ -7391,13 +7447,29 @@ function isMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
+
+function toggleManageDeck() {
+    const submenu = document.getElementById('manage-deck-submenu');
+    submenu.classList.toggle('show');
+}
+
+document.addEventListener('click', function(event) {
+    const container = document.getElementById('manage-deck-container');
+    const submenu = document.getElementById('manage-deck-submenu');
+    
+    if (submenu.classList.contains('show') && !container.contains(event.target)) {
+        submenu.classList.remove('show'); 
+    }
+});
+
+
 function actualizarPosicionMusicaMovel() {
     if (isMobile && typeof isMobile === "function" && isMobile()) {
         let musicToggle = document.getElementById("toggle-music");
         if (musicToggle) {
             if (musicToggle.classList.contains("music-customization")) {
-                musicToggle.style.transform = "translate(22.6vw, -2.8vw)";
-musicToggle.style.gap = "35px";
+                musicToggle.style.transform = "translate(-13.9vw, -41.3vw)";
+musicToggle.style.gap = "20px";
                 musicToggle.style.fontSize = "4.0vw";
             } else {
                 musicToggle.style.transform = "translate(-23.5vw, -4.5vw)";

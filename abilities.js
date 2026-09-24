@@ -647,7 +647,7 @@ dragon_wrath: {
         },
         weight: (card, ai) => Math.max(ai.weightWeatherFromDeck(card, "fog"), ai.weightWeatherFromDeck(card, "rain"))
     },
-       foltest_steelforged: {
+       foltest_lord: {
         description: "Clear any weather effects (resulting from Biting Frost, Torrential Rain or Impenetrable Fog cards) in play.",
         activated: async () => {
             let cineOverlay = document.createElement("div");
@@ -703,7 +703,7 @@ dragon_wrath: {
     },
         weight: (card, ai) => ai.weightHornRow(card, board.getRow(card, "siege", card.holder))
     },
-    foltest_lord: {
+    foltest_steelforged: {
 		description: "Destroy your enemy's strongest Siege unit(s) if the combined strength of all his or her Siege units is 10 or more.",
 		activated: async card => {
  tocar("leader", false);
@@ -1177,7 +1177,6 @@ await board.getRow(card, "ranged", card.holder).leaderHorn(card);
                 card.holder.deck.removeCard(targetCard);
                 card.holder.hand.addCard(targetCard);
 
-                // Si es unidad → jugar inmediatamente en su fila
                 if (targetCard.isUnit && targetCard.isUnit()) {
                     let rows = card.holder.getAllRows();
                     let row = rows.find(r => r.key === targetCard.row) || rows[0];
@@ -1185,7 +1184,6 @@ await board.getRow(card, "ranged", card.holder).leaderHorn(card);
                         await card.holder.playCardToRow(targetCard, row, false);
                     }
                 }
-                // Si es especial → se queda en la mano
             }
         } else {
             try {
@@ -1200,7 +1198,6 @@ await board.getRow(card, "ranged", card.holder).leaderHorn(card);
             );
 
             if (targetCard) {
-                // Jugador humano: si es unidad, elige fila; si es especial, se queda en mano
                 if (targetCard.isUnit && targetCard.isUnit()) {
                     card.holder.selectCardDestination(targetCard, card.holder.deck);
                 } else {
@@ -1256,7 +1253,7 @@ tocar("leader", false);
         }
     },
    	holger_blakhand: {
-		description: "At the end of your turn, you may set a card's strength to any value (Max 10). It returns to its original value after the round scoring. (Max 2 uses per battle).",
+		description: "Set a card's strength up to 10. Resets after round. (2 uses/battle).",
 		placed: card => {
 			card.holder.disableLeader();
 			card.holder.capabilities["cardEdit"] = 2;
@@ -1584,7 +1581,7 @@ targetCard.autoplay(card.holder.grave);
 	},
 
     anna_henrietta_ladyship: {
-        description: "Choose a second form Monster of Toussaint from the battlefield to immediately play its weaker form. You may later transform it back.",
+        description: "Choose a second-form Toussaint Monster on the battlefield to play its weaker form. You can transform it back later.",
         activated: async card => {
             let l2monsters = card.holder.getAllRowCards().filter(c => c.meta.includes("toussaint_monster_level_2"));
             if (l2monsters.length == 0)
@@ -2791,15 +2788,13 @@ summon_one_of: {
             let targetCard = null;
             if (cards.length > 1) {
                 if (card.holder.controller instanceof ControllerAI) {
-                    // IA: elegir solo UNA carta (la mejor)
                     let chosen = card.holder.controller.getHighestWeightCard(cards);
                     if (Array.isArray(chosen)) {
-                        targetCard = chosen[0]; // tomar la primera
+                        targetCard = chosen[0]; 
                     } else {
                         targetCard = chosen;
                     }
                 } else {
-                    // Humano: carrusel para elegir una
                     await ui.queueCarousel({ cards: cards }, 1, async (c, i) => targetCard = c.cards[i], () => true, true, false, "Choose one card to play.");
                 }
             } else {

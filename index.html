@@ -306,6 +306,7 @@
             </div>
             <p id="faction-description"></p>
 
+
 <a id="toggle-vibration" class="deck-options">
     <img id="vibration-icon" src="img/icons/vibration.png" alt="Vibration Toggle" />
     <span id="vibration-status" style="color: #2ecc71; margin-left: 5px; font-weight: bold;">ON</span>
@@ -318,23 +319,29 @@
     <button id="next-board" class="hover_un">▶</button>
 </div>
 
+<a id="select-deck" class="deck-options">Select Own Deck</a>
+<a id="change-faction" class="deck-options">Change Faction</a>
+<a id="select-op-deck" class="deck-options">Select Opponent Deck</a>
+<span id="op-deck-name" class="deck-options">Random deck</span>
 
+<!-- MANAGE DECK -->
+<div id="manage-deck-container" class="deck-options">
+    <a id="manage-deck-btn" onclick="toggleManageDeck()">Manage Deck</a>
+    
+    <!-- SUBMENÚ DESPLEGABLE -->
+    <div id="manage-deck-submenu" class="submenu-horizontal-below">
+        <label id="upload-deck" class="submenu-item">
+            <input type="file" id="add-file" value="Import" style="display:none;" />
+            Import
+        </label>
+        <a id="download-deck" class="submenu-item">Export</a>
+        <a id="download-json" style="display:none;"></a>
+        <span class="submenu-divider">|</span>
+        <a id="save-internal-deck" class="submenu-item">Save</a>
+        <a id="load-internal-deck" class="submenu-item">Load</a>
+    </div>
+</div>
 
-            <a id="select-deck" class="deck-options">Select Own Deck</a>
-
-            <label id="upload-deck" class="deck-options">
-                <input type="file" id="add-file" value="Import" style="display:none;" />
-                Import Deck
-            </label>
-
-<a id="save-internal-deck" class="deck-options">Save / </a>
-            <a id="load-internal-deck" class="deck-options">Load Deck</a>
-
-            <a id="change-faction" class="deck-options">Change Faction</a>
-            <a id="download-deck" class="deck-options">Export / </a>
-            <a id="download-json" style="display:none;"></a>
-            <a id="select-op-deck" class="deck-options">Select Opponent Deck</a>
-            <span id="op-deck-name" class="deck-options">Random deck</span>
             <h2 id="card-bank-title" class="card-contianer-title">Card Collection</h2>
             <h2 id="card-deck-title" class="card-contianer-title">Cards in Deck</h2>
             <div id="card-bank" class="card-array"></div>
