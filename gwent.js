@@ -539,8 +539,18 @@ class ControllerAI {
     }
 
 async cull(card, max, data) {
-		await this.playCull(card);
-	}
+    if (!game.scorchCancelled) {
+        if (card.key === "spe_cull") {
+            if (typeof this.player.playCardAction === "function") {
+                await this.player.playCardAction(card, async () => await ability_dict["cull"].activated(card));
+            } else {
+                await ability_dict["cull"].activated(card);
+            }
+        } else {
+            await ability_dict["cull"].placed(card);
+        }
+    }
+}
 
     // Tells the controlled Player to play the Scorch card
     async slaughterCintra(card) {
@@ -5789,6 +5799,10 @@ document.getElementById("save-internal-deck").addEventListener("click", () => th
             if (typeof tocar === "function") tocar("explaining", false);
             this.loadDeckInternal();
         }, false);
+document.getElementById("load-op-internal-deck").addEventListener("click", () => {
+    if (typeof tocar === "function") tocar("explaining", false);
+    this.loadOPDeckInternal();
+}, false);
 
            const actualizartituloporid = () => {
             let elemTituloFaccion = document.getElementById("faction-title");
@@ -6402,6 +6416,39 @@ makePreview(index, num, container_elem, cards) {
 
 
 saveDeckInternal() {
+    let warning = "";
+    if (this.stats.units < 22) {
+        warning += "Your deck must have at least 22 unit cards.<br>";
+    }
+    if (this.stats.special > 10) {
+        warning += "Your deck must have no more than 10 special cards.<br>";
+    }
+
+    if (warning !== "") {
+        if (typeof tocar === "function") tocar("discard", false); 
+        
+        let alertBox = document.createElement("div");
+        alertBox.style.position = "fixed";
+        alertBox.style.top = "50%";
+        alertBox.style.left = "50%";
+        alertBox.style.transform = "translate(-50%, -50%)";
+        alertBox.style.backgroundColor = "rgba(30, 10, 10, 0.95)"; 
+        alertBox.style.color = "#d9c39a";
+        alertBox.style.padding = "15px 25px";
+        alertBox.style.border = "2px solid #8b0000"; 
+        alertBox.style.borderRadius = "5px";
+        alertBox.style.fontFamily = "sans-serif";
+        alertBox.style.fontSize = "13px";
+        alertBox.style.textAlign = "center";
+        alertBox.style.zIndex = "999999";
+        alertBox.style.boxShadow = "0 0 15px #000";
+        alertBox.innerHTML = "<h3 style='color:#ff4500; margin: 0 0 8px 0;'>Invalid Deck!</h3><p style='margin: 0; color:#fff; line-height: 1.5;'>" + warning + "</p>";
+        
+        document.body.appendChild(alertBox);
+        setTimeout(() => { alertBox.remove(); }, 2500); 
+        return; 
+    }
+
         let savedDecks = {};
         try {
             let raw = localStorage.getItem("gwent_internal_decks");
@@ -6563,6 +6610,113 @@ closeBtn.addEventListener("click", () => {
         menuOverlay.appendChild(container);
         document.body.appendChild(menuOverlay);
     }
+async loadOPDeckInternal() {
+    let savedDecks = {};
+    try {
+        let raw = localStorage.getItem("gwent_internal_decks");
+        if (raw) savedDecks = JSON.parse(raw);
+    } catch (e) {
+        savedDecks = {};
+    }
+
+    let deckNames = Object.keys(savedDecks);
+   
+    if (deckNames.length === 0) {
+        let alertBox = document.createElement("div");
+        alertBox.style.position = "fixed";
+        alertBox.style.top = "50%";
+        alertBox.style.left = "50%";
+        alertBox.style.transform = "translate(-50%, -50%)";
+        alertBox.style.backgroundColor = "rgba(20, 20, 20, 0.95)";
+        alertBox.style.color = "#d9c39a";
+        alertBox.style.padding = "12px 20px";
+        alertBox.style.border = "2px solid #6d5210";
+        alertBox.style.borderRadius = "5px";
+        alertBox.style.fontFamily = "sans-serif";
+        alertBox.style.fontSize = "13px";
+        alertBox.style.textAlign = "center";
+        alertBox.style.zIndex = "999999";
+        alertBox.style.boxShadow = "0 0 15px #000";
+        alertBox.innerHTML = "<h3>No Decks Found</h3><p style='margin: 5px 0 0 0; color:#fff;'>You haven't saved any custom decks internally yet.</p>";
+        
+        document.body.appendChild(alertBox);
+        setTimeout(() => { alertBox.remove(); }, 1200);
+        return;
+    }
+
+    let menuOverlay = document.createElement("section");
+    menuOverlay.id = "internal-deck-popup";
+    menuOverlay.className = "center";
+
+    let container = document.createElement("div");
+    container.className = "gwent-popup-box";
+
+    let header = document.createElement("h3");
+    header.innerText = "Select Enemy Deck"; 
+    container.appendChild(header);
+
+    let listWrapper = document.createElement("div");
+    listWrapper.className = "gwent-deck-list";
+
+    deckNames.forEach(name => {
+        let row = document.createElement("div");
+        row.className = "gwent-deck-row";
+
+        let label = document.createElement("span");
+        label.className = "gwent-deck-label";
+        label.innerText = name;
+
+        label.addEventListener("mouseover", () => {
+            if (typeof tocar === "function") tocar("card", false);
+        });
+
+        label.addEventListener("click", () => {
+            if (typeof tocar === "function") tocar("explaining", false);
+            menuOverlay.remove();
+
+            let chosenDeck = savedDecks[name];
+
+            this.start_op_deck = JSON.parse(JSON.stringify(chosenDeck));
+
+            this.start_op_deck.cards = this.start_op_deck.cards.map(c => ({
+                index: c[0],
+                count: c[1]
+            }));
+
+            this.start_op_deck.leader = {
+                index: this.start_op_deck.leader,
+                card: card_dict[this.start_op_deck.leader]
+            };
+
+            game.randomOPDeck = false;
+
+            document.getElementById("op-deck-name").innerHTML = chosenDeck.title;
+        });
+
+        row.appendChild(label);
+        listWrapper.appendChild(row);
+    });
+
+    container.appendChild(listWrapper);
+
+    let closeBtn = document.createElement("button");
+    closeBtn.className = "hover_un";
+    closeBtn.innerText = "Close";
+
+    closeBtn.addEventListener("mouseover", () => {
+        if (typeof tocar === "function") tocar("card", false);
+    });
+    closeBtn.addEventListener("click", () => {
+        if (typeof tocar === "function") tocar("discard", false);
+        menuOverlay.remove();
+    });
+
+    container.appendChild(closeBtn);
+    menuOverlay.appendChild(container);
+    document.body.appendChild(menuOverlay);
+}
+
+
 
 }
 

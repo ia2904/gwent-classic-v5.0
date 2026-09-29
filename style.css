@@ -1740,6 +1740,30 @@ font-weight: bold;
 
 #site-links a {
     color: #aaa;
+text-decoration: none;
+}
+
+#site-links a:hover {
+    color: #b48c44;
+}
+
+#update-link {
+    left: 5%; 
+    top: 5%;
+    position: absolute;
+    font-size: 1vw;
+    color: #ccc;
+    z-index: 100;
+}
+
+#update-link a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+#update-link a:hover {
+    color: #FFB800; 
 }
 
 .card-array {
