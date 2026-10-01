@@ -4377,6 +4377,10 @@ width: 90%;
     font-size: 9.5px;
 }
 
+.submenu-horizontal-below {
+left: -120%;
+}
+
 #start-game {
 top: 85.8%;
     left: 46%;

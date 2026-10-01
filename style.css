@@ -1609,14 +1609,14 @@ align-items: center;
     display: none; 
     position: absolute;
     top: 130%; 
-    left: 0;
+    left: -100%;
     background-color: rgba(15, 15, 15, 0.95); 
     border: 1px solid #555;
     border-radius: 4px;
     padding: 6px 12px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     z-index: 10000;
 }
