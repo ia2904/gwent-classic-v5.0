@@ -1024,52 +1024,50 @@ await board.getRow(card, "ranged", card.holder).leaderHorn(card);
             return true;
         })
     },
-    francesca_pureblood: {
-        description: "Choose 3 or less unit and/or hero cards, which lie on the opponent's battlefield. Move these cards to any other opponent's row (rows).",
-        activated: async card => {
+francesca_pureblood: {
+    description: "Choose 3 or less unit and/or hero cards, which lie on the opponent's battlefield. Move these cards to any other opponent's row (rows).",
+    activated: async card => {
         tocar("leader", false);
-            if (card.holder.controller instanceof ControllerAI) {
-                // We proceed iteratively because a same card might come up several times with a high weight, but we choose only 1 option
-                // Also each change can affect the effect of later changes
-                for (var i = 0; i < 3; i++) {
-                    let action = card.holder.controller.weightAllCardsRowChanges(card.holder.opponent(), false)[0];
-                    await board.moveToNoEffects(action.card, action.row, action.card.currentLocation );
-                }
-            } else {
-                card.holder.endTurnAfterAbilityUse = false;
-                ui.enableBoardRearrangement(card.holder.opponent(), 3);
-            }
-        },
-        weight: (card, ai) => {
-            if (card.holder.opponent().getAllRowCards().length < 3)
-                return 0;
-            // It's not very accurate since a same card might come up several times in top results, might be counted several times
-            return ai.weightAllCardsRowChanges(card.holder.opponent(), false).slice(0, 3).reduce((t, v) => t - v.score,0);
-        }
-    },
-    francesca_hope: {
-        description: "Choose 4 or less unit and/or hero cards, which lie on your battlefield. Move these cards to your any other row (rows).",
-        activated: async card => {
-        tocar("leader", false);
-            if (card.holder.controller instanceof ControllerAI) {
-                // We proceed iteratively because a same card might come up several times with a high weight, but we choose only 1 option
-                // Also each change can affect the effect of later changes
-                for (var i = 0; i < 4; i++) {
-                    let action = card.holder.controller.weightAllCardsRowChanges(card.holder, true)[0];
+        if (card.holder.controller instanceof ControllerAI) {
+            for (var i = 0; i < 3; i++) {
+                let action = card.holder.controller.weightAllCardsRowChanges(card.holder.opponent(), false);
+                if (action && action.card && action.row) {
                     await board.moveToNoEffects(action.card, action.row, action.card.currentLocation);
                 }
-            } else {
-                card.holder.endTurnAfterAbilityUse = false;
-                ui.enableBoardRearrangement(card.holder, 4);
             }
-        },
-        weight: (card, ai) => {
-            if (card.holder.getAllRowCards().length < 4)
-                return 0;
-            // It's not very accurate since a same card might come up several times in top results, might be counted several times
-            return ai.weightAllCardsRowChanges(card.holder, true).slice(0, 4).reduce((t, v) => t + v.score,0);
+        } else {
+            card.holder.endTurnAfterAbilityUse = false;
+            ui.enableBoardRearrangement(card.holder.opponent(), 3);
         }
     },
+    weight: (card, ai) => {
+        if (card.holder.opponent().getAllRowCards().length < 3) return 0;
+        return ai.weightAllCardsRowChanges(card.holder.opponent(), false).slice(0, 3).reduce((t, v) => t - v.score, 0);
+    }
+},
+
+francesca_hope: {
+    description: "Choose 4 or less unit and/or hero cards, which lie on your battlefield. Move these cards to your any other row (rows).",
+    activated: async card => {
+        tocar("leader", false);
+        if (card.holder.controller instanceof ControllerAI) {
+            for (var i = 0; i < 4; i++) {
+                let action = card.holder.controller.weightAllCardsRowChanges(card.holder, true);
+                if (action && action.card && action.row) {
+                    await board.moveToNoEffects(action.card, action.row, action.card.currentLocation);
+                }
+            }
+        } else {
+            card.holder.endTurnAfterAbilityUse = false;
+            ui.enableBoardRearrangement(card.holder, 4);
+        }
+    },
+    weight: (card, ai) => {
+        if (card.holder.getAllRowCards().length < 4) return 0;
+        return ai.weightAllCardsRowChanges(card.holder, true).slice(0, 4).reduce((t, v) => t + v.score, 0);
+    }
+},
+
     crach_an_craite: {
         description: "Shuffle all cards from each player's graveyard back into their decks. You can keep one of the cards in the graveyard.",
         activated: async card => {

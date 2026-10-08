@@ -1534,7 +1534,7 @@ border-radius: 0.5vw;
 #faction-description {
 	position: absolute;
 	font-size: 1.14vw;
-	color: #ab977c;
+	color: #a17e3d;
 	top: 8.1%;
 	left: 20.2%;
 	width: 60%;
@@ -1647,7 +1647,8 @@ align-items: center;
 .deck-options:hover, 
 #manage-deck-btn:hover,
 .submenu-item:hover {
-    color: #b48c44 !important; 
+    color: #b48c44 !important;
+text-decoration: none !important; 
 }
 
 #manage-deck-container:hover {
@@ -2630,7 +2631,7 @@ color: #b48c44 !important;
     text-orientation: upright;
     writing-mode: vertical-rl;
     text-transform: uppercase;
-    color: #666;
+    color: #ccc;
     font-size: 1.2vw;
 }
 
@@ -2798,7 +2799,7 @@ color: #b48c44 !important;
 #drop-submit {
     white-space: nowrap;
     color: #222;
-    background-color: #567956;
+    background-color: #456640;
     width: 100%;
     height: 100%;
     font-weight: bold;
@@ -2957,4 +2958,5 @@ color: #b48c44 !important;
         transform: scale(1.25) rotate(9deg);
     }
 }
+
 

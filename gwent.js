@@ -4399,7 +4399,7 @@ top: 85.8%;
 	height: auto !important;
 	max-height: 125px !important;
 	min-height: unset !important;
-	margin-top: 2px !important;
+	margin-top: -25px !important;
 	margin-bottom: 2px !important;
 }
 
@@ -5242,7 +5242,6 @@ navigator.vibrate(50);
             }
             
         }
-        ui.helper.showMessage("Select cards on the board to re-arrange.");
         this.enablePlayer(true);
     }
 
@@ -5254,6 +5253,9 @@ navigator.vibrate(50);
         } else {
             this.arrangementMoves = 0;
             document.getElementById("arrangementWindow").classList.add("hide");
+            if (typeof ui.helper !== "undefined" && typeof ui.helper.hide === "function") {
+                ui.helper.hide();
+            }
         }
     }
 
@@ -7655,3 +7657,4 @@ musicToggle.style.gap = "15px";
         document.head.appendChild(estiloBlindaje);
     }
 })();
+
