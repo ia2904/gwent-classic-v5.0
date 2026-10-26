@@ -3811,7 +3811,19 @@ class UI {
         this.underRearrangement = false;
         this.underCardPowerEdit = false;
         this.arrangementMoves = 0;
-        
+       
+        const triggerPass = function (e) {
+            if (e && typeof e.preventDefault === "function") {
+                e.preventDefault();
+            }
+            if (game.isPvP()) {
+                game.currPlayer.passRound();
+            } else {
+                player_me.passRound();
+            }
+            passBreak();
+        };
+
         if (!isMobile()) {
             document.getElementById("pass-button").addEventListener("mousedown", function (e) {
                 if (e.button == 0) {
@@ -3825,7 +3837,15 @@ class UI {
             document.getElementById("pass-button").addEventListener("mouseout", () => {
                 if (may_pass2 == "mouse") passBreak();
             }, false);
-            
+
+            document.getElementById("pass-button").addEventListener("click", function (e) {
+                if (e.pointerType === "mouse") {
+                    return; 
+                }
+                if (may_pass1) {
+                    triggerPass(e);
+                }
+            });
             
         let giveupBtn = document.getElementById("giveup-button");
 if (giveupBtn) {
@@ -3923,15 +3943,21 @@ if (typeof player_op !== "undefined") {
                     if (may_pass2 == "keyboard") passBreak();
                 }
             });
-        } else {
-            document.getElementById("pass-button").addEventListener("click", function (e) {
-                if (game.isPvP()) {
-                    game.currPlayer.passRound();
-                } else {
-                    player_me.passRound();
-                }
-            });
-            
+} else {
+    let passButtonMovel = document.getElementById("pass-button");
+    
+    passButtonMovel.addEventListener("touchend", function (e) {
+        if (may_pass1) {
+            e.preventDefault(); // Detiene cualquier acción secundaria del navegador
+            if (game.isPvP()) {
+                game.currPlayer.passRound();
+            } else {
+                player_me.passRound();
+            }
+            passBreak();
+        }
+    }, false);
+      
            let giveupBtnMobile = document.getElementById("giveup-button");
 if (giveupBtnMobile) {
     giveupBtnMobile.addEventListener("click", async function (e) {
@@ -4174,9 +4200,9 @@ let startPvPGameBtn = document.getElementById("start-pvp-game");
 					left: -35% !important;
 				}
                                #carousel .card-lg .card-large-name {
-					top: 74.8% !important;
-					font-size: 15px !important;
-					/* line-height: 0.9 !important; */
+					top: 74.6% !important;
+					font-size: 16.6px !important;
+					line-height: 0.9 !important;
 					transform: scale(0.53) !important;
 					transform-origin: top center !important;
 					width: 190% !important;
@@ -4188,7 +4214,7 @@ let startPvPGameBtn = document.getElementById("start-pvp-game");
 transform: scale(0.48) !important;
 width: 201% !important;
 left: -50% !important;
-line-height: 1.0 !important;
+line-height: 0.9 !important;
 }
 
 #carousel > :nth-child(1) > :nth-child(2n) .card-large-quote {
@@ -4196,7 +4222,7 @@ line-height: 1.0 !important;
 transform: scale(0.45) !important;
 width: 201% !important;
 left: -50% !important;
-height: 2.5vw;
+height: auto;
 }
 
 
@@ -4221,12 +4247,17 @@ top: 79% !important;
 				}
 
                                 #carousel .card-lg .card-large-quote {
-					top: 80% !important;
-                                        font-size: 15px !important;
+                                        font-size: 17px !important;
                                         line-height: 1 !important;
                                         transform: scale(0.51) !important;
-                                        width: 192%;
-                                        left: -46% !important;
+                                        width: 196%;
+                                        left: -48.2% !important;
+    top: auto !important;
+    bottom: 3.5% !important;
+    height: 18% !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
 				}
 				.card-preview .card-lg {
 					top: 2.5vw !important;
@@ -4255,9 +4286,11 @@ top: 79% !important;
 .card-preview .card-description {
 top: 32.5vw !important;
 transform: scale(0.95) !important;
-    width: 31.12vw;
-    left: 65.96%;
-height: 12.5vw;
+    width: 32vw;
+    left: 65.2%;
+height: auto;
+    max-height: 14vw;
+    min-height: 7vw;
 }
 
 #carousel .card-description {
@@ -4265,12 +4298,37 @@ top: 73.8% !important;
 line-height: 1.1 !important;
 transform: scale(0.95) !important;
 transform-origin: top center !important;
-width: 31.5vw;
-left: 33.9%;
+width: 40vw !important;
+    left: 30%;
+    max-height: 11vw;
+    height: auto;
+min-height: 7vw;
+}
+
+.card-description>div {
+    top: 0.4vw;
+    left: 0.5vw;
+margin-bottom: -2vw;
+}
+
+.card-description>h1 {
+    top: 0vw;
+    margin-bottom: -0.7vw;
+    font-size: 1.1vw;
 }
 
 .card-description>p {
-    font-size: 1.0vw;
+    font-size: 1.099vw;
+top: 11%;
+}
+
+.card-description-faction {
+    top: 1.2% !important;
+/* padding: 0.82vw 0 !important; */
+}
+
+#notification-bar {
+    top: 40%;
 }
 
 #button_start {
@@ -4302,6 +4360,27 @@ html, body, #click-background {
 #f6 {
 	transform: translateY(-0.5vw) !important;
 }
+
+.card-preview .card-description > p {
+        font-size: 1.09vw !important;
+}
+.card-preview .card-description > h1 {
+margin-bottom: -0.7vw !important;
+}
+
+#carousel .card-description > h1 {
+ margin-bottom: -0.7vw;
+}
+
+#gwent-fixed-zoom-toggle {
+top: 74.4% !important;
+left: 66% !important;
+}
+
+#carousel.active-zoom-view #gwent-fixed-zoom-toggle {
+display: none !important;
+   }
+
 #very_start {
 	transform: translate(-10px, 20px) !important;
 }
@@ -4378,7 +4457,9 @@ width: 90%;
 }
 
 .submenu-horizontal-below {
-left: -120%;
+left: -160% !important;
+gap: 18px !important;
+padding: 8px 12px !important;
 }
 
 #start-game {
@@ -5329,12 +5410,17 @@ class Carousel {
         if (!Carousel.elem) {
             Carousel.elem = document.getElementById("carousel");
 if (Carousel.elem && Carousel.elem.children.length > 0) {
-				Carousel.elem.children[0].addEventListener("click", () => Carousel.curr.cancel(), false);
+				Carousel.elem.children[0].addEventListener("click", () => {
+let banner = document.getElementById("gwent-faction-overlay-banner");
+            if (banner) banner.remove();
+Carousel.curr.cancel(); }, false);
 			}
             window.addEventListener("keydown", function (e) {
                 if (e.keyCode == 81) {
                     e.preventDefault();
                     try {
+               let banner = document.getElementById("gwent-faction-overlay-banner");
+                if (banner) banner.remove();
                         Carousel.curr.cancel();
                     } catch (err) { }
                 }
@@ -5470,7 +5556,112 @@ if (Carousel.elem && Carousel.elem.children.length > 0) {
             }
         }
         ui.setDescription(this.container.cards[this.indices[this.index]], this.desc);
+
+        let idxSecure = this.indices[this.index];
+        let activeCard = this.container.cards[idxSecure]; 
+        
+        let isLeaderMenu = activeCard && (activeCard.row === "leader" || activeCard.row === "faction" || (activeCard.card && activeCard.card.row === "leader"));
+        let isSingleCardView = this.container && this.container.cards && this.container.cards.length === 1;
+
+        if (isLeaderMenu || isSingleCardView) {
+            let factionOverlayBanner = document.getElementById("gwent-faction-overlay-banner");
+
+            let isFullDeck = true;
+            if (typeof Card !== "undefined" && activeCard instanceof Card) {
+                isFullDeck = false;
+            }
+
+            if (isFullDeck && !isSingleCardView) {
+                let factionId = activeCard.faction;
+                if (!factionOverlayBanner) {
+                    factionOverlayBanner = document.createElement("div");
+                    factionOverlayBanner.id = "gwent-faction-overlay-banner";
+                    factionOverlayBanner.className = "card-description-faction";
+                    
+                    factionOverlayBanner.innerHTML = `
+                        <div class="banner-faction-header-row">
+                            <div class="banner-faction-shield-inline"></div>
+                            <span class="banner-faction-name-inline"></span>
+                        </div>
+                        <div class="banner-faction-ability-row"></div>
+                    `;
+                    document.body.appendChild(factionOverlayBanner);
+                }
+
+                if (factionId && factions[factionId]) {
+                    let cleanName = factions[factionId]["name"] || activeCard.name || factionId;
+                    factionOverlayBanner.querySelector(".banner-faction-name-inline").innerText = cleanName;
+                    factionOverlayBanner.querySelector(".banner-faction-ability-row").innerHTML = factions[factionId]["description"];
+                    
+                    let upperShield = factionOverlayBanner.querySelector(".banner-faction-shield-inline");
+                    if (upperShield) {
+                        upperShield.style.backgroundImage = `url('img/icons/deck_shield_${factionId}.png')`;
+                    }
+                }
+            } else {
+                if (factionOverlayBanner) {
+                    factionOverlayBanner.remove();
+                }
+            }
+
+            let oldH1 = this.desc.querySelector("h1");
+            if (oldH1) {
+                oldH1.style.setProperty("display", "block", "important"); 
+                if (isLeaderMenu) {
+                    oldH1.innerText = "Leader Ability"; 
+                }
+            }
+            
+            let oldShieldDiv = this.desc.querySelector("div");
+            if (oldShieldDiv) {
+                oldShieldDiv.style.setProperty("display", "block", "important");
+            }
+
+            let pAbajo = this.desc.querySelector("p");
+            if (pAbajo) {
+                pAbajo.innerHTML = pAbajo.innerHTML.replace(/<p><b>leader\s+ability:<\/b>\s*<\/p>|<b>leader\s+ability:<\/b>/i, "").trim();
+            }
+
+            let zoomToggleBtn = document.getElementById("gwent-fixed-zoom-toggle");
+            if (zoomToggleBtn) {
+                let isDescHidden = !this.desc || this.desc.classList.contains("hide") || window.getComputedStyle(this.desc).display === "none";
+                
+                if (isDescHidden) {
+                    zoomToggleBtn.style.display = "none";
+                } else {
+                    zoomToggleBtn.style.display = "block"; 
+                }
+            }
+
+            let carouselContainer = document.getElementById("carousel");
+            if (carouselContainer) {
+                carouselContainer.classList.remove("active-zoom-view");
+            }
+
+        } else {
+            let factionOverlayBanner = document.getElementById("gwent-faction-overlay-banner");
+            if (factionOverlayBanner) {
+                factionOverlayBanner.remove();
+            }
+            
+            let zoomToggleBtn = document.getElementById("gwent-fixed-zoom-toggle");
+            if (zoomToggleBtn) {
+                zoomToggleBtn.style.display = "none";
+            }
+            let carouselContainer = document.getElementById("carousel");
+            if (carouselContainer) {
+                carouselContainer.classList.remove("active-zoom-view");
+            }
+
+            let oldH1 = this.desc.querySelector("h1");
+            if (oldH1) oldH1.style.setProperty("display", "block", "important");
+            let oldShieldDiv = this.desc.querySelector("div");
+            if (oldShieldDiv) oldShieldDiv.style.setProperty("display", "block", "important");
+        }
     }
+
+
+
 
     // Clears and quits the current carousel
     exit() {
@@ -6063,19 +6254,27 @@ makePreview(index, num, container_elem, cards) {
         container.cards = this.leaders.map(c => {
             let card = new Card(c.index, c.card, player_me);
             card.data = c;
+
+            if (card.card && card.card.ability && ability_dict[card.card.ability]) {
+                let rawText = ability_dict[card.card.ability].description;
+                ability_dict[card.card.ability].description = rawText.replace(/<p><b>leader\s+ability:<\/b>\s*<\/p>|<b>leader\s+ability:<\/b>/i, "").trim();
+            }
+
             return card;
         });
 
         let index = this.leaders.indexOf(this.leader);
         ui.queueCarousel(container, 1, (c, i) => {
+            let banner = document.getElementById("gwent-faction-overlay-banner");
+            if (banner) banner.remove();
+
             let data = c.cards[i].data;
             this.leader = data;
             getPreviewElem(this.leader_elem.children[1], data.card);
-        }, () => true, false, true);
+        }, () => true, false, true, ""); 
         Carousel.curr.index = index;
         Carousel.curr.update();
     }
-
        // Opens a Carousel to allow the client to select a faction for their deck
     selectFaction() {
         let container = new CardContainer();
@@ -6222,29 +6421,36 @@ makePreview(index, num, container_elem, cards) {
         let container = new CardContainer();
         container.cards = Object.values(premade_deck).map(d => {
             let deck = d;
+            
+            let rawText = ability_dict[card_dict[deck["leader"]]["ability"]].description;
+            let cleanText = rawText.replace(/<p><b>leader\s+ability:<\/b>\s*<\/p>|<b>leader\s+ability:<\/b>/i, "").trim();
+
             return {
                 abilities: [deck["faction"]],
                 name: card_dict[deck["leader"]]["name"],
                 row: "leader",
                 filename: card_dict[deck["leader"]]["filename"],
                 desc_name: deck["title"],
-                desc: "<p><b>Faction ability:</b> " + factions[deck["faction"]]["description"] + "</p><p><b>Leader ability:</b> " + ability_dict[card_dict[deck["leader"]]["ability"]].description + "</p>", /* <p><b>Deck description:</b> " + deck["description"], */
+                desc: cleanText, 
                 faction: deck["faction"]
             };
         });
         let index = container.cards.reduce((a, c, i) => c.faction === this.faction ? i : a, 0);
+        
         ui.queueCarousel(container, 1, (c, i) => {
+            let banner = document.getElementById("gwent-faction-overlay-banner");
+            if (banner) banner.remove();
             this.me_deck_index = i;
             this.setFaction(c.cards[i].faction, true);
             this.deckFromJSON(premade_deck[i], false);
-        }, () => true, false, true);
+        }, () => true, false, true, ""); 
+        
         Carousel.curr.index = this.me_deck_index;
         Carousel.curr.update();
     }
 
     selectOPDeck() {
         let container = new CardContainer();
-        // Adding first the option to select a random deck
         container.cards = [{
             abilities: [],
             name: "Random deck",
@@ -6256,17 +6462,24 @@ makePreview(index, num, container_elem, cards) {
         }];
         container.cards = container.cards.concat(Object.values(premade_deck).map(d => {
             let deck = d;
+            
+            let rawText = ability_dict[card_dict[deck["leader"]]["ability"]].description;
+            let cleanText = rawText.replace(/<p><b>leader\s+ability:<\/b>\s*<\/p>|<b>leader\s+ability:<\/b>/i, "").trim();
+
             return {
                 abilities: [deck["faction"]],
                 name: card_dict[deck["leader"]]["name"],
                 row: "leader",
                 filename: card_dict[deck["leader"]]["filename"],
                 desc_name: deck["title"],
-                desc: "<p><b>Faction ability:</b> " + factions[deck["faction"]]["description"] + "</p><p><b>Leader ability:</b> " + ability_dict[card_dict[deck["leader"]]["ability"]].description + "</p>", /* <p><b>Deck description:</b> " + deck["description"], */
+                desc: cleanText, 
                 faction: deck["faction"]
             };
         }));
+        
         ui.queueCarousel(container, 1, (c, i) => {
+            let banner = document.getElementById("gwent-faction-overlay-banner");
+            if (banner) banner.remove();
             this.op_deck_index = i;
             if (i === 0) {
                 game.randomOPDeck = true;
@@ -6274,8 +6487,8 @@ makePreview(index, num, container_elem, cards) {
             } else {
                 this.start_op_deck = JSON.parse(JSON.stringify(premade_deck[i - 1]));
                 this.start_op_deck.cards = this.start_op_deck.cards.map(c => ({
-                    index: c[0],
-                    count: c[1]
+                    index: c,
+                    count: c
                 }));
                 this.start_op_deck.leader = {
                     index: this.start_op_deck.leader,
@@ -6284,7 +6497,7 @@ makePreview(index, num, container_elem, cards) {
                 document.getElementById("op-deck-name").innerHTML = premade_deck[i - 1]["title"];
                 game.randomOPDeck = false;
             }
-        }, () => true, false, true);
+        }, () => true, false, true, "");
         Carousel.curr.index = this.op_deck_index;
         Carousel.curr.update();
     }
@@ -7162,13 +7375,7 @@ function iconURL(name, ext = "png") {
         name = "card_ability_cull";  
     }
 
-    if (name === "card_ability_decoration") {
-        name = "power_decoration";  
-    }
 
-    if (name === "card_ability_sandstorm") {
-        name = "overlay_sandstorm";
-    }
 if (name === "card_ability_spider_web") {
         name = "overlay_spider_web";
     }

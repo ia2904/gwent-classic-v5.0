@@ -193,7 +193,7 @@ var ext_nr_cards = {
         "quote": "Life without old mates and booze is like a woman without a rump."
     },
     "nr_foltest_king": {
-        "name": "Foltest - King of Temeria",
+        "name": "Foltest King of Temeria",
         "deck": "realms",
         "row": "leader",
         "strength": "",
@@ -203,7 +203,7 @@ var ext_nr_cards = {
         "quote": "It is natural and beautiful that a man should love his sister."
     },
     "nr_foltest_lord": {
-        "name": "Foltest - Lord Commander of the North",
+        "name": "Foltest Lord Commander of the North",
         "deck": "realms",
         "row": "leader",
         "strength": "",
@@ -213,7 +213,7 @@ var ext_nr_cards = {
         "quote": "Sod advisors and their schemes. I place my trust in my soldiers' blades."
     },
     "nr_foltest_siegemaster": {
-        "name": "Foltest - The Siegemaster",
+        "name": "Foltest The Siegemaster",
         "deck": "realms",
         "row": "leader",
         "strength": "",
@@ -223,7 +223,7 @@ var ext_nr_cards = {
         "quote": "A well-aimed ballista razes not just the enemy's wall, but his morale as well."
     },
     "nr_foltest_steelforged": {
-        "name": "Foltest - The Steel-Forged",
+        "name": "Foltest The Steel-Forged",
         "deck": "realms",
         "row": "leader",
         "strength": "",
@@ -233,7 +233,7 @@ var ext_nr_cards = {
         "quote": "A beautiful day for battle"
     },
     "nr_foltest_son_of_medell": {
-        "name": "Foltest - Son of Medell",
+        "name": "Foltest Son of Medell",
         "deck": "realms",
         "row": "leader",
         "strength": "",
@@ -493,7 +493,7 @@ var ext_nr_cards = {
         "deck": "realms",
         "row": "ranged",
         "strength": "4",
-        "ability": "comrade",
+        "ability": "",
         "filename": "sheldon",
         "count": "1",
         "quote": "I was there, on the front lines! Right where the fightin' was the thickest!"
@@ -572,7 +572,7 @@ var ext_nr_cards = {
 
 var ext_ne_cards = {
     "ne_emhyr_imperial": {
-        "name": "Emhyr var Emreis - His Imperial Majesty",
+        "name": "Emhyr var Emreis His Imperial Majesty",
         "deck": "nilfgaard",
         "row": "leader",
         "strength": "",
@@ -582,7 +582,7 @@ var ext_ne_cards = {
         "quote": "The skies wept when my Pavetta died. They will not weep for me."
     },
     "ne_emhyr_emperor": {
-        "name": "Emhyr var Emreis - Emperor of Nilfgaard",
+        "name": "Emhyr var Emreis Emperor of Nilfgaard",
         "deck": "nilfgaard",
         "row": "leader",
         "strength": "",
@@ -592,7 +592,7 @@ var ext_ne_cards = {
         "quote": "Your motives do not interest me. Only results."
     },
     "ne_emhyr_whiteflame": {
-        "name": "Emhyr var Emreis - the White Flame",
+        "name": "Emhyr var Emreis The White Flame",
         "deck": "nilfgaard",
         "row": "leader",
         "strength": "",
@@ -602,7 +602,7 @@ var ext_ne_cards = {
         "quote": "A sword is but one of many tools at a ruler's disposal."
     },
     "ne_emhyr_relentless": {
-        "name": "Emhyr var Emreis - The Relentless",
+        "name": "Emhyr var Emreis The Relentless",
         "deck": "nilfgaard",
         "row": "leader",
         "strength": "",
@@ -612,7 +612,7 @@ var ext_ne_cards = {
         "quote": "They do not call me the Patient. Take care they do not call you the Headless."
     },
     "ne_emhyr_invader_of_the_north": {
-        "name": "Emhyr var Emreis - Invader of the North",
+        "name": "Emhyr var Emreis Invader of the North",
         "deck": "nilfgaard",
         "row": "leader",
         "strength": "",
@@ -935,7 +935,7 @@ var ext_ne_cards = {
 
 var ext_mo_cards = {
     "mo_eredin_commander": {
-        "name": "Eredin - Commander of the Red Riders",
+        "name": "Eredin Commander of the Red Riders",
         "deck": "monsters",
         "row": "leader",
         "strength": "",
@@ -945,7 +945,7 @@ var ext_mo_cards = {
         "quote": "Go on. Show me your spins, pirouettes and feints. I want to watch."
     },
     "mo_eredin_bringer_of_death": {
-        "name": "Eredin - Bringer of Death",
+        "name": "Eredin Bringer of Death",
         "deck": "monsters",
         "row": "leader",
         "strength": "",
@@ -955,7 +955,7 @@ var ext_mo_cards = {
         "quote": "It is unavoidable."
     },
     "mo_eredin_destroyer": {
-        "name": "Eredin - Destroyer of Worlds",
+        "name": "Eredin Destroyer of Worlds",
         "deck": "monsters",
         "row": "leader",
         "strength": "",
@@ -965,7 +965,7 @@ var ext_mo_cards = {
         "quote": "I've long awaited this..."
     },
     "mo_eredin_king": {
-        "name": "Eredin - King of the Wild Hunt",
+        "name": "Eredin King of the Wild Hunt",
         "deck": "monsters",
         "row": "leader",
         "strength": "",
@@ -975,7 +975,7 @@ var ext_mo_cards = {
         "quote": "Have some dignity. You know how this will end."
     },
     "mo_eredin_the_treacherous": {
-        "name": "Eredin Bréacc Glas - The Treacherous",
+        "name": "Eredin Bréacc Glas The Treacherous",
         "deck": "monsters",
         "row": "leader",
         "strength": "",
@@ -1359,7 +1359,7 @@ var ext_mo_cards = {
 
 var ext_st_cards = {
     "sc_francesca_queen": {
-        "name": "Francesca Findabair - Queen of Dol Blathanna",
+        "name": "Francesca Findabair Queen of Dol Blathanna",
         "deck": "scoiatael",
         "row": "leader",
         "strength": "",
@@ -1369,7 +1369,7 @@ var ext_st_cards = {
         "quote": "Ash shall fertilize the soil. By spring, the valley shall bloom once more."
     },
     "sc_francesca_beautiful": {
-        "name": "Francesca Findabair - the Beautiful",
+        "name": "Francesca Findabair the Beautiful",
         "deck": "scoiatael",
         "row": "leader",
         "strength": "",
@@ -1379,7 +1379,7 @@ var ext_st_cards = {
         "quote": "The Elder Races have forgotten more than humans can ever hope to know."
     },
     "sc_francesca_daisy": {
-        "name": "Francesca Findabair - Daisy of the Valley",
+        "name": "Francesca Findabair Daisy of the Valley",
         "deck": "scoiatael",
         "row": "leader",
         "strength": "",
@@ -1389,7 +1389,7 @@ var ext_st_cards = {
         "quote": "Do not let my beauty distract your aim."
     },
     "sc_francesca_pureblood": {
-        "name": "Francesca Findabair - Pureblood Elf",
+        "name": "Francesca Findabair Pureblood Elf",
         "deck": "scoiatael",
         "row": "leader",
         "strength": "",
@@ -1399,7 +1399,7 @@ var ext_st_cards = {
         "quote": "To live in peave, we first must kill. This is human oppression's cruel finale."
     },
     "sc_francesca_hope_of_the_aen_seidhe": {
-        "name": "Francesca Findabair - Hope of the Aen Seidhe",
+        "name": "Francesca Findabair Hope of the Aen Seidhe",
         "deck": "scoiatael",
         "row": "leader",
         "strength": "",
@@ -2162,7 +2162,7 @@ var ext_re_cards = {
         "strength": "",
         "ability": "royal_decree",
         "filename": "royal_decree",
-        "count": "3",
+        "count": "2",
         "quote": "...do hereby decree the following..."
     },
     "spe_decoration": {
@@ -2172,7 +2172,7 @@ var ext_re_cards = {
         "strength": "",
         "ability": "decoration",
         "filename": "decoration",
-        "count": "1",
+        "count": "2",
         "quote": "Not wealth or fame but intentions true -- that’s what makes a hero of you!"
     },
     "spe_royal_guards": {
@@ -3606,7 +3606,7 @@ var ext_wu_cards = {
         "filename": "rats_mistle",
         "count": "1",
         "target": "wu_rats",
-        "quote": "The tree stump was followed by a young woman with close-cropped fair hair in a red doublet and high, shiny boots reaching above the knee."
+        "quote": "The tree stump was followed by a young woman with short fair hair in a red doublet and high, shiny boots reaching above the knee."
     },
     "wu_rats_reef": {
         "name": "The Rats: Reef",
@@ -3751,7 +3751,7 @@ var ext_wu_cards = {
         "ability": "hero",
         "filename": "gerhart_aelle",
         "count": "1",
-        "quote": "Gerhart of Aelle, otherwise known as Hen Gedymdeith, was the oldest living sorcerer. That is, until his death on Thanedd Island during the coup."
+        "quote": "Gerhart of Aelle, aka Hen Gedymdeith, was the oldest living sorcerer—until his death during the Thanedd coup."
     },
     "wu_lydia_bredevoort": {
         "name": "Lydia van Bredevoort",
@@ -3811,7 +3811,7 @@ var ext_wu_cards = {
         "ability": "cosimo_malaspina",
         "filename": "cosimo_malaspina",
         "count": "1",
-        "quote": "Children keep asking him for gifts. He doesn’t know why, but it really helps with finding subjects for his experiments."
+        "quote": "Children constantly ask him for gifts. He doesn't know why, but it helps find subjects for his experiments."
     },
     "wu_coen": {
         "name": "Coën",
@@ -3911,7 +3911,7 @@ var ext_wu_cards = {
         "ability": "hero resilience witcher_wolf_school",
         "filename": "kaer_morhen",
         "count": "1",
-        "quote": "The bones of the dead remain at the bottom of the moat surrounding the stronghold, left there as a reminder of the massacre that was born from hatred."
+        "quote": "The bones at the bottom of the stronghold's moat remain as a reminder of a massacre born from hatred."
     },
     "wu_kaer_seren": {
         "name": "Kaer Seren",
@@ -3991,7 +3991,7 @@ var ext_wu_cards = {
         "ability": "witcher_griffin_school",
         "filename": "erland",
         "count": "1",
-        "quote": "Erland founded the School of the Griffin, and hoped his emphasis on knightly values would help elevate the reputation of witchers among the common folk."
+        "quote": "Erland founded the Griffin School, hoping its knightly values would elevate the witchers' reputation among common folk."
     },
     "wu_arnaghad": {
         "name": "Arnaghad",
@@ -4253,7 +4253,7 @@ var ext_wu_cards = {
         "ability": "",
         "filename": "marlene_trastamara",
         "count": "1",
-        "quote": "None shall sit and dine with you at your table, no spoon you have shall sate you, never again shall you wish to spy your reflection in the mirror."
+        "quote": "None shall sit and dine with you at your table, no spoon shall sate you, never again shall you wish to spy your reflection in the mirror."
     },
     "wu_idarran_ulivo": {
         "name": "Idarran of Ulivo",
@@ -5517,7 +5517,7 @@ var ext_sy_cards = {
         "ability": "",
         "filename": "moreelse",
         "count": "1",
-        "quote": "Some witch hunters truly believed the eradication of mages and sorceresses would make the world a better place. Some did not require such justification."
+        "quote": "Some witch hunters believed the eradication of mages and sorceresses would make the world a better place. Some did not require such justification."
     },
     "sy_graden": {
         "name": "Graden",
@@ -6289,7 +6289,7 @@ var ext_ze_cards = {
         "ability": "hero",
         "filename": "lilit_niya",
         "count": "1",
-        "quote": "The Black Sun was to announce the imminent return of Lilit, still honoured in the East under the name of Niya, and the extermination of the human race."
+        "quote": "The Black Sun heralded the return of Lilit—honored in the East as Niya—and the extinction of humanity."
     },
     "ze_ocvist": {
         "name": "Ocvist",
@@ -6309,7 +6309,7 @@ var ext_ze_cards = {
         "ability": "whorshipped scorch_c",
         "filename": "keltullis",
         "count": "1",
-        "quote": "They fought 'er for near a century and they realized she weren't goin' nowheres, so... they cut a deal.She dinnae bother 'em, they give 'er what she needs."
+        "quote": "Fought 'er for a century before realizin' she weren't goin' nowheres. So they cut a deal: she don't bother 'em, they give 'er what she needs."
     },
     "ze_ostreverg": {
         "name": "Ostreverg",
@@ -6800,7 +6800,7 @@ var ext_ze_cards = {
 var ext_ofir_cards = {
     // Leader Cards
 "ofir_nibras": {
-        "name": "Nibras, Malliq of Ofir",
+        "name": "Nibras Malliq of Ofir",
         "deck": "ofir",
         "row": "leader",
         "strength": "",
@@ -6810,7 +6810,7 @@ var ext_ofir_cards = {
         "quote": "A majestic ruler of a distant and exotic land, famed for its wealth, scientific discoveries, and powerful army."
     },    
 "ofir_aamad_wise": {
-        "name": "Aamad, the Wise",
+        "name": "Aamad The Wise",
         "deck": "ofir",
         "row": "leader",
         "strength": "",
@@ -6820,7 +6820,7 @@ var ext_ofir_cards = {
         "quote": "The royal mage to the malliq of Ofir"
     },
 "ofir_nibras_gale": {
-        "name": "Nibras, the Gale",
+        "name": "Nibras The Gale",
         "deck": "ofir",
         "row": "leader",
         "strength": "",
@@ -6830,7 +6830,7 @@ var ext_ofir_cards = {
         "quote": "The Gale that Sweeps the Dunes"
     },
     "ofir_aamad": {
-        "name": "Aamad, the Crown Mage",
+        "name": "Aamad The Crown Mage",
         "deck": "ofir",
         "row": "leader",
         "strength": "",
@@ -6888,7 +6888,7 @@ var ext_ofir_cards = {
         "ability": "",
         "filename": "cataphract_2",
         "count": "1",
-        "quote": "Many fools believed that Ofieri armor was made of pure gold, and they paid for it with their lives trying to seize a piece of that supposedly easy gold."
+        "quote": "Fools thought Ofieri armor was pure gold. Many paid with their lives trying to seize a piece of it."
     },
 "ofir_cataphract_3": {
         "name": "Cataphract",
@@ -6903,7 +6903,7 @@ var ext_ofir_cards = {
     "ofir_vanguard": {
         "name": "Caravan Vanguard",
         "deck": "ofir",
-        "row": "agile_cr",
+        "row": "ranged",
         "strength": "3",
         "ability": "adaptive bond",
         "filename": "vanguard",
@@ -7437,7 +7437,7 @@ var ext_ofir_cards = {
 
 var ext_nv_cards = {
 "nv_sigismund": {
-        "name": "Sigismund Dijkstra, the Shrewd",
+        "name": "Sigismund Dijkstra The Shrewd",
         "deck": "novigrad",
         "row": "leader",
         "strength": "",
@@ -7447,7 +7447,7 @@ var ext_nv_cards = {
         "quote": "Novigrad is a free city. And I intend to keep it that way."
     },
     "nv_sigismund2": {
-        "name": "Sigismund Dijkstra, the Politician",
+        "name": "Sigismund Dijkstra The Politician",
         "deck": "novigrad",
         "row": "leader",
         "strength": "",
@@ -7662,7 +7662,7 @@ var ext_nv_cards = {
         "deck": "novigrad",
         "row": "ranged",
         "strength": "5",
-        "ability": "comrade",
+        "ability": "",
         "filename": "caesar_bilzen",
         "count": "1",
         "quote": "Avid angler, meticulous collector, and a real piece of work."

@@ -537,9 +537,8 @@ html {
 	position: absolute;
 	height: 11vw;
 	width: 29.12vw;
- /* width: 40vw; */
 	background-color: rgba(20, 20, 20, .95);
-	color: tan;
+	color: #dbb07a;
 	text-align: center;
 	pointer-events: none;
 	border: .1vw solid #ffffff57;
@@ -549,6 +548,58 @@ border-radius: 0.5vw;
 
 .card-description>* {
 	position: relative;
+}
+
+.card-description-faction {
+    position: absolute !important; 
+    width: 100vw !important;
+    height: auto !important; 
+    min-height: 5vw !important;
+    top: 4.8% !important; 
+    left: 0 !important;
+    background-color: rgba(15, 15, 15, 0.95) !important; 
+    border-top: .3vw solid #6d5210 !important;
+    border-bottom: .3vw solid #6d5210 !important;
+   /* box-shadow: 0 0 1vw #ffffff54 !important; */ 
+    color: goldenrod !important;
+    display: flex !important;
+    flex-direction: column !important; 
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.6vw 0 !important;
+    z-index: 999999 !important; 
+}
+
+.banner-faction-header-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 0.3vw !important;
+    width: 100% !important;
+}
+
+.banner-faction-shield-inline {
+    width: 2.3vw !important;
+    height: 2.3vw !important;
+    background-size: cover !important;
+    background-position: center !important;
+    margin-right: 0.8vw !important; 
+    display: inline-block !important;
+}
+
+.banner-faction-name-inline {
+    color: #fff !important;
+    font-weight: bold !important;
+    text-transform: none !important; 
+    font-size: 1.4vw !important;
+    letter-spacing: 0.05vw !important;
+}
+
+.banner-faction-ability-row {
+    font-size: 1.1vw !important;
+    width: 85% !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
 }
 
 .card-description>div {
@@ -597,8 +648,8 @@ border-radius: 0.5vw;
 }
 
 #carousel>:nth-child(1)>:nth-child(3) {
-	border: .3vw solid goldenrod;
-	box-shadow: 0 0 4vw goldenrod;
+	border: .25vw solid goldenrod;
+	box-shadow: 0 0 2.8vw goldenrod;
 	background-origin: border-box;
 }
 
@@ -666,8 +717,10 @@ border-radius: 0.5vw;
 
 #carousel .card-description {
 	left: 35.35%;
- /* left: 30%; */
 	top: 77%;
+    max-height: 11vw;
+    height: auto;
+min-height: 7vw;
 }
 
 /* Carousel Title */
@@ -1534,7 +1587,7 @@ border-radius: 0.5vw;
 #faction-description {
 	position: absolute;
 	font-size: 1.14vw;
-	color: #a17e3d;
+	color: goldenrod;
 	top: 8.1%;
 	left: 20.2%;
 	width: 60%;
@@ -1609,14 +1662,14 @@ align-items: center;
     display: none; 
     position: absolute;
     top: 130%; 
-    left: -100%;
+    left: -120%;
     background-color: rgba(15, 15, 15, 0.95); 
     border: 1px solid #555;
     border-radius: 4px;
-    padding: 6px 12px;
+    padding: 10px 12px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 25px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     z-index: 10000;
 }
@@ -2135,7 +2188,7 @@ font-weight: bold;
 	position: absolute;
 	top: 86%;
 	left: 0%;
-	width: 96%;
+	width: 99%;
 	height: 5vw;
 	font-size: 0.9vw;
 	background-position: left;
@@ -2958,5 +3011,57 @@ color: #b48c44 !important;
         transform: scale(1.25) rotate(9deg);
     }
 }
+
+.card-preview .card-description > h1 {
+margin-bottom: -2.1vw;
+}
+
+#carousel .card-description > h1 {
+margin-bottom: 0vw;
+}
+
+#gwent-fixed-zoom-toggle {
+    position: absolute !important;
+    top: 77.5% !important; 
+    left: 61.5% !important; 
+    font-size: 2vw !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    display: none; 
+    z-index: 999999 !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+#carousel.active-zoom-view .card-description {
+    top: 73.8% !important;
+    line-height: 1.1 !important;
+    width: max-content !important;
+    max-width: 42vw !important;
+    height: auto !important;
+    max-height: 42vw !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-43%) scale(0.95) !important;
+    transform-origin: top center !important;
+}
+
+#carousel.active-zoom-view .card-description > h1 {
+    top: 0vw !important;
+    margin-bottom: -0.9vw !important;
+    font-size: 1.4vw !important;
+}
+
+#carousel.active-zoom-view .card-description > p {
+    font-size: 1.3vw !important;
+}
+
+#carousel.active-zoom-view #gwent-fixed-zoom-toggle {
+display: none !important;
+   }
+
 
 

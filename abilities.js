@@ -259,17 +259,17 @@ dragon_wrath: {
     },
 
     scorch_c: {
-        name: "Scorch - Close Combat",
+        name: "Scorch Close",
         description: "Destroy your enemy's strongest Close Combat unit(s) if the combined strength of all his or her Close Combat units is 10 or more. ",
         placed: async (card) => await board.getRow(card, "close", card.holder.opponent()).scorch()
     },
     scorch_r: {
-        name: "Scorch - Ranged",
+        name: "Scorch Ranged",
         description: "Destroy your enemy's strongest Ranged Combat unit(s) if the combined strength of all his or her Ranged Combat units is 10 or more. ",
         placed: async (card) => await board.getRow(card, "ranged", card.holder.opponent()).scorch()
     },
     scorch_s: {
-        name: "Scorch - Siege",
+        name: "Scorch Siege",
         description: "Destroys your enemy's strongest Siege Combat unit(s) if the combined strength of all his or her Siege Combat units is 10 or more. ",
         placed: async (card) => await board.getRow(card, "siege", card.holder.opponent()).scorch()
     },
@@ -2046,7 +2046,7 @@ eredin_commander: {
     },
     resilience: {
         name: "Resilience",
-        description: "Remains on the board for the following round if another unit on your side of the board had an ability in common.",
+        description: "Stays on the board next round if another allied unit has an ability in common.",
         placed: async card => {
             game.roundEnd.push(async () => {
                 if (card.isLocked())
@@ -2068,8 +2068,8 @@ eredin_commander: {
         }
     },
     witcher_wolf_school: {
-        name: "Wolf School of Witchers",
-        description: "Each unit of this witcher school is boosted by 2 for each card of this given school.",
+        name: "Wolf School",
+        description: "Boost each unit of this school by 2 for each card of the same school.",
         placed: async card => {
             let school = card.abilities.at(-1);
             if (!card.holder.effects["witchers"][school])
@@ -2082,8 +2082,8 @@ eredin_commander: {
         }
     },
     witcher_viper_school: {
-        name: "Viper School of Witchers",
-        description: "Each unit of this witcher school is boosted by 2 for each card of this given school.",
+        name: "Viper School",
+        description: "Boost each unit of this school by 2 for each card of the same school.",
         placed: async card => {
             let school = card.abilities.at(-1);
             if (!card.holder.effects["witchers"][school])
@@ -2096,8 +2096,8 @@ eredin_commander: {
         }
     },
     witcher_bear_school: {
-        name: "Bear School of Witchers",
-        description: "Each unit of this witcher school is boosted by 2 for each card of this given school.",
+        name: "Bear School",
+        description: "Boost each unit of this school by 2 for each card of the same school.",
         placed: async card => {
             let school = card.abilities.at(-1);
             if (!card.holder.effects["witchers"][school])
@@ -2110,8 +2110,8 @@ eredin_commander: {
         }
     },
     witcher_cat_school: {
-        name: "Cat School of Witchers",
-        description: "Each unit of this witcher school is boosted by 2 for each card of this given school.",
+        name: "Cat School",
+        description: "Boost each unit of this school by 2 for each card of the same school.",
         placed: async card => {
             let school = card.abilities.at(-1);
             if (!card.holder.effects["witchers"][school])
@@ -2124,8 +2124,8 @@ eredin_commander: {
         }
     },
     witcher_griffin_school: {
-        name: "Griffin School of Witchers",
-        description: "Each unit of this witcher school is boosted by 2 for each card of this given school.",
+        name: "Griffin School",
+        description: "Boost each unit of this school by 2 for each card of the same school.",
         placed: async card => {
             let school = card.abilities.at(-1);
             if (!card.holder.effects["witchers"][school])
@@ -2844,7 +2844,7 @@ summon_one_of: {
     },
     monster_toussaint: {
         name: "Monster of Toussaint",
-        description: "In any round turn, starting from the next, instead of playing a card from your hand you can remove this card from the game and instantly play its second strongest form.",
+        description: "From the next turn onward you can discard this card from the board to instantly play its second strongest form.",
         placed: async card => {
         },
         weight: (card) => {
@@ -2853,7 +2853,7 @@ summon_one_of: {
     },
     aerondight: {
         name: "Aerondight",
-        description: "Place on your battlefield than take the unit card with highest original strength and move it to the siege row. While it lies in the siege row, its strength is tripled.",
+        description: "Place this card on the board, then move the unit with the highest original strength to the siege row. While there, triple its strength.",
         placed: async card => {
             if (card.isLocked())
                 return;
@@ -3143,7 +3143,7 @@ omen: {
 	},
 	      trade: {
         name: "Trade",
-        description: "Choose any card (including heroes) from your opponent's deck and add it to your hand. Requires a runestone in your deck to trade, which is given to the opponent's hand.",
+        description: "Choose 1 card from the enemy's deck. Trade 1 of your runes from your deck to their hand.",
         placed: async (card) => {
             if (!card || !card.holder || card.isLocked()) return;
             
@@ -3225,7 +3225,7 @@ omen: {
 
 	adaptive: {
 		name: "Adaptive",
-		description: "This unit's base Strength is 2 (instead of 1) while affected by Weather.",
+		description: "When affected by Weather, this unit's base Strength is 2 (not 1).",
 	},
     morale_c: {
         name: "Close Combat Morale Boost",
@@ -3242,7 +3242,7 @@ omen: {
    
 ofiri_envoy: {
     name: "Ofiri Envoy",
-    description: "Place on the opponent's field. You may draw 1 card from the opponent's deck and 1 card from yours. Otherwise, draw 2 cards from your own deck.",
+    description: "Place on the opponent's field. Draw 1 card from the opponent's deck and 1 from yours, or draw 2 cards from your deck.",
     placed: async (card) => {
         if (!card || card.isLocked()) return;
         await card.animate("ofiri_envoy");
@@ -4367,8 +4367,8 @@ await card.animate("rune_call");
 		}
 	},
 	wish1: {
-    name: "Djinn's Malicious Wish 1",
-    description: "Choose 1 card from 3 random cards in your opponent's hand to keep. In return, your strongest non-hero battlefield unit with a strength greater than or equal to 6 is instantly destroyed (ignoring the Djinn itself).",
+    name: "Malicious Wish 1",
+    description: "Choose 1 of 3 random cards from the enemy hand. Cost: Destroy your strongest non-hero unit (Strength ≥ 6).",
     placed: async function(card) {
         if (!card || !card.holder || card.isLocked()) return;
         const player = card.holder;
@@ -4445,8 +4445,8 @@ await card.animate("rune_call");
 },
 
 	wish2: {
-    name: "Djinn's Malicious Wish 2",
-    description: "Choose 1 card from the top 3 cards of your deck to add to your hand. In return, your strongest battlefield non-hero unit with a strength of 6 or more is instantly destroyed (the Djinn cannot destroy itself).",
+    name: "Malicious Wish 2",
+    description: "Choose 1 of the top 3 cards from your deck. Cost: Destroy your strongest non-hero unit (Strength ≥ 6). This card is immune.",
     placed: async function(card) {
         if (!card || !card.holder || card.isLocked()) return;
         const player = card.holder;
@@ -4527,8 +4527,8 @@ await card.animate("rune_call");
 },
 
 wish3: {
-    name: "Djinn's Malicious Wish 3",
-    description: "Choose 1 non-hero enemy unit on the battlefield to destroy instantly. In return, your strongest battlefield non-hero unit with a strength of 7 or more is also destroyed (the Djinn cannot destroy itself).",
+    name: "Malicious Wish 3",
+    description: "Destroy 1 non-hero enemy unit. Cost: Destroy your strongest non-hero unit (Strength ≥ 7). This card is immune.",
     placed: async function(card) {
         if (!card || !card.holder || card.isLocked()) return;
         const player = card.holder;
