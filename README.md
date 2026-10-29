@@ -6,7 +6,8 @@ Some factions adapt [Novigrad Tavern's](https://www.ebay.com/usr/novigrad_tavern
 
 ## Screenshots
 <img width="45%" alt="gameplay 1" src="https://github.com/user-attachments/assets/e5fa4ae3-f549-4eba-9549-e6803ac9e335" />
-<img width="45%" alt="gameplay 2" src="https://github.com/user-attachments/assets/5f92f31a-58d3-43f0-8060-a8f7f3edfd74" />
+<img width="45%" alt="gameplay 2" src="https://github.com/user-attachments/assets/b0e42615-f39a-4e0c-9722-347ff417fa07" />
+
 
 ## 🚀 Improvements
 
