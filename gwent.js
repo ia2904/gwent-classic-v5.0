@@ -5534,6 +5534,10 @@ Carousel.curr.cancel(); }, false);
 
     // Updates the visuals of the current selection of cards
     update() {
+        if (!this.desc || !this.container || !this.container.cards) {
+            return;
+        }
+
         this.indices = this.container.cards.reduce((a, c, i) => (!this.predicate || this.predicate(c)) ? a.concat([i]) : a, []);
         if (this.index >= this.indices.length)
             this.index = this.indices.length - 1;
@@ -5619,13 +5623,12 @@ Carousel.curr.cancel(); }, false);
 
             let pAbajo = this.desc.querySelector("p");
             if (pAbajo) {
-                pAbajo.innerHTML = pAbajo.innerHTML.replace(/<p><b>leader\s+ability:<\/b>\s*<\/p>|<b>leader\s+ability:<\/b>/i, "").trim();
+                pAbajo.innerHTML = pAbajo.innerHTML.replace(/<p><b>leader\s+ability:<\/b>\s*<\/p>|<b>leader\s+ability:<\/b>|leader\s+ability:/i, "").trim();
             }
 
             let zoomToggleBtn = document.getElementById("gwent-fixed-zoom-toggle");
             if (zoomToggleBtn) {
-                let isDescHidden = !this.desc || this.desc.classList.contains("hide") || window.getComputedStyle(this.desc).display === "none";
-                
+                let isDescHidden = this.desc.classList.contains("hide") || window.getComputedStyle(this.desc).display === "none";
                 if (isDescHidden) {
                     zoomToggleBtn.style.display = "none";
                 } else {
@@ -5659,9 +5662,6 @@ Carousel.curr.cancel(); }, false);
             if (oldShieldDiv) oldShieldDiv.style.setProperty("display", "block", "important");
         }
     }
-
-
-
 
     // Clears and quits the current carousel
     exit() {
@@ -6421,36 +6421,31 @@ makePreview(index, num, container_elem, cards) {
         let container = new CardContainer();
         container.cards = Object.values(premade_deck).map(d => {
             let deck = d;
-            
-            let rawText = ability_dict[card_dict[deck["leader"]]["ability"]].description;
-            let cleanText = rawText.replace(/<p><b>leader\s+ability:<\/b>\s*<\/p>|<b>leader\s+ability:<\/b>/i, "").trim();
-
             return {
                 abilities: [deck["faction"]],
                 name: card_dict[deck["leader"]]["name"],
                 row: "leader",
                 filename: card_dict[deck["leader"]]["filename"],
                 desc_name: deck["title"],
-                desc: cleanText, 
+                desc: /* "<p><b>Faction ability:</b> " + factions[deck["faction"]]["description"] + */ "</p><p><b>Leader ability:</b> " + ability_dict[card_dict[deck["leader"]]["ability"]].description + "</p>", /* <p><b>Deck description:</b> " + deck["description"], */
                 faction: deck["faction"]
             };
         });
         let index = container.cards.reduce((a, c, i) => c.faction === this.faction ? i : a, 0);
-        
         ui.queueCarousel(container, 1, (c, i) => {
             let banner = document.getElementById("gwent-faction-overlay-banner");
             if (banner) banner.remove();
             this.me_deck_index = i;
             this.setFaction(c.cards[i].faction, true);
             this.deckFromJSON(premade_deck[i], false);
-        }, () => true, false, true, ""); 
-        
+        }, () => true, false, true, "");
         Carousel.curr.index = this.me_deck_index;
         Carousel.curr.update();
     }
 
     selectOPDeck() {
         let container = new CardContainer();
+        // Adding first the option to select a random deck
         container.cards = [{
             abilities: [],
             name: "Random deck",
@@ -6462,21 +6457,16 @@ makePreview(index, num, container_elem, cards) {
         }];
         container.cards = container.cards.concat(Object.values(premade_deck).map(d => {
             let deck = d;
-            
-            let rawText = ability_dict[card_dict[deck["leader"]]["ability"]].description;
-            let cleanText = rawText.replace(/<p><b>leader\s+ability:<\/b>\s*<\/p>|<b>leader\s+ability:<\/b>/i, "").trim();
-
             return {
                 abilities: [deck["faction"]],
                 name: card_dict[deck["leader"]]["name"],
                 row: "leader",
                 filename: card_dict[deck["leader"]]["filename"],
                 desc_name: deck["title"],
-                desc: cleanText, 
+                desc: /* "<p><b>Faction ability:</b> " + factions[deck["faction"]]["description"] + */ "</p><p><b>Leader ability:</b> " + ability_dict[card_dict[deck["leader"]]["ability"]].description + "</p>", /* <p><b>Deck description:</b> " + deck["description"], */
                 faction: deck["faction"]
             };
         }));
-        
         ui.queueCarousel(container, 1, (c, i) => {
             let banner = document.getElementById("gwent-faction-overlay-banner");
             if (banner) banner.remove();
@@ -6487,8 +6477,8 @@ makePreview(index, num, container_elem, cards) {
             } else {
                 this.start_op_deck = JSON.parse(JSON.stringify(premade_deck[i - 1]));
                 this.start_op_deck.cards = this.start_op_deck.cards.map(c => ({
-                    index: c,
-                    count: c
+                    index: c[0],
+                    count: c[1]
                 }));
                 this.start_op_deck.leader = {
                     index: this.start_op_deck.leader,
@@ -6497,10 +6487,11 @@ makePreview(index, num, container_elem, cards) {
                 document.getElementById("op-deck-name").innerHTML = premade_deck[i - 1]["title"];
                 game.randomOPDeck = false;
             }
-        }, () => true, false, true, "");
+        }, () => true, false, true, ""); // 🚀 Modificado el 7mo argumento para apagar el letrero nativo
         Carousel.curr.index = this.op_deck_index;
         Carousel.curr.update();
     }
+
 
     // Called by the client to downlaod the current deck as a JSON file
     downloadDeck() {
