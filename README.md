@@ -1,5 +1,7 @@
 # Gwent Classic v5.0
 
+> **中文化 fork**：本仓库是 [ia2904/gwent-classic-v5.0](https://github.com/ia2904/gwent-classic-v5.0) 的中文化版本，原作者与原许可证（Commons Clause）不变。改动包括界面、卡牌名、技能、阵营、台词、规则与卡组说明的简体中文翻译（见 `lang/zh-cn.js`），以及相关页面文字的修改。游戏逻辑未做改动，只调整了开始按钮的排版样式。
+
 A browser remake of the original Gwent minigame from The Witcher 3: Wild Hunt. <br/>Click [here](https://ia2904.github.io/Gwent-classic-v5.0/) to play.
 
 Some factions adapt [Novigrad Tavern's](https://www.ebay.com/usr/novigrad_tavern) card designs (with some differences) but with a much deeper balance redesign. Card abilities have been tweaked to offer more complexity, and two brand-new factions have been added: Ofir and Novigrad.
