@@ -4394,7 +4394,6 @@ top: 48% !important;
 #card-bank-title {
 position: absolute !important;
 writing-mode: vertical-rl !important;
-transform: rotate(180deg) !important;
 text-align: center !important;
 white-space: nowrap !important;
 color: #b48c44 !important;
@@ -7764,7 +7763,12 @@ var iniciou = false,
 
 var playingOnline;
 
-window.onload = function () {
+// Shows the start screen once the page has loaded, or after 8 seconds if a
+// resource (images, audio) is still pending on a slow network.
+var uiShown = false;
+function showStartUI() {
+    if (uiShown) return;
+    uiShown = true;
     dimensionar();
     playingOnline = window.location.href == "https://randompianist.github.io/gwent-classic-v2.0/";
     document.getElementById("load_text").style.display = "none";
@@ -7782,6 +7786,9 @@ window.Website2APK.vibrate(60);
     });
     isLoaded = true;
 }
+
+window.addEventListener("load", showStartUI);
+setTimeout(showStartUI, 8000);
 
 window.onresize = function () {
     dimensionar();
