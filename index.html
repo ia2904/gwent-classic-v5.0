@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang = "en-US">
 	<head>
-		<title>Gwent 5.0</title>
+		<title>昆特牌 5.0 中文版</title>
 		<meta charset = "utf-8" />
 		<meta name = "author" content = "Arun Sundaram, Reynolds Costa, Sylver & Iván Mtz" />
-		<meta name = "description" content = "Play the original Gwent minigame from The Witcher 3 in your browser! Includes cards from Hearts of Stone and Blood & Wine!" />
+		<meta name = "description" content = "在浏览器中畅玩《巫师3》里的原版昆特牌！含《石之心》与《血与酒》卡牌，全中文界面。" />
 		<meta name = "keywords" content = "arun, sundaram, reynolds, costa, randompianist, programmer, gwent, tw3, witcher, card, game, gamedev, play" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 		<link rel = "icon" type = "image/x-icon" href = "img/favicon.ico" />
@@ -60,6 +60,22 @@
     }
     </style>
 
+<style type="text/css">
+/* 开始按钮三个统一居中、等宽、等高，文字随字体缩放 */
+#start-game, #start-ai-game, #start-pvp-game {
+    position: absolute;
+    left: 50%;
+    margin-left: -5vw;
+    width: 10vw;
+    height: 3.5%;
+    font-size: .98vw;
+    text-align: center;
+    border-radius: .5vw;
+}
+#start-game { top: 85.5%; }
+#start-ai-game { top: 90%; }
+#start-pvp-game { top: 94.5%; }
+</style>
 </head>
 	<body>
 
@@ -71,8 +87,8 @@
                     <span class="letra-grande">G</span>WEN<span class="letra-grande">T</span>
                 </span>
                 <br />
-                <font id="load_text">Loading v5.0...</font>
-                <button class="start-game_class" id="button_start" style="display:none">LET'S PLAY</button>
+                <font id="load_text">正在载入 v5.0...</font>
+                <button class="start-game_class" id="button_start" style="display:none">开始游戏</button>
                 <div id="version_text">v5.0</div>
             </div>
         </div>
@@ -96,7 +112,7 @@
 							<div></div>
 						</div>
 					</div>
-					<div id="name-op" class="name">Opponent</div>
+					<div id="name-op" class="name">对手</div>
 					<div id="deck-name-op" class="deck-name"></div>
 					<div id="hand-count-op" class="hand-count">6</div>
 					<div id="gem1-op" class="gem gem-on bg-contain"></div>
@@ -104,12 +120,12 @@
 					<div id="score-total-op" class="score-total">
 						<div class="center">0</div>
 					</div>
-					<div id="passed-op">Passed</div>
+					<div id="passed-op">已过牌</div>
 				</section>
 				<div id = "weather" class = "card-container"></div>
         <div id="arrangementWindow" class="hide">
-            <div id="arrangementWindow-title">Board arrangement enabled</div>
-            <div id="arrangementWindow-movesTitle">Moves left:</div>
+            <div id="arrangementWindow-title">已开启牌序调整</div>
+            <div id="arrangementWindow-movesTitle">剩余步数：</div>
             <div id="arrangementWindow-counter">4</div>
             <div id="arrangementWindow-button" alt="End rearrangement">✓</div>
         </div>
@@ -122,7 +138,7 @@
 							<div></div>
 						</div>
 					</div>
-					<div id = "passed-me">Passed</div>
+					<div id = "passed-me">已过牌</div>
 					<div id = "hand-count-me" class = "hand-count">5</div>
 					<div id = "gem1-me" class = "gem gem-on bg-contain"></div>
 					<div id = "gem2-me" class = "gem gem-on bg-contain"></div>
@@ -138,8 +154,8 @@
 						<div></div>
 					</div>
 				</div>
-				<div id = "pass-button" class = "center pulse">Pass</div>
-<div id = "giveup-button" class = "center pulse">Give up</div>
+				<div id = "pass-button" class = "center pulse">过牌</div>
+<div id = "giveup-button" class = "center pulse">认输</div>
 			</section>
 			<section id = "panel-mid" class = "panel">
 				<section id = "field-op" class = "field">
@@ -222,15 +238,15 @@
        			</section>
       <section id="deck-sorter" class="hide">
           <div class="drop-container">
-              <div id="deck-sorter-title">Reorder cards in deck</div>
+              <div id="deck-sorter-title">调整卡组顺序</div>
               <div class="drop-targets" id="drop-bank">
-                  <div class="drop-line-title">Bank</div>
+                  <div class="drop-line-title">牌库</div>
               </div>
               <div class="drop-targets" id="drop-deck-top">
-                  <div class="drop-line-title">Deck top</div>
+                  <div class="drop-line-title">牌组顶部</div>
               </div>
               <div class="drop-targets" id="drop-deck-bottom">
-                  <div class="drop-line-title">Deck bottom</div>
+                  <div class="drop-line-title">牌组底部</div>
               </div>
           </div>
       </section>
@@ -259,7 +275,7 @@
 			</section>
       <section id = "helper-box" class = "center hide">
 				<div>
-          <span id="helper-box-message">This is a test message.</span>
+          <span id="helper-box-message">这是一条测试消息。</span>
           <button id="help-box-close">&times;</button>
         </div>
 			</section>
@@ -275,27 +291,27 @@
 					<tbody>
 						<tr>
 							<th colspan = "2"></th>
-							<th>Round 1</th>
-							<th>Round 2</th>
-							<th>Round 3</th>
+							<th>第 1 回合</th>
+							<th>第 2 回合</th>
+							<th>第 3 回合</th>
 						</tr>
 						<tr>
-							<th colspan = "2">You</th>
+							<th colspan = "2">你</th>
 							<td>0</td>
 							<td>0</td>
 							<td>0</td>
 						</tr>
 						<tr>
-							<th colspan = "2">Opponent</th>
+							<th colspan = "2">对手</th>
 							<td>0</td>
 							<td>0</td>
 							<td>0</td>
 						</tr>
 					</tbody>
 				</table>
-				<p class = "hide">The battle cannot end in a draw. You can play a rematch using the same decks or surrender.</p>
-				<button>Customize</button>
-				<button>Replay</button>
+				<p class = "hide">战斗不会以平局结束。你可以用相同卡组再战，或直接投降。</p>
+				<button>自定义</button>
+				<button>再战</button>
 			</section>
 			<section id = "deck-selector"></section>
 		</main>
@@ -304,72 +320,72 @@
                 <h1></h1>
             </div>
             <div id="site-links">
-                <a href="rules.html" target="_blank">Rules of Gwent</a>
+                <a href="rules.html" target="_blank">昆特牌规则</a>
             </div>
 <div id="update-link">
-    <a href="https://github.com/ia2904/gwent-classic-v5.0/releases" target="_blank">Releases</a>
+    <a href="https://github.com/ia2904/gwent-classic-v5.0/releases" target="_blank">版本发布</a>
 </div>
             <p id="faction-description"></p>
 
 
 <a id="toggle-vibration" class="deck-options">
-    <img id="vibration-icon" src="img/icons/vibration.png" alt="Vibration Toggle" />
-    <span id="vibration-status" style="color: #2ecc71; margin-left: 5px; font-weight: bold;">ON</span>
+    <img id="vibration-icon" src="img/icons/vibration.png" alt="振动开关" />
+    <span id="vibration-status" style="color: #2ecc71; margin-left: 5px; font-weight: bold;">开</span>
 </a>
 
-<a id="select-board" class="deck-options">Select Board</a>
+<a id="select-board" class="deck-options">选择棋盘</a>
 <div id="board-carousel" class="board-carousel" style="display:none;">
     <button id="prev-board" class="hover_un">◀</button>
     <div id="board-preview"></div>
     <button id="next-board" class="hover_un">▶</button>
 </div>
 
-<a id="select-deck" class="deck-options">Select Own Deck</a>
-<a id="change-faction" class="deck-options">Change Faction</a>
-<a id="select-op-deck" class="deck-options">Select Opponent Deck</a>
-<span id="op-deck-name" class="deck-options">Random deck</span>
+<a id="select-deck" class="deck-options">选择我方卡组</a>
+<a id="change-faction" class="deck-options">更换阵营</a>
+<a id="select-op-deck" class="deck-options">选择对手卡组</a>
+<span id="op-deck-name" class="deck-options">随机卡组</span>
 
 <!-- MANAGE DECK -->
 <div id="manage-deck-container" class="deck-options">
-    <a id="manage-deck-btn" onclick="toggleManageDeck()">Manage Deck</a>
+    <a id="manage-deck-btn" onclick="toggleManageDeck()">管理卡组</a>
     
     <!-- SUBMENÚ DESPLEGABLE -->
     <div id="manage-deck-submenu" class="submenu-horizontal-below">
         <label id="upload-deck" class="submenu-item">
-            <input type="file" id="add-file" value="Import" style="display:none;" />
-            Import
+            <input type="file" id="add-file" value="导入" style="display:none;" />
+            导入
         </label>
-        <a id="download-deck" class="submenu-item">Export</a>
+        <a id="download-deck" class="submenu-item">导出</a>
         <a id="download-json" style="display:none;"></a>
-        <a id="save-internal-deck" class="submenu-item">Save</a>
-        <a id="load-internal-deck" class="submenu-item">Load</a>
-<a id="load-op-internal-deck" class="submenu-item">Load Enemy</a>
+        <a id="save-internal-deck" class="submenu-item">保存</a>
+        <a id="load-internal-deck" class="submenu-item">读取</a>
+<a id="load-op-internal-deck" class="submenu-item">读取对手</a>
     </div>
 </div>
 
-            <h2 id="card-bank-title" class="card-contianer-title">Card Collection</h2>
-            <h2 id="card-deck-title" class="card-contianer-title">Cards in Deck</h2>
+            <h2 id="card-bank-title" class="card-contianer-title">卡牌收藏</h2>
+            <h2 id="card-deck-title" class="card-contianer-title">卡组中的卡牌</h2>
             <div id="card-bank" class="card-array"></div>
             <div id="card-deck" class="card-array"></div>
             <div id="card-leader">
-                <p>Leader</p>
+                <p>领袖</p>
                 <div></div>
             </div>
             <div id="deck-stats">
-                <p>Total cards in deck</p>
+                <p>卡组总牌数</p>
                 <p>0</p>
-                <p>Number of Unit Cards</p>
+                <p>单位牌数量</p>
                 <p>0</p>
-                <p>Special Cards</p>
+                <p>特殊牌</p>
                 <p>0/10</p>
-                <p>Total Unit Card Strength</p>
+                <p>单位牌总战力</p>
                 <p>0</p>
-                <p>Hero Cards</p>
+                <p>英雄牌</p>
                 <p>0</p>
             </div>
-            <button id="start-game" class="start-game_class">Start game</button>
-            <button id="start-ai-game" class="start-game_class">Start AI game</button>
-            <button id="start-pvp-game" class="start-game_class">Start PvP game</button>
+            <button id="start-game" class="start-game_class">开始游戏</button>
+            <button id="start-ai-game" class="start-game_class">人机对战</button>
+            <button id="start-pvp-game" class="start-game_class">双人对战</button>
         </section>
 		<div id="toggle-music" class="center music-customization" style="display:none; cursor:default !important; display: flex; gap: 8px; align-items: center;">
     <span id="btn-play" style="font-size: 0.8em;">♫</span>
@@ -379,6 +395,7 @@
 		<script type = "text/javascript" src = "decks.js"></script>
 		<script type = "text/javascript" src = "abilities.js"></script>
 		<script type = "text/javascript" src = "factions.js"></script>
+		<script type = "text/javascript" src = "lang/zh-cn.js"></script>
 		<script type = "text/javascript" src = "gwent.js"></script>
 	
 <audio id="bgMusicLocal"></audio>

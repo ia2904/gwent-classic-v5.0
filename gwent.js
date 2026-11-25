@@ -1307,7 +1307,7 @@ class Player {
                 let card = this.forcedActions.splice(0, 1)[0];
                 ui.showPreviewVisuals(card);
                 // Ask if the player wants to play the card or pass
-                let c = await ui.popup("Play card [E]", (p) => p.choice = true, "Pass [Q]", (p) => p.choice = false, "Play card or pass?", "You are forced to play this card or pass for this round, which option do you choose?");
+                let c = await ui.popup("出牌 [E]", (p) => p.choice = true, "过牌 [Q]", (p) => p.choice = false, "出牌还是过牌？", "本回合你只能打出这张牌或过牌，选哪个？");
                 ui.enablePlayer(true);
                 if (c) {
                     document.getElementById("click-background").classList.add("noclick");
@@ -1635,7 +1635,7 @@ async playDecoration(card) {
     async activateFactionAbility() {
         let factionData = factions[this.deck.faction];
         if (factionData.activeAbility && this.factionAbilityUses > 0) {
-            await ui.popup("Use faction ability [E]", () => this.useFactionAbility(), "Cancel [Q]", () => this.escapeFactionAbility(), "Would you like to use your faction ability?", "Faction ability: " + factionData.description);
+            await ui.popup("使用阵营技能 [E]", () => this.useFactionAbility(), "取消 [Q]", () => this.escapeFactionAbility(), "要使用阵营技能吗？", "阵营技能：" + factionData.description);
         }
         return;
     }
@@ -1794,7 +1794,7 @@ class CardContainer {
     // Removes a card from the container along with its associated HTML element.
     removeCard(card, index) {
         if (this.cards.length === 0)
-            throw "Cannot draw from empty " + this.constructor.name;
+            throw "无法从空的牌堆中取牌 " + this.constructor.name;
         card = this.cards.splice(isNumber(card) ? card : this.cards.indexOf(card), 1)[0];
         this.removeCardElement(card, index ? index : 0);
         this.resize();
@@ -2100,7 +2100,7 @@ class HandAI extends CardContainer {
    
     draw(dest = null) {
         if (!this.cards || this.cards.length === 0) {
-            console.warn("Se interceptó y previno un colapso en HandAI vacía durante la simulación.");
+            console.warn("模拟过程中拦截并阻止了空手牌区（HandAI）的崩溃。");
             return null;
         }
                 
@@ -3062,20 +3062,20 @@ tocar("coin", false);
             // player vs player - both have a redraw - player 1 first
             if (this.mode === 3) {
                 if (player_me.leader.key === "sc_francesca_daisy") {
-                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await board.toDeck(c.cards[i], c), c => true, true, false, "Player 1 - Choose " + myCount +" cards to put back to deck.");
+                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await board.toDeck(c.cards[i], c), c => true, true, false, "玩家 1 - 选择 " + myCount +" 张牌放回牌组。");
                 } else {
-                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await player_me.deck.swap(c, c.removeCard(i)), c => true, true, true, "Player 1 - Choose up to " + myCount +" cards to redraw.");
+                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await player_me.deck.swap(c, c.removeCard(i)), c => true, true, true, "玩家 1 - 选择至多 " + myCount +" 张牌重抽。");
                 }
                 if (player_op.leader.key === "sc_francesca_daisy") {
-                    await ui.queueCarousel(player_op.hand, opCount, async (c, i) => await board.toDeck(c.cards[i], c), c => true, true, false, "Player 2 - Choose " + opCount +" cards to put back to deck.");
+                    await ui.queueCarousel(player_op.hand, opCount, async (c, i) => await board.toDeck(c.cards[i], c), c => true, true, false, "玩家 2 - 选择 " + opCount +" 张牌放回牌组。");
                 } else {
-                    await ui.queueCarousel(player_op.hand, opCount, async (c, i) => await player_op.deck.swap(c, c.removeCard(i)), c => true, true, true, "Player 2 - Choose up to " + opCount +" cards to redraw.");
+                    await ui.queueCarousel(player_op.hand, opCount, async (c, i) => await player_op.deck.swap(c, c.removeCard(i)), c => true, true, true, "玩家 2 - 选择至多 " + opCount +" 张牌重抽。");
                 }
             } else {
                 if (player_me.leader.key === "sc_francesca_daisy") {
-                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await board.toDeck(c.cards[i], c), c => true, true, false, "Choose " + myCount +" cards to put back to deck.");
+                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await board.toDeck(c.cards[i], c), c => true, true, false, "选择 " + myCount +" 张牌放回牌组。");
                 } else {
-                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await player_me.deck.swap(c, c.removeCard(i)), c => true, true, true, "Choose up to " + myCount +" cards to redraw.");
+                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await player_me.deck.swap(c, c.removeCard(i)), c => true, true, true, "选择至多 " + myCount +" 张牌重抽。");
                 }
             }
             ui.enablePlayer(false);
@@ -3374,7 +3374,7 @@ if (!ab) continue;
         }
 
                if (this.row === "leader")
-            this.desc_name = "Leader Ability";
+            this.desc_name = "领袖技能";
         else if (this.abilities.length > 0) {
             let ab1 = ability_dict[this.abilities[this.abilities.length - 1]];
             this.desc_name = ab1 ? ab1.name : this.abilities[this.abilities.length - 1];
@@ -3384,71 +3384,71 @@ if (!ab) continue;
                 if (ab2) this.desc_name += " / " + ab2.name;
             }
         } else if (this.row === "agile" || this.row === "agile_cr")
-            this.desc_name = "Agile Close / Ranged";
+            this.desc_name = "灵活：近战 / 远程";
         else if (this.row === "agile_cs")
-            this.desc_name = "Agile Close / Siege";
+            this.desc_name = "灵活：近战 / 攻城";
         else if (this.row === "agile_rs")
-            this.desc_name = "Agile Ranged / Siege";
+            this.desc_name = "灵活：远程 / 攻城";
         else if (this.row === "agile_crs")
-            this.desc_name = "Agile Close / Ranged / Siege";
+            this.desc_name = "灵活：近战 / 远程 / 攻城";
         else if (this.hero)
-            this.desc_name = "Hero";
+            this.desc_name = "英雄";
         else
             this.desc_name = "";
 
-        this.desc = (this.row && this.row.includes("agile") && ability_dict[this.row]) ? "<p><b>Agile:</b> " + ability_dict[this.row].description + "</p>" : "";
+        this.desc = (this.row && this.row.includes("agile") && ability_dict[this.row]) ? "<p><b>灵活：</b> " + ability_dict[this.row].description + "</p>" : "";
         for (let i = this.abilities.length - 1; i >= 0; --i) {
             let ab = ability_dict[this.abilities[i]];
-            let abi_name = ab ? (ab.name ? ab.name : "Leader Ability") : this.abilities[i];
+            let abi_name = ab ? (ab.name ? ab.name : "领袖技能") : this.abilities[i];
             let faction_abi_desc = "description_" + this.faction;
             
             if (ab) {
                 if (ab[faction_abi_desc]) {
-                    this.desc += "<p><b>" + abi_name + " (" + (factions[this.faction] ? factions[this.faction].name : this.faction) + "):</b> " + ab[faction_abi_desc] + "</p>";
+                    this.desc += "<p><b>" + abi_name + "（" + (factions[this.faction] ? factions[this.faction].name : this.faction) + "）：</b> " + ab[faction_abi_desc] + "</p>";
                 } else {
-                    this.desc += "<p><b>" + abi_name + ":</b> " + (ab.description || "") + "</p>";
+                    this.desc += "<p><b>" + abi_name + "：</b> " + (ab.description || "") + "</p>";
                 }
             } else {
-                this.desc += "<p><b>" + abi_name + ":</b> Habilidad no definida en abilities.js</p>";
+                this.desc += "<p><b>" + abi_name + "：</b> 技能未在 abilities.js 中定义</p>";
             }
         }
 
         // If Summon Avenger or Invoke card, give information about the card being summoned
         if (this.abilities.includes("avenger") && this.target) {
             let target = card_dict[this.target];
-            this.desc += "<p>Summons <b>" + target["name"] + "</b> with strength " + target["strength"];
+            this.desc += "<p>召唤 <b>" + target["name"] + "</b>，战力 " + target["strength"];
             if (target["ability"].length > 0)
-                this.desc += " and abilities " + target["ability"].split(" ").map(a => ability_dict[a]["name"]).join(" / ");
+                this.desc += "，技能 " + target["ability"].split(" ").map(a => ability_dict[a]["name"]).join(" / ");
             this.desc += "</p>";
         } else if (this.abilities.includes("muster") && this.target) {
             let units = Object.keys(card_dict).filter(cid => card_dict[cid].target === this.target).map(cid => card_dict[cid]);
             let units_summary = {};
             units.forEach(function (u) {
-                let key = "<b>" + u.name + "</b> (str: " + u.strength + ")";
+                let key = "<b>" + u.name + "</b>（战力：" + u.strength + "）";
                 if (!(key in units_summary))
                     units_summary[key] = 0;
                 units_summary[key] = units_summary[key] + 1;
             });
-            this.desc += "<p><u>Summons</u> " + Object.keys(units_summary).map(t => units_summary[t] + " * " + t).join(", ");
+            this.desc += "<p><u>召唤</u> " + Object.keys(units_summary).map(t => units_summary[t] + " * " + t).join(", ");
 
         } else if (this.abilities.includes("invoke") && this.target) {
             let target = Object.keys(card_dict).filter(cid => card_dict[cid].target === this.target && cid !== this.key).map(cid => card_dict[cid]);
             if (target.length > 0) {
                 target = target[0];
-                this.desc += "<p>Invokes <b>" + target["name"] + "</b> with strength " + target["strength"];
+                this.desc += "<p>召唤 <b>" + target["name"] + "</b>，战力 " + target["strength"];
                 if (target["ability"].length > 0)
-                    this.desc += " and abilities " + target["ability"].split(" ").map(a => ability_dict[a]["name"]).join(" / ");
+                    this.desc += "，技能 " + target["ability"].split(" ").map(a => ability_dict[a]["name"]).join(" / ");
                 this.desc += "</p>";
             }
         } else if ((this.abilities.includes("berserker") || this.abilities.includes("monster_toussaint")) && this.target) {
             let target = card_dict[this.target];
-            this.desc += "<p>Turns into <b>" + target["name"] + "</b> with strength " + target["strength"];
+            this.desc += "<p>变身为 <b>" + target["name"] + "</b>，战力 " + target["strength"];
             if (target["ability"].length > 0)
-                this.desc += " and abilities " + target["ability"].split(" ").map(a => ability_dict[a]["name"]).join(" / ");
+                this.desc += "，技能 " + target["ability"].split(" ").map(a => ability_dict[a]["name"]).join(" / ");
             this.desc += "</p>";
         }
         if (this.hero)
-            this.desc += "<p><b>Hero:</b> " + ability_dict["hero"].description + "</p>";
+            this.desc += "<p><b>英雄：</b> " + ability_dict["hero"].description + "</p>";
 
         this.elem = this.createCardElem(this);
         this.faceUpElem = this.elem;
@@ -3787,7 +3787,7 @@ function passStart(input) {
     }
 }
 
-var original = "Pass";
+var original = "过牌";
 var fileira_clicavel = null;
 const load_passT = 3;
 var cache_notif = ["op-leader"];
@@ -4394,7 +4394,6 @@ top: 48% !important;
 #card-bank-title {
 position: absolute !important;
 writing-mode: vertical-rl !important;
-transform: rotate(180deg) !important;
 text-align: center !important;
 white-space: nowrap !important;
 color: #b48c44 !important;
@@ -4806,37 +4805,37 @@ navigator.vibrate(50);
  }
 }
         var guia1 = {
-            "notif-nilfgaard-wins-draws": "Nilfgaard wins draws",
-            "notif-op-white-flame": "The opponent's leader cancel your opponent's Leader Ability",
-            "notif-op-leader": "Opponent uses leader",
-            "notif-me-first": "You will go first",
-            "notif-op-first": "Your opponent will go first",
-            "notif-me-coin": "You will go first",
-            "notif-op-coin": "Your opponent will go first",
-            "notif-round-start": "Round Start",
-            "notif-me-pass": "Round passed",
-            "notif-op-pass": "Your opponent has passed",
-            "notif-win-round": "You won the round!",
-            "notif-lose-round": "Your opponent won the round",
-            "notif-draw-round": "The round ended in a draw",
-            "notif-me-turn": "Your turn!",
-            "notif-op-turn": "Opponent's turn",
-            "notif-north": "Northern Realms faction ability triggered - North draws an additional card.",
-            "notif-monsters": "Monsters faction ability triggered - monsters retake one card to their hand",
-            "notif-scoiatael": "Opponent used the Scoia'tael faction perk to go first.",
-            "notif-skellige-op": "Opponent Skellige Ability Triggered!",
-            "notif-skellige-me": "Skellige Ability Triggered!",
-            "notif-witcher_universe": "Witcher Universe used its faction ability and skipped a turn",
-            "notif-toussaint": "Toussaint faction ability triggered - Toussaint draws an additional card.",
-            "notif-toussaint-decoy-cancelled": "Toussaint Leader ability used - Decoy ability cancelled for the rest of the round.",
-            "notif-lyria_rivia": "Lyria & Rivia ability used - Morale Boost effect applied to a row.",
-            "notif-meve_white_queen": "Lyria & Rivia leader allows both players to restore 2 units when using the medic ability.",
-            "notif-north-scorch-cancelled": "Northern Realms Leader ability used - Scorch ability cancelled for the rest of the round.",
-            "notif-zerrikania": "Zerrikania ability used - Unit restored from discard pile.",
-"notif-ofir": "Ofir faction ability used - Weather card played from deck.",
-"notif-novigrad-sigismund": "Sigismund Dijkstra prevented the death of a friendly unit.",
-            "notif-redania": "Redania used its faction ability and skipped a turn",
-            "notif-velen": "Velen ability triggered: Player will draw a card"
+            "notif-nilfgaard-wins-draws": "尼弗迦德：平局判胜",
+            "notif-op-white-flame": "对手领袖取消了你的领袖技能",
+            "notif-op-leader": "对手使用了领袖技能",
+            "notif-me-first": "你先手",
+            "notif-op-first": "对手先手",
+            "notif-me-coin": "你先手",
+            "notif-op-coin": "对手先手",
+            "notif-round-start": "回合开始",
+            "notif-me-pass": "本回合已过牌",
+            "notif-op-pass": "对手已过牌",
+            "notif-win-round": "你赢下了本回合！",
+            "notif-lose-round": "对手赢下了本回合",
+            "notif-draw-round": "本回合平局",
+            "notif-me-turn": "轮到你了！",
+            "notif-op-turn": "对手的回合",
+            "notif-north": "北方领域阵营技能触发 - 额外抽一张牌。",
+            "notif-monsters": "怪物阵营技能触发 - 收回一张牌到手牌",
+            "notif-scoiatael": "对手使用松鼠党阵营技能抢先手。",
+            "notif-skellige-op": "对手的史凯利格技能触发！",
+            "notif-skellige-me": "史凯利格技能触发！",
+            "notif-witcher_universe": "猎魔人宇宙使用阵营技能，跳过一回合",
+            "notif-toussaint": "陶森特阵营技能触发 - 额外抽一张牌。",
+            "notif-toussaint-decoy-cancelled": "陶森特领袖技能使用 - 本回合剩余时间内诱饵技能失效。",
+            "notif-lyria_rivia": "莱里亚与利维亚技能使用 - 对一排施加士气鼓舞。",
+            "notif-meve_white_queen": "莱里亚与利维亚领袖：使用医生技能时双方各可复活 2 个单位。",
+            "notif-north-scorch-cancelled": "北方领域领袖技能使用 - 本回合剩余时间内灼烧技能失效。",
+            "notif-zerrikania": "泽瑞坎尼亚技能使用 - 从墓地复活一个单位。",
+"notif-ofir": "奥菲尔阵营技能使用 - 从牌组打出一张天气牌。",
+"notif-novigrad-sigismund": "西吉·卢文阻止了一个友方单位的死亡。",
+            "notif-redania": "瑞达尼亚使用阵营技能，跳过一回合",
+            "notif-velen": "威伦技能触发：玩家将抽一张牌"
         }
         var guia2 = {
             "me-pass": "pass",
@@ -4856,7 +4855,7 @@ navigator.vibrate(50);
         if (!textoNotif) return;
         this.notif_elem.children[0].id = "notif-" + name;
         this.notif_elem.children[0].style.backgroundImage = name == "op-leader" ? "url(img/icons/notif_" + player_op.deck.faction + ".png)" : "";
-                var textoNotif = guia1[this.notif_elem.children[0].id] || "Action not allowed";
+                var textoNotif = guia1[this.notif_elem.children[0].id] || "无法执行该操作";
         var caracteres = textoNotif.length;
         var palavras = textoNotif.split(" ").length;
         duration = parseInt(0.7454878 * Math.max(parseInt((1e3 / 17) * caracteres), parseInt((6e4 / 300) * palavras)) + 211.653152) + 1;
@@ -5366,13 +5365,13 @@ navigator.vibrate(50);
         player.endturn_action = async () => {
             player.endturn_action = null;
         }
-        ui.helper.showMessage("Select a card on your side of the board.");
+        ui.helper.showMessage("选择你方场上的任意一张牌。");
         this.enablePlayer(true);
     }
 
     async editCardPower(card) {
         ui.helper.hide();
-        let newValue = await this.numberPopup(card.power, 0, 999, null, "Select a new base power", "Select the new base power (before other effects) for the selected card. Currently: " + String(card.power));
+        let newValue = await this.numberPopup(card.power, 0, 999, null, "选择新的基础战力", "为所选卡牌设置新的基础战力（在其他效果生效前）。当前为：" + String(card.power));
         if (!card.originalBasePower)
             card.originalBasePower = card.basePower;
         card.basePower = newValue;
@@ -5612,7 +5611,7 @@ Carousel.curr.cancel(); }, false);
             if (oldH1) {
                 oldH1.style.setProperty("display", "block", "important"); 
                 if (isLeaderMenu) {
-                    oldH1.innerText = "Leader Ability"; 
+                    oldH1.innerText = "领袖技能"; 
                 }
             }
             
@@ -5748,7 +5747,7 @@ class NumberValuePopup {
         main.children[0].innerHTML = header ? header : "";
         main.children[1].innerHTML = description ? description : "";
         this.numberElem = document.getElementById("number-popup-value");
-        main.children[2].children[1].innerHTML = "Done";
+        main.children[2].children[1].innerHTML = "确定";
 
         this.numberElem.setAttribute("value", value);
         this.numberElem.value = value;
@@ -5881,30 +5880,30 @@ class DeckMaker {
 
 const boards = isMobile()
     ? [
-        { file: "board-mobile.jpg", name: "Classic" },
-        { file: "board-betam.jpg", name: "Beta" },
-        { file: "board-stonem.jpg", name: "Stone" },
-        { file: "board-classremasm.jpg", name: "Remastered" },
-        { file: "board-detlaffm.jpg", name: "Detlaff" },
-        { file: "board-wh1m.jpg", name: "Wild Hunt 1" },
-        { file: "board-wh2m.jpg", name: "Wild Hunt 2" },
-        { file: "board-cirim.jpg", name: "Ciri" },
-        { file: "board-ladiesm.jpg", name: "Crones" },
-        { file: "board-friendsm.jpg", name: "Friends" },
-        { file: "board-gwentm.jpg", name: "Gwent" }
+        { file: "board-mobile.jpg", name: "经典" },
+        { file: "board-betam.jpg", name: "测试版" },
+        { file: "board-stonem.jpg", name: "石之心" },
+        { file: "board-classremasm.jpg", name: "重制版" },
+        { file: "board-detlaffm.jpg", name: "德特勒夫" },
+        { file: "board-wh1m.jpg", name: "狂猎 1" },
+        { file: "board-wh2m.jpg", name: "狂猎 2" },
+        { file: "board-cirim.jpg", name: "希里" },
+        { file: "board-ladiesm.jpg", name: "老妖婆" },
+        { file: "board-friendsm.jpg", name: "朋友" },
+        { file: "board-gwentm.jpg", name: "昆特牌" }
       ]
     : [
-        { file: "board.jpg", name: "Classic" },
-        { file: "board-beta.jpg", name: "Beta" },
-        { file: "board-stone.jpg", name: "Stone" },
-        { file: "board-classremas.jpg", name: "Remastered" },
-        { file: "board-detlaff.jpg", name: "Detlaff" },
-        { file: "board-wildhunt1.jpg", name: "Wild Hunt 1" },
-        { file: "board-wildhunt2.jpg", name: "Wild Hunt 2" },
-        { file: "board-ciri.jpg", name: "Ciri" },
-        { file: "board-ladies.jpg", name: "Crones" },
-        { file: "board-friends.jpg", name: "Friends" },
-        { file: "board-gwent.jpg", name: "Gwent" }
+        { file: "board.jpg", name: "经典" },
+        { file: "board-beta.jpg", name: "测试版" },
+        { file: "board-stone.jpg", name: "石之心" },
+        { file: "board-classremas.jpg", name: "重制版" },
+        { file: "board-detlaff.jpg", name: "德特勒夫" },
+        { file: "board-wildhunt1.jpg", name: "狂猎 1" },
+        { file: "board-wildhunt2.jpg", name: "狂猎 2" },
+        { file: "board-ciri.jpg", name: "希里" },
+        { file: "board-ladies.jpg", name: "老妖婆" },
+        { file: "board-friends.jpg", name: "朋友" },
+        { file: "board-gwent.jpg", name: "昆特牌" }
       ];
 
 let currentIndex = 0;
@@ -5975,11 +5974,11 @@ if (toggleBtn) {
                 }
                 
                 if (typeof tocar === "function") tocar("card", false);
-                statusText.innerText = "ON";
+                statusText.innerText = "开";
                 statusText.style.color = "#2ecc71"; 
             } else {
                 if (typeof tocar === "function") tocar("discard", false);
-                statusText.innerText = "OFF";
+                statusText.innerText = "关";
                 statusText.style.color = "#e74c3c"; 
             }
         }
@@ -6004,9 +6003,9 @@ document.getElementById("load-op-internal-deck").addEventListener("click", () =>
            const actualizartituloporid = () => {
             let elemTituloFaccion = document.getElementById("faction-title");
             if (elemTituloFaccion) {
-                this.me_deck_title = elemTituloFaccion.innerText || elemTituloFaccion.textContent || "Northern Realms";
+                this.me_deck_title = elemTituloFaccion.innerText || elemTituloFaccion.textContent || "北方领域";
             } else {
-                this.me_deck_title = "Northern Realms";
+                this.me_deck_title = "北方领域";
             }
                   
             if (ui && ui.player1Deck) { ui.player1Deck.title = this.me_deck_title; }
@@ -6045,7 +6044,7 @@ document.getElementById("load-op-internal-deck").addEventListener("click", () =>
             return false;
         if (!silent) {
             tocar("warning", false);
-            if (!confirm("Changing factions will clear the current deck. Continue? ")) {
+            if (!confirm("更换阵营会清空当前卡组，是否继续？ ")) {
                 tocar("warning", false);
                 return false;
             }
@@ -6301,7 +6300,7 @@ makePreview(index, num, container_elem, cards) {
             Carousel.curr.update();
         } else {
             
-            console.log("El carrusel está en cola esperando activación.");
+            console.log("轮播已排队，等待激活。");
         }
     }
 
@@ -6357,9 +6356,9 @@ makePreview(index, num, container_elem, cards) {
         openFullscreen();
         let warning = "";
         if (this.stats.units < 22)
-            warning += "Your deck must have at least 22 unit cards. \n";
+            warning += "你的卡组至少需要 22 张单位牌。 \n";
         if (this.stats.special > 10)
-            warning += "Your deck must have no more than 10 special cards. \n";
+            warning += "你的卡组特殊牌不能超过 10 张。 \n";
         if (warning != "") {
             return aviso(warning);
         }
@@ -6388,16 +6387,16 @@ makePreview(index, num, container_elem, cards) {
         }
 
         if (game.mode === 1) {
-            player_me = new Player(0, "Player 1", me_deck, false);
-            player_op = new Player(1, "Player 2", this.start_op_deck, true);
+            player_me = new Player(0, "玩家 1", me_deck, false);
+            player_op = new Player(1, "玩家 2", this.start_op_deck, true);
         } else if (game.mode === 2) {
             // AI vs AI
-            player_me = new Player(0, "Player 1", me_deck, true);
-            player_op = new Player(1, "Player 2", this.start_op_deck, true);
+            player_me = new Player(0, "玩家 1", me_deck, true);
+            player_op = new Player(1, "玩家 2", this.start_op_deck, true);
         } else {
             // PVP
-            player_me = new Player(0, "Player 1", me_deck, false);
-            player_op = new Player(1, "Player 2", this.start_op_deck, false);
+            player_me = new Player(0, "玩家 1", me_deck, false);
+            player_op = new Player(1, "玩家 2", this.start_op_deck, false);
         }
 
 
@@ -6427,7 +6426,7 @@ makePreview(index, num, container_elem, cards) {
                 row: "leader",
                 filename: card_dict[deck["leader"]]["filename"],
                 desc_name: deck["title"],
-                desc: /* "<p><b>Faction ability:</b> " + factions[deck["faction"]]["description"] + */ "</p><p><b>Leader ability:</b> " + ability_dict[card_dict[deck["leader"]]["ability"]].description + "</p>", /* <p><b>Deck description:</b> " + deck["description"], */
+                desc: /* "<p><b>Faction ability:</b> " + factions[deck["faction"]]["description"] + */ "</p><p><b>领袖技能：</b> " + ability_dict[card_dict[deck["leader"]]["ability"]].description + "</p>", /* <p><b>Deck description:</b> " + deck["description"], */
                 faction: deck["faction"]
             };
         });
@@ -6448,11 +6447,11 @@ makePreview(index, num, container_elem, cards) {
         // Adding first the option to select a random deck
         container.cards = [{
             abilities: [],
-            name: "Random deck",
+            name: "随机卡组",
             row: "faction",
             filename: "random",
-            desc_name: "Random deck",
-            desc: "A random deck from the pool that will change every game.",
+            desc_name: "随机卡组",
+            desc: "从卡池中随机抽取一套卡组，每局都会更换。",
             faction: "faction"
         }];
         container.cards = container.cards.concat(Object.values(premade_deck).map(d => {
@@ -6463,7 +6462,7 @@ makePreview(index, num, container_elem, cards) {
                 row: "leader",
                 filename: card_dict[deck["leader"]]["filename"],
                 desc_name: deck["title"],
-                desc: /* "<p><b>Faction ability:</b> " + factions[deck["faction"]]["description"] + */ "</p><p><b>Leader ability:</b> " + ability_dict[card_dict[deck["leader"]]["ability"]].description + "</p>", /* <p><b>Deck description:</b> " + deck["description"], */
+                desc: /* "<p><b>Faction ability:</b> " + factions[deck["faction"]]["description"] + */ "</p><p><b>领袖技能：</b> " + ability_dict[card_dict[deck["leader"]]["ability"]].description + "</p>", /* <p><b>Deck description:</b> " + deck["description"], */
                 faction: deck["faction"]
             };
         }));
@@ -6473,7 +6472,7 @@ makePreview(index, num, container_elem, cards) {
             this.op_deck_index = i;
             if (i === 0) {
                 game.randomOPDeck = true;
-                document.getElementById("op-deck-name").innerHTML = "Random deck";
+                document.getElementById("op-deck-name").innerHTML = "随机卡组";
             } else {
                 this.start_op_deck = JSON.parse(JSON.stringify(premade_deck[i - 1]));
                 this.start_op_deck.cards = this.start_op_deck.cards.map(c => ({
@@ -6526,7 +6525,7 @@ makePreview(index, num, container_elem, cards) {
                 alertaTablero.style.textAlign = "center";
                 alertaTablero.style.zIndex = "999999";
                 alertaTablero.style.boxShadow = "0 0 15px #000";
-                alertaTablero.innerHTML = "<b>Deck copied to clipboard!</b><br><br>Paste into any notepad app and save as a .json file.";
+                alertaTablero.innerHTML = "<b>卡组已复制到剪贴板！</b><br><br>粘贴到任意记事本应用，保存为 .json 文件即可。";
                 
                 document.body.appendChild(alertaTablero);
                 setTimeout(() => { alertaTablero.remove(); }, 3000);
@@ -6555,7 +6554,7 @@ makePreview(index, num, container_elem, cards) {
             try {
                 this.deckFromJSON(e.target.result, true);
             } catch (e) {
-                aviso("Uploaded deck is not formatted correctly!");
+                aviso("上传的卡组格式不正确！");
             }
         }
         fr.readAsText(files.item(0));
@@ -6571,7 +6570,7 @@ makePreview(index, num, container_elem, cards) {
             try {
                 deck = JSON.parse(json);
             } catch (e) {
-                aviso("Uploaded deck is not parsable!");
+                aviso("上传的卡组无法解析！");
                 return;
             }
         } else {
@@ -6579,24 +6578,24 @@ makePreview(index, num, container_elem, cards) {
         }
         let warning = "";
         if (card_dict[deck.leader].row !== "leader")
-            warning += "'" + card_dict[deck.leader].name + "' is cannot be used as a leader\n";
+            warning += "'" + card_dict[deck.leader].name + "' 不能作为领袖使用\n";
         if (deck.faction != card_dict[deck.leader].deck)
-            warning += "Leader '" + card_dict[deck.leader].name + "' doesn't match deck faction '" + deck.faction + "'.\n";
+            warning += "领袖 '" + card_dict[deck.leader].name + "' 与卡组阵营 '" + deck.faction + "' 不符。\n";
 
         let cards = deck.cards.filter(c => {
             let card = card_dict[c[0]];
             if (!card) {
-                warning += "ID " + c[0] + " does not correspond to a card.\n";
+                warning += "ID " + c[0] + " 找不到对应卡牌。\n";
                 return false
             }
             if (!([deck.faction, "neutral", "special", "weather"].includes(card.deck) ||
                 (["special", "weather"].includes(card.deck.split(" ")[0]) && card.deck.split(" ").includes(deck.faction)))) {
-                warning += "'" + card.name + "' cannot be used in a deck of faction type '" + deck.faction + "'\n";
+                warning += "'" + card.name + "' 不能用于阵营类型为 '" + deck.faction + "' 的卡组\n";
                 return false;
             }
             if (card.count < c[1]) {
                 console.log(card);
-                warning += "Deck contains " + c[1] + "/" + card.count + " available " + card_dict[c[0]].name + " cards\n";
+                warning += "卡组包含 " + c[1] + "/" + card.count + " 张可用的 " + card_dict[c[0]].name + "\n";
                 return false;
             }
             return true;
@@ -6608,7 +6607,7 @@ makePreview(index, num, container_elem, cards) {
 
         if (warning) {
             tocar("warning", false);
-            if (!confirm(warning + "\n\n\Continue importing deck?")) {
+            if (!confirm(warning + "\n\n\n继续导入卡组吗？")) {
                 tocar("warning", false);
                 return;
             }
@@ -6628,10 +6627,10 @@ makePreview(index, num, container_elem, cards) {
 saveDeckInternal() {
     let warning = "";
     if (this.stats.units < 22) {
-        warning += "Your deck must have at least 22 unit cards.<br>";
+        warning += "你的卡组至少需要 22 张单位牌。<br>";
     }
     if (this.stats.special > 10) {
-        warning += "Your deck must have no more than 10 special cards.<br>";
+        warning += "你的卡组特殊牌不能超过 10 张。<br>";
     }
 
     if (warning !== "") {
@@ -6652,7 +6651,7 @@ saveDeckInternal() {
         alertBox.style.textAlign = "center";
         alertBox.style.zIndex = "999999";
         alertBox.style.boxShadow = "0 0 15px #000";
-        alertBox.innerHTML = "<h3 style='color:#ff4500; margin: 0 0 8px 0;'>Invalid Deck!</h3><p style='margin: 0; color:#fff; line-height: 1.5;'>" + warning + "</p>";
+        alertBox.innerHTML = "<h3 style='color:#ff4500; margin: 0 0 8px 0;'>卡组无效！</h3><p style='margin: 0; color:#fff; line-height: 1.5;'>" + warning + "</p>";
         
         document.body.appendChild(alertBox);
         setTimeout(() => { alertBox.remove(); }, 2500); 
@@ -6667,7 +6666,7 @@ saveDeckInternal() {
             savedDecks = {};
         }
 
-        let baseName = (this.faction || "Custom") + " Deck";
+        let baseName = (factions[this.faction] ? factions[this.faction].name : (this.faction || "自定义")) + "卡组";
         let counter = 1;
         let finalName = baseName + " " + counter;
 
@@ -6750,7 +6749,7 @@ saveDeckInternal() {
         container.className = "gwent-popup-box";
 
         let header = document.createElement("h3");
-        header.innerText = "Load Saved Deck";
+        header.innerText = "读取已保存卡组";
         container.appendChild(header);
 
         let listWrapper = document.createElement("div");
@@ -6777,7 +6776,7 @@ if (typeof tocar === "function") tocar("explaining", false);
 
             let deleteBtn = document.createElement("button");
             deleteBtn.className = "hover_un";
-            deleteBtn.innerText = "Delete";
+            deleteBtn.innerText = "删除";
 
  deleteBtn.addEventListener("mouseover", () => {
                 if (typeof tocar === "function") tocar("card", false);
@@ -6804,7 +6803,7 @@ if (typeof tocar === "function") tocar("explaining", false);
 
         let closeBtn = document.createElement("button");
         closeBtn.className = "hover_un";
-        closeBtn.innerText = "Close";
+        closeBtn.innerText = "关闭";
 
 closeBtn.addEventListener("mouseover", () => {
             if (typeof tocar === "function") tocar("card", false);
@@ -6862,7 +6861,7 @@ async loadOPDeckInternal() {
     container.className = "gwent-popup-box";
 
     let header = document.createElement("h3");
-    header.innerText = "Select Enemy Deck"; 
+    header.innerText = "选择对手卡组"; 
     container.appendChild(header);
 
     let listWrapper = document.createElement("div");
@@ -6911,7 +6910,7 @@ async loadOPDeckInternal() {
 
     let closeBtn = document.createElement("button");
     closeBtn.className = "hover_un";
-    closeBtn.innerText = "Close";
+    closeBtn.innerText = "关闭";
 
     closeBtn.addEventListener("mouseover", () => {
         if (typeof tocar === "function") tocar("card", false);
@@ -7721,7 +7720,7 @@ function somCarta() {
 async function cartaNaLinha(id, carta) {
 	if (id.charAt(0) == "f") {
 		if (!carta.hero) {
-			if (carta.name != "Decoy") {
+			if (carta.name != "诱饵") {
 				var linha = parseInt(id.charAt(1));
 				if (linha == 1 || linha == 6) tocar("common3", false);
 				else if (linha == 2 || linha == 5) tocar("common2", false);
@@ -7764,7 +7763,12 @@ var iniciou = false,
 
 var playingOnline;
 
-window.onload = function () {
+// Shows the start screen once the page has loaded, or after 8 seconds if a
+// resource (images, audio) is still pending on a slow network.
+var uiShown = false;
+function showStartUI() {
+    if (uiShown) return;
+    uiShown = true;
     dimensionar();
     playingOnline = window.location.href == "https://randompianist.github.io/gwent-classic-v2.0/";
     document.getElementById("load_text").style.display = "none";
@@ -7782,6 +7786,9 @@ window.Website2APK.vibrate(60);
     });
     isLoaded = true;
 }
+
+window.addEventListener("load", showStartUI);
+setTimeout(showStartUI, 8000);
 
 window.onresize = function () {
     dimensionar();

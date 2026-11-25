@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en-US">
+<html lang="zh-CN">
 <head>
-    <title>Gwent v5.0</title>
+    <title>昆特牌 5.0 中文版 - 规则</title>
     <meta charset="utf-8" />
     <meta name="author" content="Arun Sundaram, Reynolds Costa & Iván Mtz" />
-    <meta name="description" content="Play the original Gwent minigame from The Witcher 3 in your browser! Includes cards from Hearts of Stone and Blood & Wine!" />
+    <meta name="description" content="在浏览器中畅玩《巫师3》里的原版昆特牌！含《石之心》与《血与酒》卡牌，全中文界面。" />
     <meta name="keywords" content="arun, sundaram, reynolds, costa, randompianist, programmer, gwent, tw3, witcher, card, game, gamedev, play" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel = "icon" type = "image/x-icon" href = "img/favicon.ico" />
@@ -21,209 +21,207 @@
 
         <div id="menu">
             <div class="pure-menu">
-                <a class="pure-menu-heading" href="">Gwent v5.0</a>
+                <a class="pure-menu-heading" href="">昆特牌 v5.0</a>
 
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item menu-other-page"><a href="index.html" class="pure-menu-link">Play Game</a></li>
-                    <li class="pure-menu-item menu-other-page"><a href="decks.html" class="pure-menu-link">Decks</a></li>
-                    <li class="pure-menu-item"><a href="#cards" class="pure-menu-link">Cards</a></li>
-                    <li class="pure-menu-item"><a href="#abilities" class="pure-menu-link">Abilities</a></li>
-                    <li class="pure-menu-item"><a href="#factions" class="pure-menu-link">Factions</a></li>
-                    <li class="pure-menu-item"><a href="#setup" class="pure-menu-link">Setup</a></li>
+                    <li class="pure-menu-item menu-other-page"><a href="index.html" class="pure-menu-link">进入游戏</a></li>
+                    <li class="pure-menu-item menu-other-page"><a href="decks.html" class="pure-menu-link">卡组</a></li>
+                    <li class="pure-menu-item"><a href="#cards" class="pure-menu-link">卡牌</a></li>
+                    <li class="pure-menu-item"><a href="#abilities" class="pure-menu-link">技能</a></li>
+                    <li class="pure-menu-item"><a href="#factions" class="pure-menu-link">阵营</a></li>
+                    <li class="pure-menu-item"><a href="#setup" class="pure-menu-link">设置</a></li>
                 </ul>
             </div>
         </div>
 
         <div id="main">
             <div class="header">
-                <h1>Gwent v5.0</h1>
-                <h2>The Witcher 3 minigame pulled to the browser and pushed further</h2>
+                <h1>昆特牌 v5.0</h1>
+                <h2>把《巫师3》的小游戏搬进浏览器，并且走得更远</h2>
             </div>
 
             <div class="content">
                 <!-- INTRO -->
-                <h2 class="content-subhead">What is Gwent?</h2>
+                <h2 class="content-subhead">什么是昆特牌？</h2>
                 <p>
-                    <b>Gwent</b> (<i>a.k.a Gwynt</i>) used to be a minigame in the video game <b>The Witcher 3</b> developed by CD Project.
-                    It was designed to be a collection card game in which you could play your cards against the computer.
-                    You would start with a basic starting deck which you could improve in parallel of the game story and quests by buying more cards here and there or by defeating characters in the game.
+                    <b>昆特牌</b>（<i>又称 Gwynt</i>）曾是电子游戏《巫师3：狂猎》里的一个小游戏，由 CD Projekt 开发。
+                    它的设计是一款收集型卡牌游戏，玩家可以用卡牌和电脑对战。
+                    玩家一开始只有一副基础牌组，可以在推进剧情和任务的同时，通过购买卡牌或击败角色来逐步改进牌组。
                 </p>
 
                 <p>
-                    It was never designed to be a balanced game. NPCs don't complain, so the idea was to build a deck with all the strongest cards possible to try to always win.
-                    Adapting Gwent to be multiplayer is consequently not an easy task. Furthermore, the game could grow boring because there are obvious optimal decks and optimal ways to play the game.
-                    Players would usually do the same things over and over.
-                    Fortunately, it does not stop the game from being very interesting and full of potential, which is why we wanted to push it even further, especially with a vast universe like The Witcher.
+                    这个游戏从来不是为了平衡设计的。NPC 不会抱怨，所以思路就是组一副尽可能强的牌组，然后每次都赢。
+                    因此，把昆特牌改成多人对战并不容易。游戏还可能变得无聊，因为存在显而易见的最优牌组和最优打法，玩家只会一遍遍重复同样的操作。
+                    不过，这并不妨碍它依然有趣、有潜力。正因如此，我们希望把它做得更远，尤其是借助《巫师》这个庞大的世界。
                 </p>
 
-                <h2 class="content-subhead">But how does it play?</h2>
+                <h2 class="content-subhead">那它怎么玩？</h2>
                 <p>
-                    Gwent is played with 2 players. They start with the same number of cards and take turns to play these cards one by one until both players pass or are out of cards.
-                    At the end of each round the strength of each player's cards is summed to calculate their score. The player with the highest score wins the round.
-                    <b>First player to win two rounds wins the game.</b>
+                    昆特牌由两名玩家对战。双方起始手牌数量相同，轮流一张一张地打出手牌，直到双方都过牌，或者手牌打完。
+                    每回合结束时，把双方场上卡牌的战力相加得出分数，分数高的一方赢下该回合。
+                    <b>先赢下两个回合的一方，赢得整场游戏。</b>
                 </p>
 
                 <p>
-                    Gwent is sometimes compared to poker because bluff plays an important role.
-                    Usually you want to win a round with as few cards as possible but since each player can lose a round, you might want to convince your opponent you are trying to win the round and push him/her to play more of his/her best cards, while saving yours.
-                    Cards are a limited resource in the game, so winning requires to make a better use of them.
+                    昆特牌有时会被拿来和扑克比较，因为虚张声势很重要。
+                    通常你想用尽量少的牌赢下一回合。但每回合都可能输，所以你得让对手相信你在拼命想赢，逼他打出更多强牌，同时保住自己的好牌。
+                    卡牌在游戏里是有限的资源，想赢就要更会用牌。
                 </p>
                 <!-- BOARD LAYOUT -->
-                <h2 class="content-subhead">Board layout</h2>
+                <h2 class="content-subhead">棋盘布局</h2>
 
                 <div class="pure-g">
-                    <div class="pure-u-1-8"><img class="pure-img-responsive" src="img/rules/board_layout.jpg" alt="Gwent board layout"></div>
+                    <div class="pure-u-1-8"><img class="pure-img-responsive" src="img/rules/board_layout.jpg" alt="昆特牌棋盘布局"></div>
                     <div class="pure-u-7-8">
                         <p>
-                            In Gwent, the board is a battlefied divided in two parts, the side of each player.
-                            Each side is made of three distinct rows:
+                            在昆特牌中，棋盘是一块被分成两半的战场，每位玩家占据一侧。每一侧由三排组成：
 
                             <ul>
-                                <li><b>Melee</b> (or Close Combat)</li>
-                                <li><b>Ranged</b></li>
-                                <li><b>Siege</b></li>
+                                <li><b>近战</b>（又称近身战）</li>
+                                <li><b>远程</b></li>
+                                <li><b>攻城</b></li>
                             </ul>
                         </p>
                         <p>
-                            Most cards can be played in only one of these rows. Some special cards can affect only one row at a time.
-                            Concentrating cards in a row or on the contrary spreading them across your side of the battlefield will be important strategic decisions.
+                            大多数卡牌只能放在其中一排，少数特殊牌可以同时影响一排。
+                            把卡牌集中在某一排，还是分散到自己一侧的各排，是很重要的策略决定。
                         </p>
                         <p>
-                            This division of the board in three rows and the effects which can apply to them are an important factor in the specificity and elegance of Gwent.
-                            For many players, this is a crucial part missing in the more recent standalone official Gwent game.
+                            棋盘分成三排，以及作用在各排上的效果，是昆特牌的特色与精妙之处。
+                            许多玩家认为，后来推出的官方独立版昆特牌正缺少了这一部分。
                         </p>
                     </div>
                 </div>
                 <!-- CARDS -->
-                <h2 class="content-subhead" id="cards">So, what are these cards?</h2>
+                <h2 class="content-subhead" id="cards">卡牌有哪些？</h2>
 
                 <p>
-                    In Gwent, there are 3 major kinds of cards:
+                    昆特牌有三大类卡牌：
 
                     <ul>
-                        <li><b>Leader cards</b></li>
-                        <li><b>Unit cards</b></li>
-                        <li><b>Special cards</b></li>
+                        <li><b>领袖牌</b></li>
+                        <li><b>单位牌</b></li>
+                        <li><b>特殊牌</b></li>
                     </ul>
                 </p>
 
-                <h3 class="content-subhead">Leader cards</h3>
+                <h3 class="content-subhead">领袖牌</h3>
 
                 <div class="pure-g">
-                    <div class="pure-u-1-8"><img class="pure-img-responsive" src="img/lg/monsters_eredin_commander.jpg" alt="Example of leader card"></div>
+                    <div class="pure-u-1-8"><img class="pure-img-responsive" src="img/lg/monsters_eredin_commander.jpg" alt="领袖牌示例"></div>
                     <div class="pure-u-7-8">
                         <p>
-                            Each player has one and only one leader card, which is chosen before the start of the game. It is not part of the deck.
-                            This card is not played on the battlefield, it remains face up on the side until the end.
-                            It does not have a strength value but it has a strong ability which can affect the board and cards.
+                            每位玩家有且仅有一张领袖牌，在游戏开始前选定，它不属于牌组。
+                            这张牌不会放到战场上，而是正面朝上摆在自己一侧，直到游戏结束。
+                            它没有战力数值，但有一个强力技能，可以影响棋盘和其他卡牌。
                         </p>
                     </div>
                 </div>
 
 
 
-                <h3 class="content-subhead">Unit cards</h3>
+                <h3 class="content-subhead">单位牌</h3>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/lg/neutral_olgierd.jpg" alt="Example of unit card">
-                        <img class="pure-img-responsive" src="img/lg/neutral_ciri.jpg" alt="Example of hero card">
+                        <img class="pure-img-responsive" src="img/lg/neutral_olgierd.jpg" alt="单位牌示例">
+                        <img class="pure-img-responsive" src="img/lg/neutral_ciri.jpg" alt="英雄牌示例">
                     </div>
                     <div class="pure-u-7-8">
                         <p>
-                            This is the main category of cards, these are the ones with a strength value and which allow to increase the player's score in the round.
-                            Some units have an ability (some even have two), allowing them to affect the board or combine with other cards in order to further increase (or decrease) the scores of players.
-                            These abilities allow to increase the strength of some of your units, summon more cards or remove some other cards from the boad.
-                            Unit abilities is most likely the most important part of the game because it is what brings variety and unpredictability, forcing players to read the opponent strategy and style and react to it approprietly.
+                            这是卡牌的主要类别，它们带有战力数值，能提高玩家在本回合的分数。
+                            部分单位带有技能（有些甚至有两个），可以影响棋盘，或与其他卡牌配合，进一步提高或降低玩家的分数。
+                            这些技能可以提升己方某些单位的战力、召唤更多卡牌，或把其他卡牌从棋盘上移除。
+                            单位技能很可能是游戏中最重要的部分，因为它带来了变化和不可预测性，迫使玩家去读懂对手的策略和风格，并做出恰当的应对。
                         </p>
                         <p>
-                            A small portion of these units are <b>Hero</b> units, their visual is slightly different than the others. Hero units are not affected by any ability, yours or the opponents.
-                            This means that these cards cannot be removed before the end of the round and their strength cannot be changed. Exceptions to this rule are very very rare.
+                            少数单位是<b>英雄</b>，外观与其他单位略有不同。
+                            英雄不受任何技能影响，无论是你的技能还是对手的技能。
+                            这意味着英雄牌在回合结束前无法被移除，战力也无法被改变。这条规则的例外非常罕见。
                         </p>
                         <p>
-                            Unit cards can usually be played in only one of the three rows, which is indicated on the card. Some can be placed in one of two rows.
+                            单位牌通常只能放在三排中的一排，卡牌上会标明。有些单位可以放在两排中的任意一排。
                         </p>
                     </div>
                 </div>
 
-                <h3 class="content-subhead">Special cards</h3>
+                <h3 class="content-subhead">特殊牌</h3>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/lg/special_horn.jpg" alt="Example of special card">
-                        <img class="pure-img-responsive" src="img/lg/weather_fog.jpg" alt="Example of weather card">
+                        <img class="pure-img-responsive" src="img/lg/special_horn.jpg" alt="特殊牌示例">
+                        <img class="pure-img-responsive" src="img/lg/weather_fog.jpg" alt="天气牌示例">
                     </div>
                     <div class="pure-u-7-8">
                         <p>
-                            Special cards have no strength but have a powerfull ability which can have a significant effect on the board. They usually either affect a specific or the entire board.
+                            特殊牌没有战力，但拥有强力技能，能对棋盘产生明显影响。它们通常作用于某个特定目标，或者整个棋盘。
                         </p>
                         <p>
-                            Some special cards have a direct effect and are discarded right after use.
-                            Some provide a durable effect on a row until the end of the round or before another ability removes it. These cards are not played on the battlefield but in a dedicated slot on its side.
+                            有些特殊牌是直接生效的，用完即弃。
+                            还有些会在某一排上持续生效，直到回合结束，或直到另一个技能把它移除。这类牌不放在战场上，而是放在自己一侧专门的位置。
                         </p>
                         <p>
-                            A category of these special cards is worth a specific mention, they are called <b>Weather Cards</b>.
-                            These cards apply a malus in a specific row but for both players at the same time (all unit cards strength is lowered to 1).
-                            They are a powerfull tool which can change the course of a game. Fortunately, there is one special cards allowing to cancel these weather effects, when you have one in your, that is.
+                            特殊牌中有一类值得单独说明，称为<b>天气牌</b>。
+                            这些牌会对某一排施加减益，但双方同时受影响（所有单位牌的战力都降为 1）。
+                            它们是能改变整局走向的强力工具。幸运的是，有一张特殊牌可以取消天气效果，前提是你手里有它。
                         </p>
                         <p>
-                            These cards play an important role in the strategy of Gwent and in its elegance. They are simple but deadly, it is crucial to anticipate the possibility of the opponent playing them.
+                            这些牌在昆特牌的策略中扮演着重要角色，也体现了它的精妙之处。它们简单却致命，必须预判对手可能打出它们。
                         </p>
                     </div>
                 </div>
 
-                <h2 class="content-subhead">How to read the cards</h2>
+                <h2 class="content-subhead">如何看懂卡牌</h2>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/rules/gwent_card_legend.png" alt="Gwent card legend">
-                        <img class="pure-img-responsive" src="img/rules/gwent_card_legend_2.png" alt="Gwent special card legend">
+                        <img class="pure-img-responsive" src="img/rules/gwent_card_legend.png" alt="昆特牌卡牌图例">
+                        <img class="pure-img-responsive" src="img/rules/gwent_card_legend_2.png" alt="昆特牌特殊牌图例">
                     </div>
                     <div class="pure-u-7-8">
                         <p>
                             <ul>
-                                <li><b>1:</b> Strength of the cards to contributes to the player score. What initially on the card is considered the "base strength", since the strength of unit cards can be increased/decreased by other cards. <b>Special cards</b> will have their ability indicated here, instead of the strength.</li>
-                                <li><b>2:</b> Card's row. This icon indicate to which row(s) the card can be placed. Sword means Melee row, Bow means Ranged row and Catapult means Siege row. In some cases, the icon while contain 2 elements, indicating that the card can be placed in several rows, at choice.</li>
-                                <li><b>3:</b> Card's ability, when the card has one. Sometimes a card will have two abilities, the second will similarly be placed bellow this position. Abilities will be explained elsewhere.</li>
-                                <li><b>4:</b> The icon and the coloured ribbon are an indication of the faction the card is part of. Factions will be explained later. If there is no such icon/ribbon, this means the card is neutral and compatible with all factions.</li>
-                                <li><b>5:</b> Name of the card. Most cards also have a custom quote bellow the name, which relates to the character/unit/effect.</li>
+                                <li><b>1：</b>卡牌的战力，计入玩家的分数。卡牌上显示的是“基础战力”，因为单位牌的战力可能被其他卡牌提高或降低。<b>特殊牌</b>在这里显示的是它的技能，而不是战力。</li>
+                                <li><b>2：</b>卡牌所在的排。图标标明卡牌可以放在哪一排（或哪几排）。剑代表近战排，弓代表远程排，投石机代表攻城排。部分图标包含两个元素，表示卡牌可以在多排中任选一排放置。</li>
+                                <li><b>3：</b>卡牌的技能（如果有）。有些卡牌有两个技能，第二个技能会排在第一个的下方。技能会在后文详细说明。</li>
+                                <li><b>4：</b>图标和彩色缎带表示卡牌所属的阵营，阵营会在后文介绍。如果没有这个图标或缎带，说明该卡是中立牌，可用于所有阵营。</li>
+                                <li><b>5：</b>卡牌名称。大多数卡牌在名称下方还有一句专属台词，与该角色、单位或效果相关。</li>
                             </ul>
                         </p>
                     </div>
                 </div>
-
                 <!-- ABILITIES -->
-                <h2 class="content-subhead" id="abilities">Abilities</h2>
+                <h2 class="content-subhead" id="abilities">技能</h2>
 
                 <p>
-                    This card game revolves a lot around a set of abilities, they allow to develop strategies and adapt/react to the opponent's.
-                    The beauty of Gwent is that the number of abilities remains rather low and easy to grasp.
-                    Unlike the official modern Gwent game where each card has a unique effect, the original Gwent has multiple cards having the same ability.
-                    Consequently, it is much easier to understand what a card does (a quick look at the card is usually enough) and what a deck can do.
+                    这款卡牌游戏很大程度上围绕一组技能展开，玩家借助它们制定策略，并根据对手的动作做出调整。
+                    昆特牌的妙处在于技能数量不多，而且容易理解。
+                    与现代官方昆特牌每张卡都有独特效果不同，原版昆特牌中有多张卡共享同一种技能。
+                    因此，玩家很容易看懂一张卡的作用（通常看一眼卡面就够了），也容易看出一副牌能做什么。
                 </p>
 
-                <h3 class="content-subhead">Abilities available</h3>
+                <h3 class="content-subhead">可用技能</h3>
 
-                <h4 class="content-subhead">Original game</h4>
+                <h4 class="content-subhead">原版游戏</h4>
 
                 <!-- SCORCH-->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_scorch.png" alt="Scorch unit ability">
-                        <img class="pure-img-responsive" src="img/icons/card_special_scorch.png" alt="Scorch special ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_scorch.png" alt="灼烧单位技能">
+                        <img class="pure-img-responsive" src="img/icons/card_special_scorch.png" alt="灼烧特殊技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Scorch</div>
+                        <div class="ability-list-name">灼烧</div>
                         <div class="ability-list-description">
                             <p>
-                                This ability is quite simple, it destroys (removes from the board and sends to the graveyard/discard pile) all the unit cards (not heroes) having the highest strength.
-                                It affects the entire board, for both players, so it means you can destroy your own cards.
+                                这个技能很简单：摧毁（从棋盘移除并送入墓地/弃牌堆）所有战力最高的单位牌（英雄除外）。
+                                它影响整个棋盘，双方都会受到影响，所以你可能会摧毁自己的牌。
                             </p>
                             <p>
-                                It is best used when the opponent has several units with the same value (and no other units on the board is stronger) or when a single unit represents a big part of the total strength of the player.
+                                最适合在对手有多个同战力单位，且场上没有比它们更强的单位时使用，或者在某一张单位占了对手总战力的大头时使用。
                             </p>
                             <p>
-                                Note that when using this ability from a card, the card is excluded from the effect, it cannot destroy itself and it doesn't count in what the strongest units are.
+                                注意，从卡牌上使用这个技能时，这张卡本身会被排除在效果之外。它不会摧毁自己，也不计入最强单位的比较。
                             </p>
                         </div>
                     </div>
@@ -231,19 +229,19 @@
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_scorch_combat.png" alt="Scorch combat unit ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_scorch_combat.png" alt="近战灼烧单位技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Scorch Combat</div>
+                        <div class="ability-list-name">近战灼烧</div>
                         <div class="ability-list-description">
                             <p>
-                                This ability is a slight variation of Scorch. Instead of affecting the entire board for both players, it affects only one of the opponent row.
-                                If the total strength present in that row is 10 or higher (heroes included), it destroys the strongest units of the row (but not heroes).
+                                这是灼烧的一个变体。它不影响整个棋盘，只影响对手的一排。
+                                如果该排的总战力达到 10 或以上（英雄计入），就摧毁该排战力最高的单位（英雄除外）。
                             </p>
                             <p>
-                                Originally, the target row of this effect was the opposite row the card is played in.
-                                However, we have changed it to always target the Melee row to make this ability a little more usable/effective and predictable, because most factions have a lot more Melee units than the other rows.
-                                Also, we believe that having this ability affect only the first enemy line seems more "realistic".
+                                原版中，这个效果的目标排是打出该卡所在的那一排的对面。
+                                但我们改为总是针对近战排，因为大多数阵营的近战单位远多于其他排，这样效果会更好用、更可预测。
+                                另外，我们认为只影响敌方第一道防线，也更“合乎情理”。
                             </p>
                         </div>
                     </div>
@@ -252,19 +250,19 @@
                 <!-- MUSTER-->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_muster.png" alt="Muster ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_muster.png" alt="集结技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Muster</div>
+                        <div class="ability-list-name">集结</div>
                         <div class="ability-list-description">
                             <p>
-                                When a card with the Muster ability is played on the board, it summons as well all the other cards in your deck and hand with the same name.
-                                In reality, they do not always have the same name but they share a common element which is easily distinguishable.
+                                打出带有集结技能的卡牌时，会同时召唤牌组和手牌中所有与它同名的卡牌。
+                                实际上，它们的名字不一定完全相同，但会共享一个容易辨认的共同元素。
                             </p>
                             <p>
-                                The power of this ability resides in the fact it can quickly add several cards to the board and increase your total score.
-                                Its weakness is that the cards often have the same strength and can consequently be destroyed all at the same time if not played carefully.
-                                Also, keep in mind that if you have several Muster cards of the same familly in hand, playing one of them will play all the copies in hand, putting you at a disadvantage.
+                                这个技能的强处在于能迅速把多张牌放上棋盘，大幅提高总分。
+                                它的弱点是这些牌的战力往往相同，如果不小心出牌，可能会被同时摧毁。
+                                另外要记住，如果手里有多张同一家族的集结牌，打出其中一张会把手里所有的副本一起打出，这会让你处于劣势。
                             </p>
                         </div>
                     </div>
@@ -273,20 +271,20 @@
                 <!-- TIGHT BOND-->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_bond.png" alt="Tight Bond ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_bond.png" alt="紧密羁绊技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Tight Bond</div>
+                        <div class="ability-list-name">紧密羁绊</div>
                         <div class="ability-list-description">
                             <p>
-                                In a way, the Tight Bond ability behaves similarly to the Muster ability. These cards are part of a "familly" and are stronger together.
-                                For each card of the same familly (same or similar name) with the Tight Bond ability, the base strength of the card is multiplied by the number of copies in the same row.
-                                So if you have managed to play 3 copies, each card will have its value tripled. All combined, the total will be 9 times higher than without the ability.
+                                紧密羁绊的作用有点像集结。这些牌属于同一个“家族”，凑在一起会更强。
+                                同一排中，每张带有紧密羁绊的同家族卡牌（同名或名字相近），都会让该牌的基础战力乘以该排副本的数量。
+                                所以如果你凑齐了 3 张副本，每张牌的战力都会变成三倍，合计是没有这个技能时的 9 倍。
                             </p>
                             <p>
-                                The power of this ability is that you can reach a very high strength on the row, so high that it will be very difficult for your opponent to match it (with 3 cards you have the strength of 9 cards).
-                                However, this very strength is also its main weakness. Since these cards are copies, they share the same strength and tend to be the strongest cards on the board, easy target for Scorch.
-                                Also, a single copy of such a card isn't very strong, the most important part is managing to gather several copies.
+                                这个技能的强处在于，它能让一排的战力高到对手很难匹配（3 张牌的战力等于 9 张牌）。
+                                但这份高战力也是它的主要弱点。因为这些牌是副本，战力相同，往往会成为棋盘上最强的牌，很容易成为灼烧的目标。
+                                另外，单张这样的牌并不强，关键在于凑齐几张副本。
                             </p>
                         </div>
                     </div>
@@ -295,35 +293,35 @@
                 <!-- MORALE BOOST-->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_morale.png" alt="Morale Boost ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_morale.png" alt="士气鼓舞技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Morale Boost</div>
+                        <div class="ability-list-name">士气鼓舞</div>
                         <div class="ability-list-description">
                             <p>
-                                Now let's get into row boosting. Morale boost increases the base strength of all units of the row by 1, except on itself. It is obviously more effective if you have many units concentrated in the same row.
+                                接下来说说整排加成。士气鼓舞会让同一排中除自己以外的所有单位，基础战力 +1。
+                                如果你的单位集中在同一排，这个技能的效果会更明显。
                             </p>
                         </div>
                     </div>
                 </div>
-
                 <!-- COMMANDER HORN-->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_horn.png" alt="Commander' Horn unit ability">
-                        <img class="pure-img-responsive" src="img/icons/card_special_horn.png" alt="Commander' Horn special ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_horn.png" alt="指挥号角单位技能">
+                        <img class="pure-img-responsive" src="img/icons/card_special_horn.png" alt="指挥号角特殊技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Commander' Horn</div>
+                        <div class="ability-list-name">指挥号角</div>
                         <div class="ability-list-description">
                             <p>
-                                A stronger boost now. Commander' Horn doubles the strength of all units (not heroes then) in the row. It applies last, so it combines well with other boosts.
-                                Here as well, it is more effective in a row with many cards, but the number of cards isn't has important as for Morale Boost. A couple Tight Bond cards might have a larger boost potential than 5 weak cards.
-                                While this ability hold a huge potential, it also makes yourself very vulnerable to Scorch.
+                                这是更强的加成。指挥号角会让同一排所有单位（英雄除外）的战力翻倍。它最后结算，所以能和其他加成很好地叠加。
+                                同样，它在牌多的排里更有效，但牌数的重要性不如士气鼓舞。几张紧密羁绊牌的加成潜力，可能比 5 张弱牌还大。
+                                这个技能潜力巨大，但也会让你的那一排非常容易被灼烧。
                             </p>
                             <p>
-                                When this ability is played through a unit, the unit does not boost itself.
-                                Also, only one Commander' Horn can be effective at the same time in a row. If several cards in the row have it, it will aply only once.
+                                如果这个技能是通过某个单位打出的，该单位自己不会获得加成。
+                                另外，同一排同时只能生效一张指挥号角。如果该排有多张牌带有这个技能，只会生效一次。
                             </p>
                         </div>
                     </div>
@@ -332,20 +330,20 @@
                 <!-- MEDIC -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_medic.png" alt="Medic ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_medic.png" alt="医生技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Medic</div>
+                        <div class="ability-list-name">医生</div>
                         <div class="ability-list-description">
                             <p>
-                                When a card is removed from the board (destroyed or at the end of a round), it goes into the graveyard (aka discard pile).
-                                The Medic ability allows to restore a unit card (not a hero) from the grave.
-                                When a card is restored on the board, its abilities apply again.
+                                卡牌离开棋盘时（被摧毁或回合结束时），会进入墓地（又称弃牌堆）。
+                                医生技能可以把墓地里的一张单位牌（英雄除外）复活到棋盘上。
+                                复活的卡牌会重新生效它的技能。
                             </p>
                             <p>
-                                This ability is very powerfull because it effectively gives you an additional card on the long term. It also allows you to use again some important abilities, which can be very decisive.
-                                This card is like wine, it gets better with time. The later you play it, the more options of cards you have. If your graveyard is empty, this ability isn't very useful.
-                                A medic can even restore another medic, allowing you to restore yet another card.
+                                这个技能非常强，因为它实际上让你在长期中多得到一张牌。它还能让你再次使用一些关键技能，而这些技能有时会起决定性作用。
+                                这张牌像酒一样，越晚打出越好。墓地里的牌越多，你的选择就越多。如果墓地是空的，这个技能就没什么用。
+                                医生还能复活另一个医生，从而再复活一张牌。
                             </p>
                         </div>
                     </div>
@@ -354,19 +352,19 @@
                 <!-- SPY -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_spy.png" alt="Spy ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_spy.png" alt="间谍技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Spy</div>
+                        <div class="ability-list-name">间谍</div>
                         <div class="ability-list-description">
                             <p>
-                                Probably the most infamous ability of the game. We said earlier that cards are the most important resource of the game and that's the aim of this ability, give a card advantage (meaning getting more cards than your opponen).
-                                When this card is played, it goes in the side of your opponent and will contribute to increase his/her total score.
-                                In return, you will draw two cards from your deck. The aftermath is that you gave a card to your opponent but you know have one more card in your card than before, and 2 more options to play later.
+                                间谍大概是游戏里最臭名昭著的技能。前面说过，卡牌是游戏中最重要的资源，而这个技能的目的正是获得牌数优势（即比对手拿到更多牌）。
+                                打出这张牌时，它会被放到对手一侧，并计入对手的总战力。
+                                作为回报，你可以从自己的牌组中抽两张牌。结果是，你虽然送给对手一张牌，但自己手里多了一张牌，还多了两个以后可以打出的选择。
                             </p>
                             <p>
-                                In addition to the card advantage this card gives you, having drawn more cards than initially possible gives you more options and more chances to get good combos.
-                                Be careful though, once on the opponent side of the board, the spy is under his/control and it can be played back against you.
+                                除了牌数优势，抽到超出正常数量的牌，也让你有更多选择，更有机会凑出好的组合。
+                                不过要小心，间谍一旦落到对手一侧，就归对手控制，可能会被反过来打到你身上。
                             </p>
                         </div>
                     </div>
@@ -375,19 +373,19 @@
                 <!-- DECOY -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_decoy.png" alt="Decoy unit ability">
-                        <img class="pure-img-responsive" src="img/icons/card_special_decoy.png" alt="Decoy special ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_decoy.png" alt="诱饵单位技能">
+                        <img class="pure-img-responsive" src="img/icons/card_special_decoy.png" alt="诱饵特殊技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Decoy</div>
+                        <div class="ability-list-name">诱饵</div>
                         <div class="ability-list-description">
                             <p>
-                                This ability is often summarized as the counter to spies. It allows to swap one unit on the board with this card (in other words, take the targert card back into your hand).
+                                诱饵常被概括为间谍的克星。它可以和棋盘上的一张单位牌交换，也就是把那张牌收回手牌。
                             </p>
                             <p>
-                                The Decoy ability has many advantages. Obviously, this is a great counter to spies, because you can restore the balance by playing the spy back and draw cards as well.
-                                But it can also be used on other cards with important abilities, such as Scorch or Medic.
-                                Also, keep in mind that effectively when you play a Decoy, it is almost like skipping a round because your hand size does not reduce, this is often underestimated.
+                                诱饵的优点很多。显而易见，它是间谍的好克星，你可以把间谍收回来，再抽牌，恢复平衡。
+                                它也可以用来收回其他重要技能的牌，比如灼烧或医生。
+                                另外要记住，打出诱饵实际上相当于跳过一回合，因为你的手牌数量没有减少，这一点常被低估。
                             </p>
                         </div>
                     </div>
@@ -396,15 +394,15 @@
                 <!-- AGILE -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_agile.png" alt="Agile ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_agile.png" alt="灵活技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Agile</div>
+                        <div class="ability-list-name">灵活</div>
                         <div class="ability-list-description">
                             <p>
-                                This ability is rarely used and thus rarely has a visible effect after the card is played.
-                                Basicaly, it goes in combination with cards which can be played on the Melee or Ranged row (which is the most useful part).
-                                Under some limited circumpstances, agile cards can be moved later in the round to a more favourable row.
+                                这个技能很少使用，因此打出后通常不会有明显效果。
+                                它通常和那些可以放在近战排或远程排的卡牌搭配使用，这也是最有用的部分。
+                                在某些有限的情况下，灵活牌可以在本回合稍后移动到更有利的排。
                             </p>
                         </div>
                     </div>
@@ -413,20 +411,20 @@
                 <!-- SUMMON AVENGER -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_avenger.png" alt="Summon Avenger ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_avenger.png" alt="召唤复仇者技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Summon Avenger</div>
+                        <div class="ability-list-name">召唤复仇者</div>
                         <div class="ability-list-description">
                             <p>
-                                A bit like Medic, the Summon Avenger ability takes longer to show its effects.
-                                When a card with this ability is removed from the board (either destroyed or at the end of the round), it is replaced by another more powerful card.
-                                More often than not, this other card will enter battle at the begining of the next round.
+                                与医生有点像，召唤复仇者的效果需要更长时间才能体现。
+                                带有这个技能的卡牌离开棋盘时（被摧毁或回合结束时），会被一张更强的新卡牌取代。
+                                多数情况下，这张新卡会在下一回合开始时上场。
                             </p>
                             <p>
-                                Usually a unit with the Summon Avenger will be very weak. Playing it is like investing on the future because it will allow yourself to start the next round with an advantage (provided the card wasn't destroyed before the end of the round).
-                                This ability combines very well with Medic.
-                                Note that if the card that should be summoned is in your hand or deck, it will be taken from there. Otherwise, it will be "created" but it will not go into your graveyard when removed.
+                                带有召唤复仇者的单位通常很弱。打出它相当于为未来投资，只要它在回合结束前没有被摧毁，就能让你在下一回合开局时占得优势。
+                                这个技能和医生的配合很好。
+                                注意，如果要被召唤的牌在你的手牌或牌组里，它会从那里被取出。否则，它会被“凭空创造”出来，而且离场后不会进入你的墓地。
                             </p>
                         </div>
                     </div>
@@ -435,42 +433,41 @@
                 <!-- BERSERKER / MARDROEME -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_berserker.png" alt="Berserker unit ability">
-                        <img class="pure-img-responsive" src="img/icons/card_special_mardroeme.png" alt="Mardroeme special ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_berserker.png" alt="狂战士单位技能">
+                        <img class="pure-img-responsive" src="img/icons/card_special_mardroeme.png" alt="曼陀罗草特殊技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Berserker / Mardroeme</div>
+                        <div class="ability-list-name">狂战士 / 曼陀罗草</div>
                         <div class="ability-list-description">
                             <p>
-                                These two abilities need to be presented together. They are specific to the Skellige faction.
-                                Unit cards with the Berserker ability can be transformed into their more savage form when a card with the Mardroeme ability is played in their row.
+                                这两个技能要放在一起讲。它们是史凯利格阵营特有的技能。
+                                带有狂战士技能的单位牌，在同一排打出带有曼陀罗草技能的牌时，会变身为更凶猛的形态。
                             </p>
                             <p>
-                                Berserker units are initially not very strong, and thus not very interesting if not combined with Mardroeme.
-                                However, their transformed versions are very strong but also very vulnerable to scorch.
-                                Using this ability well isn't easy.
+                                狂战士单位原本不太强，如果不和曼陀罗草配合，就不太有意思。
+                                不过它们变身后的形态非常强，但也非常容易被灼烧。
+                                要用好这个技能并不容易。
                             </p>
                         </div>
                     </div>
                 </div>
-
-                <h4 class="content-subhead">Original game - Weather cards</h4>
+                <h4 class="content-subhead">原版游戏 - 天气牌</h4>
 
                 <p>
-                    Like mentioned earlier, Weather Cards are a more specific kind of special cards (and thus special amongst abilities).
-                    Their effect is more global and will affect both players. In some rare cases, a unit card might have a weather ability, but these are exceptions.
+                    前面提到过，天气牌是一类特殊的特殊牌（在技能中也算比较特别）。
+                    它们的效果更具全局性，会同时影响双方。极少数情况下，单位牌也可能带有天气技能，但这只是例外。
                 </p>
 
                 <!-- FROST -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_weather_frost.png" alt="Biting Frost Weather">
+                        <img class="pure-img-responsive" src="img/icons/card_weather_frost.png" alt="刺骨冰霜天气">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Biting Frost</div>
+                        <div class="ability-list-name">刺骨冰霜</div>
                         <div class="ability-list-description">
                             <p>
-                                Reduce the base strength of all units in the Melee row (not heroes) to 1, for both players. This applies before any other ability/effect.
+                                将双方近战排所有单位（英雄除外）的基础战力降为 1。这在其他所有技能和效果之前结算。
                             </p>
                         </div>
                     </div>
@@ -479,13 +476,13 @@
                 <!-- FOG -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_weather_fog.png" alt="Impenetrable Fog Weather">
+                        <img class="pure-img-responsive" src="img/icons/card_weather_fog.png" alt="浓雾天气">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Impenetrable Fog</div>
+                        <div class="ability-list-name">浓雾</div>
                         <div class="ability-list-description">
                             <p>
-                                Reduce the base strength of all units in the Ranged row (not heroes) to 1, for both players. This applies before any other ability/effect.
+                                将双方远程排所有单位（英雄除外）的基础战力降为 1。这在其他所有技能和效果之前结算。
                             </p>
                         </div>
                     </div>
@@ -494,13 +491,13 @@
                 <!-- RAIN -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_weather_rain.png" alt="Torrential Rain Weather">
+                        <img class="pure-img-responsive" src="img/icons/card_weather_rain.png" alt="暴雨天气">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Torrential Rain</div>
+                        <div class="ability-list-name">暴雨</div>
                         <div class="ability-list-description">
                             <p>
-                                Reduce the base strength of all units in the Siege row (not heroes) to 1, for both players. This applies before any other ability/effect.
+                                将双方攻城排所有单位（英雄除外）的基础战力降为 1。这在其他所有技能和效果之前结算。
                             </p>
                         </div>
                     </div>
@@ -509,13 +506,13 @@
                 <!-- STORM -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_weather_storm.png" alt="Skellige Storm Weather">
+                        <img class="pure-img-responsive" src="img/icons/card_weather_storm.png" alt="史凯利格风暴天气">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Skellige Storm</div>
+                        <div class="ability-list-name">史凯利格风暴</div>
                         <div class="ability-list-description">
                             <p>
-                                Reduce the base strength of all units in both the Ranged and Siege rows (not heroes) to 1, for both players. This applies before any other ability/effect.
+                                将双方远程排和攻城排所有单位（英雄除外）的基础战力降为 1。这在其他所有技能和效果之前结算。
                             </p>
                         </div>
                     </div>
@@ -524,42 +521,42 @@
                 <!-- CLEAR -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_weather_clear.png" alt="Clear Weather">
+                        <img class="pure-img-responsive" src="img/icons/card_weather_clear.png" alt="晴天">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Clear Weather</div>
+                        <div class="ability-list-name">晴天</div>
                         <div class="ability-list-description">
                             <p>
-                                Remove all other weather effects currently effective on the board, this applies to all players.
+                                移除棋盘上当前生效的所有其他天气效果，对所有玩家生效。
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <h4 class="content-subhead">New custom abilities</h4>
+                <h4 class="content-subhead">新增的自定义技能</h4>
 
                 <p>
-                    To extend the game with more cards and factions, additional abilities have been added. Otherwise most decks would look and play similarly.
-                    This might make the game a little more complex, since there are more concepts to assimilate, but these abilities have been designed to keep the spirit of the original game and remain simple.
+                    为了给游戏加入更多卡牌和阵营，我们新增了一些技能。否则大多数牌组看起来和打起来都会很相似。
+                    这会让游戏稍微复杂一些，因为需要理解的概念更多了。不过，这些技能的设计保留了原版游戏的精神，并且依然保持简单。
                 </p>
 
                 <!-- SLAUGHTER OF CITRA -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_cintra_slaughter.png" alt="Slaughter of Cintra unit ability">
-                        <img class="pure-img-responsive" src="img/icons/card_special_cintra_slaughter.png" alt="Slaughter of Cintra special ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_cintra_slaughter.png" alt="辛特拉屠戮单位技能">
+                        <img class="pure-img-responsive" src="img/icons/card_special_cintra_slaughter.png" alt="辛特拉屠戮特殊技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Slaughter of Cintra</div>
+                        <div class="ability-list-name">辛特拉屠戮</div>
                         <div class="ability-list-description">
                             <p>
-                                Like the name suggest, the Slaughter of Cintra ability applies to some Cintrian units. Some units have this ability, they are marked for slaugther.
-                                When the corresponding special card is played, all of your cards on the board being marked (having the ability) are destroyed and move to the discard pile.
-                                In return, you draw a card from the deck for each of the removed cards. This gives you a potential card advantage.
+                                顾名思义，辛特拉屠戮只作用于部分辛特拉单位。这些单位带有这个技能，被标记为屠戮目标。
+                                打出对应的特殊牌时，你场上所有带有该技能的标记单位都会被摧毁，并送入弃牌堆。
+                                作为回报，每移除一张牌，你就从牌组中抽一张牌，从而获得潜在的牌数优势。
                             </p>
                             <p>
-                                The trick is that you are not forced to use the special ability, the marked units can stay on the board and you can keep their strength for your total score.
-                                So your opponent does not know whether you are planning to throw the round for card advantage or if you will keep the units.
+                                关键在于，你并不一定要使用这个技能，被标记的单位可以留在棋盘上，它们的战力依然计入你的总分。
+                                这样，对手无法判断你是打算为了牌数优势而故意输掉这一回合，还是打算保留这些单位。
                             </p>
                         </div>
                     </div>
@@ -568,13 +565,13 @@
                 <!-- TOUSSAINT WINE -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_special_toussaint_wine.png" alt="Toussaint wine ability">
+                        <img class="pure-img-responsive" src="img/icons/card_special_toussaint_wine.png" alt="陶森特葡萄酒技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Toussaint Wine</div>
+                        <div class="ability-list-name">陶森特葡萄酒</div>
                         <div class="ability-list-description">
                             <p>
-                                Toussaint Wine ability is like the cross of a Commander's Horn and Morale Boost. The ability will be played and stay on a row and boost all unit cards (not heroes) by 2 (instead of 1 like Morale Boost).
+                                陶森特葡萄酒可以看作指挥号角和士气鼓舞的结合。它会留在一排上，让该排所有单位（英雄除外）的战力 +2（士气鼓舞只 +1）。
                             </p>
                         </div>
                     </div>
@@ -583,14 +580,14 @@
                 <!-- BANK -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_special_bank.png" alt="Bank ability">
+                        <img class="pure-img-responsive" src="img/icons/card_special_bank.png" alt="银行技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Bank</div>
+                        <div class="ability-list-name">银行</div>
                         <div class="ability-list-description">
                             <p>
-                                Bank ability is quite simple. You play it and you draw a card from your deck. No complication.
-                                It is a little like skipping a round (you keep the same number of cards in your hand), except you do not know with which card you'll end up.
+                                银行技能很简单。打出它，然后从牌组中抽一张牌，没有别的复杂情况。
+                                它有点像跳过一回合（你的手牌数量不变），只不过你不知道最后会抽到哪张牌。
                             </p>
                         </div>
                     </div>
@@ -599,20 +596,20 @@
                 <!-- LOCK -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_special_lock.png" alt="Lock ability">
+                        <img class="pure-img-responsive" src="img/icons/card_special_lock.png" alt="锁定技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Lock</div>
+                        <div class="ability-list-name">锁定</div>
                         <div class="ability-list-description">
                             <p>
-                                This ability is actually shared by several special cards. This card is played in one of the opponent's row.
-                                If he/she plays a unit card (not a hero) in that row and that the units has an ability, the card will be locked and this special card will go to the graveyard.
-                                A locked card cannot use its ability until it is removed from the board.
+                                这个技能实际上被多张特殊牌共享。这张牌要打在对手的某一排上。
+                                如果对手在该排打出了一张带有技能的单位牌（英雄除外），那张单位牌会被锁定，这张特殊牌也会进入墓地。
+                                被锁定的牌在离开棋盘之前，无法使用它的技能。
                             </p>
                             <p>
-                                This ability requires a good understanding of the opponent deck and anticipation of the cards it can have.
-                                It is very powerfull at preventing Muster and Tight Bond from working as intended.
-                                Be careful though not to play your spy in this row while a lock is pending.
+                                这个技能需要你充分了解对手的牌组，并预判它可能带有的牌。
+                                它非常擅长阻止集结和紧密羁绊正常发挥作用。
+                                不过要小心，锁定生效期间，不要把自己的间谍打到这一排。
                             </p>
                         </div>
                     </div>
@@ -621,35 +618,34 @@
                 <!-- KNOCKBACK -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_special_knockback.png" alt="Knockback ability">
+                        <img class="pure-img-responsive" src="img/icons/card_special_knockback.png" alt="击退技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Knockback</div>
+                        <div class="ability-list-name">击退</div>
                         <div class="ability-list-description">
                             <p>
-                                This ability is quite straight-forward. It is played in either the enemy Melee or Ranged row. All unit cards (not heroes) are moved 1 row backward towards the Siege row.
+                                这个技能很直接。它打在敌方的近战排或远程排上，该排所有单位（英雄除外）都会向攻城排方向后退一排。
                             </p>
                             <p>
-                                The purpose of this ability is mostly to break some effective row bonuses (like a Commander's Horn) or to push units into bad weather.
+                                这个技能主要用来打破某些有效的排加成（比如指挥号角），或者把单位推入恶劣的天气中。
                             </p>
                         </div>
                     </div>
                 </div>
-
                 <!-- SEIZE -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_special_seize.png" alt="Seize ability">
+                        <img class="pure-img-responsive" src="img/icons/card_special_seize.png" alt="夺取技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Seize</div>
+                        <div class="ability-list-name">夺取</div>
                         <div class="ability-list-description">
                             <p>
-                                When using this ability, you will take control of the units with the lower strength in the enemy Melee row. If there are several, take all.
+                                使用这个技能时，你会夺取对手近战排中战力最低的单位。如果有多个并列最低，全部夺取。
                             </p>
                             <p>
-                                This ability can be very strong on Muster units or when the enemy Melee row is under bad weather. Be careful though that the timing is key.
-                                Good targets this round might not be available next round because the opponent will have played a weaker card.
+                                这个技能在集结单位上很强，或者在对手近战排处于恶劣天气时也很强。不过时机很关键。
+                                这一回合的好目标，下一回合可能就没有了，因为对手可能已经打出了更弱的牌。
                             </p>
                         </div>
                     </div>
@@ -658,14 +654,14 @@
                 <!-- SHIELD -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_special_shield.png" alt="Shield ability">
+                        <img class="pure-img-responsive" src="img/icons/card_special_shield.png" alt="护盾技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Shield</div>
+                        <div class="ability-list-name">护盾</div>
                         <div class="ability-list-description">
                             <p>
-                                This ability protects an entire row from all abilities of the opponent, except weather, until the end of the round.
-                                The main purpose is to protect the row from Scorch. Note that consequently cards in this row do not count in the definition of the highest strength on the board.
+                                这个技能在回合结束前，保护整排免受对手除天气以外的所有技能影响。
+                                它的主要目的是保护该排不被灼烧。注意，因此该排的牌不计入棋盘上“最高战力”的判定。
                             </p>
                         </div>
                     </div>
@@ -674,14 +670,14 @@
                 <!-- HUNT -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_witch_hunt.png" alt="Witch Hunt ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_witch_hunt.png" alt="猎巫技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Witch Hunt</div>
+                        <div class="ability-list-name">猎巫</div>
                         <div class="ability-list-description">
                             <p>
-                                This ability is the mirror effect of Scorch Combat, it destroys the weakest units (not heroes) in the opposite row this card is playing on.
-                                It is a very powerfull counter to Muster.
+                                这个技能是近战灼烧的镜像效果。它会摧毁这张牌所在排对面、战力最低的单位（英雄除外）。
+                                它是对付集结的非常有力的克制手段。
                             </p>
                         </div>
                     </div>
@@ -690,19 +686,19 @@
                 <!-- WITCHER SCHOOL -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_witcher_wolf_school.png" alt="Witcher Wolf School ability">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_witcher_viper_school.png" alt="Witcher Viper School ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_witcher_wolf_school.png" alt="狼学派技能">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_witcher_viper_school.png" alt="毒蛇学派技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Witcher School(s)</div>
+                        <div class="ability-list-name">猎魔人学派</div>
                         <div class="ability-list-description">
                             <p>
-                                This Witcher School ability is actually 5 identical abilities.
-                                There is one variation of the ability for each Witcher School (Wolf, Viper, Cat, Bear and Griffin).
-                                When there is more than one unit card of a same Witcher School, boost all of these by 2 for each other members of the school (e.g. there are 3 cards of the School of the Wolf, boost all units by 4).
+                                猎魔人学派技能实际上是 5 个相同机制的技能。
+                                每个学派（狼、毒蛇、猫、熊、狮鹫）各有一个版本。
+                                场上同一学派的单位牌每多一张，该学派的每个成员就 +2（例如场上有 3 张狼学派的牌，所有狼学派单位各 +4）。
                             </p>
                             <p>
-                                This ability seems difficult to exploit, but it works in combination with another ability.
+                                这个技能看起来不容易利用，但它可以和另一个技能配合使用。
                             </p>
                         </div>
                     </div>
@@ -711,17 +707,17 @@
                 <!-- Resilience -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_resilience.png" alt="Resilience ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_resilience.png" alt="坚韧技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Resilience</div>
+                        <div class="ability-list-name">坚韧</div>
                         <div class="ability-list-description">
                             <p>
-                                If at the end of the round you have a card with the Resilience ability on the board and that it shares a second ability with another card on the board, keep the card with Resilience on the board for the next round.
+                                回合结束时，如果棋盘上有一张带坚韧技能的牌，并且它与场上另一张牌共享第二个技能，那么这张坚韧牌会留在棋盘上，进入下一回合。
                             </p>
                             <p>
-                                For now, cards with the Resilience ability are Witchers Keeps. They stay on the board if a witcher of the corresponding school was also here.
-                                This card will also contribute to boost witchers of the same school.
+                                目前，带坚韧技能的牌是猎魔人的堡垒。如果同一学派的猎魔人也在场上，它们就会留下来。
+                                这张牌还会帮助提升同一学派的猎魔人。
                             </p>
                         </div>
                     </div>
@@ -730,19 +726,19 @@
                 <!-- Whorshipper/Whorshipped -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_whorshipper.png" alt="Whorshipper ability">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_whorshipped.png" alt="Whorshipped ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_whorshipper.png" alt="膜拜者技能">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_whorshipped.png" alt="受膜拜技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Whorshipper/Whorshipped</div>
+                        <div class="ability-list-name">膜拜者 / 受膜拜</div>
                         <div class="ability-list-description">
                             <p>
-                                Whorshipped units are boosted by the amount of Whorshipper units on the board.
+                                受膜拜单位的战力会按场上膜拜者单位的数量提高。
                             </p>
                             <p>
-                                This ability requires to combine two type of cards for a powerful result.
-                                Medic units can help to prolongate this combo into later rounds.
-                                Be careful that it exposes a lot Whorshipped units to scorch.
+                                这个技能需要两类卡牌配合才能发挥强力效果。
+                                医生单位可以帮助这套组合延续到之后的回合。
+                                注意，它会让大量受膜拜单位暴露在灼烧之下。
                             </p>
                         </div>
                     </div>
@@ -751,243 +747,241 @@
                 <!-- Inspire -->
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/card_ability_inspire.png" alt="Inspire ability">
+                        <img class="pure-img-responsive" src="img/icons/card_ability_inspire.png" alt="激励技能">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="ability-list-name">Inspire</div>
+                        <div class="ability-list-name">激励</div>
                         <div class="ability-list-description">
                             <p>
-                                All units with Inspire ability take the highest base strength of the Inspire units on your side of the board. Still affected by weather.
+                                所有带激励技能的单位，都会取你这一侧场上激励单位中最高的基础战力。仍然受天气影响。
                             </p>
                             <p>
-                                Basically, if you have several units on the board with the Inspire ability, they will align to the highest base strength among them (base strength, meaning before any effect, positive or negative).
-                                Consequently playing late a stronger Inspire unit will boost all others on the board, which can bring an unpleasant and unnexpected surprise to the opponent.
-                                Be aware though that since all Inspire units will have the same strength (prior to effects), they are vulnerable to scorch and can all be destroyed at the same time.
-                                Providing a boost to some of them can help remediate this effect.
+                                简单来说，如果场上有多个带激励的单位，它们都会对齐到其中最高的基础战力（这里的基础战力指任何效果生效之前的数值，无论正负）。
+                                因此，晚些时候打出一张更强的激励单位，会提升场上所有其他激励单位，这可能给对手带来意外的惊喜。
+                                不过要注意，所有激励单位的战力（在效果生效前）都相同，因此很容易被灼烧，可能会被一次性全部摧毁。
+                                给其中一部分单位提供额外加成，可以缓解这个问题。
                             </p>
                         </div>
                     </div>
                 </div>
-
                 <!-- FACTIONS -->
-                <h2 class="content-subhead" id="factions">Factions</h2>
+                <h2 class="content-subhead" id="factions">阵营</h2>
 
                 <p>
-                    The Witcher universe is vast, so to bring more variety and fun to the game, it is divided into several factions.
-                    Factions usually represent a realm or a group/faction of people. Each faction has its own set of cards along with a faction ability, and thus its own playstyle.
-                    A faction ability, often passive (triggered at a specific moment of the game) but sometimes active as well (used at the discretion of the player), will have a significant influence on the way to play the game because you need to adapt to it to make the best of it.
+                    《巫师》的世界非常庞大，为了让游戏更有变化、更有趣，它被分成了若干阵营。
+                    阵营通常代表一个王国或一个群体。每个阵营都有自己的卡牌和阵营技能，因此也有自己的打法。
+                    阵营技能通常是被动的（在游戏的特定时刻触发），但有时也可以主动使用（由玩家决定何时使用）。它会显著影响游戏方式，你需要适应它，才能发挥最大作用。
                 </p>
 
                 <p>
-                    Before to start the game, a player must chose the faction to play, which will define the set of leaders and units that can be used to build the deck.
-                    Some unit and special cards are <b>Neutral</b>, this means that they can be played in any faction.
+                    开局前，玩家必须选定一个阵营。阵营决定了可用于组建牌组的领袖和单位。
+                    部分单位牌和特殊牌是<b>中立</b>的，意味着它们可以用于任何阵营。
                 </p>
 
-                <h3 class="content-subhead">Factions available</h3>
+                <h3 class="content-subhead">可选阵营</h3>
 
-                <h4 class="content-subhead">Original game</h4>
+                <h4 class="content-subhead">原版游戏</h4>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/deck_shield_realms.png" alt="Northern Realms Faction">
+                        <img class="pure-img-responsive" src="img/icons/deck_shield_realms.png" alt="北方领域阵营">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="faction-list-name">Northern Realms</div>
+                        <div class="faction-list-name">北方领域</div>
                         <div class="faction-list-description">
-                            <p><b>Faction Ability:</b> Draw a card from your deck when you win a round.</p>
-                            <p>This faction relies mostly on Tight Bond units, along with Spies and Siege units.</p>
+                            <p><b>阵营技能：</b>每当你输掉一回合，从牌组抽一张牌。</p>
+                            <p>这个阵营主要依靠紧密羁绊单位，辅以间谍和攻城单位。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/deck_shield_nilfgaard.png" alt="Nilfgaard Faction">
+                        <img class="pure-img-responsive" src="img/icons/deck_shield_nilfgaard.png" alt="尼弗迦德帝国阵营">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="faction-list-name">Nilfgaard</div>
+                        <div class="faction-list-name">尼弗迦德帝国</div>
                         <div class="faction-list-description">
-                            <p><b>Faction Ability:</b> If a round ends in a draw, Nilfgaard wins the round.</p>
-                            <p>This faction relies mostly on Tight Bond units, Spies, Medics and Strong cards.</p>
+                            <p><b>阵营技能：</b>如果一回合以平局结束，尼弗迦德赢得该回合。</p>
+                            <p>这个阵营主要依靠紧密羁绊单位、间谍、医生和强力牌。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/deck_shield_monsters.png" alt="Monsters Faction">
+                        <img class="pure-img-responsive" src="img/icons/deck_shield_monsters.png" alt="怪物阵营">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="faction-list-name">Monsters</div>
+                        <div class="faction-list-name">怪物</div>
                         <div class="faction-list-description">
-                            <p><b>Faction Ability:</b> At the end of each round, a random unit card stays on the board.</p>
-                            <p>This faction relies heavily on the Muster ability, it can quickly swarm the board.</p>
+                            <p><b>阵营技能：</b>每回合结束时，场上会随机保留一张单位牌。</p>
+                            <p>这个阵营高度依赖集结技能，能迅速占满棋盘。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/deck_shield_scoiatael.png" alt="Scoia'Tael Faction">
+                        <img class="pure-img-responsive" src="img/icons/deck_shield_scoiatael.png" alt="松鼠党阵营">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="faction-list-name">Scoia'Tael</div>
+                        <div class="faction-list-name">松鼠党</div>
                         <div class="faction-list-description">
-                            <p><b>Faction Ability:</b> Before the game starts, this faction decides who plays first.</p>
-                            <p>This faction relies mostly on Muster and Medic units and some Morale Boost.</p>
+                            <p><b>阵营技能：</b>游戏开始前，由该阵营决定谁先手。</p>
+                            <p>这个阵营主要依靠集结和医生单位，再搭配一些士气鼓舞。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/deck_shield_skellige.png" alt="Skellige Faction">
+                        <img class="pure-img-responsive" src="img/icons/deck_shield_skellige.png" alt="史凯利格阵营">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="faction-list-name">Skellige</div>
+                        <div class="faction-list-name">史凯利格</div>
                         <div class="faction-list-description">
-                            <p><b>Faction Ability:</b> On the third round, restores two random unit cards from the graveyard.</p>
-                            <p>This faction has a balance of Tight Bond, Muster and Medic, but its specificity is the Berserker/Mardroeme combo.</p>
+                            <p><b>阵营技能：</b>第三回合时，从墓地随机复活两张单位牌。</p>
+                            <p>这个阵营在紧密羁绊、集结和医生之间保持平衡，它的特色是狂战士与曼陀罗草的组合。</p>
                         </div>
                     </div>
                 </div>
 
-                <h4 class="content-subhead">Custom new factions</h4>
+                <h4 class="content-subhead">自定义新阵营</h4>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/deck_shield_witcher_universe.png" alt="Witcher Universe Faction">
+                        <img class="pure-img-responsive" src="img/icons/deck_shield_witcher_universe.png" alt="猎魔人宇宙阵营">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="faction-list-name">Witcher Universe</div>
+                        <div class="faction-list-name">猎魔人宇宙</div>
                         <div class="faction-list-description">
-                            <p><b>Faction Ability:</b> Once per round, the player can skip a round.</p>
-                            <p>This faction has a variety of cards of all kinds, but its specificity is the witchers and their corresponding abilities and signs.</p>
+                            <p><b>阵营技能：</b>每回合可以跳过一次行动。</p>
+                            <p>这个阵营的卡牌种类齐全，它的特色是猎魔人及其对应的技能和法印。</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/deck_shield_toussaint.png" alt="Toussaint Faction">
+                        <img class="pure-img-responsive" src="img/icons/deck_shield_toussaint.png" alt="陶森特阵营">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="faction-list-name">Toussaint</div>
+                        <div class="faction-list-name">陶森特</div>
                         <div class="faction-list-description">
-                            <p><b>Faction Ability:</b> Draw a card from your deck whenever you lose a round.</p>
-                            <p>This faction has a balance of Tight Bond, Muster and Scorch units and many strong cards.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pure-g">
-                    <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/deck_shield_lyria_rivia.png" alt="Lyria & Rivia Faction">
-                    </div>
-                    <div class="pure-u-7-8">
-                        <div class="faction-list-name">Lyria & Rivia</div>
-                        <div class="faction-list-description">
-                            <p><b>Faction Ability:</b> Once per game, apply a Morale Boost to a row of your choice.</p>
-                            <p>This faction relies mostly on Muster and Medic cards but also has the specificity of having decoy units and shield special cards.</p>
+                            <p><b>阵营技能：</b>每当你输掉一回合，从牌组抽一张牌。</p>
+                            <p>这个阵营在紧密羁绊、集结和灼烧单位之间保持平衡，还有许多强力牌。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/deck_shield_syndicate.png" alt="Syndicate Faction">
+                        <img class="pure-img-responsive" src="img/icons/deck_shield_lyria_rivia.png" alt="莱里亚与利维亚阵营">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="faction-list-name">Syndicate</div>
+                        <div class="faction-list-name">莱里亚与利维亚</div>
                         <div class="faction-list-description">
-                            <p><b>Faction Ability:</b> Start the game with the hero Sigi Reuven on the board.</p>
-                            <p>This faction relies mostly on Spies, Muster and Tight Bond units but also has the specificity of having the Bank special card and some Witch Hunt units.</p>
+                            <p><b>阵营技能：</b>每局游戏一次，在你选择的一排上施加一次士气鼓舞。</p>
+                            <p>这个阵营主要依靠集结和医生单位，同时还有诱饵单位和盾牌特殊牌这一特色。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="pure-g">
                     <div class="pure-u-1-8">
-                        <img class="pure-img-responsive" src="img/icons/deck_shield_zerrikania.png" alt="Zerrikania Faction">
+                        <img class="pure-img-responsive" src="img/icons/deck_shield_syndicate.png" alt="辛迪加阵营">
                     </div>
                     <div class="pure-u-7-8">
-                        <div class="faction-list-name">Zerrikania</div>
+                        <div class="faction-list-name">辛迪加</div>
                         <div class="faction-list-description">
-                            <p><b>Faction Ability:</b> Restore a unit card of your choice whenever you lose a round.</p>
+                            <p><b>阵营技能：</b>开局时，英雄牌“西吉·鲁文”已在场上。</p>
+                            <p>这个阵营主要依靠间谍、集结和紧密羁绊单位，同时还有银行特殊牌和一些猎巫单位这一特色。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pure-g">
+                    <div class="pure-u-1-8">
+                        <img class="pure-img-responsive" src="img/icons/deck_shield_zerrikania.png" alt="泽瑞坎尼亚阵营">
+                    </div>
+                    <div class="pure-u-7-8">
+                        <div class="faction-list-name">泽瑞坎尼亚</div>
+                        <div class="faction-list-description">
+                            <p><b>阵营技能：</b>每当你输掉一回合，可以复活一张你选择的单位牌。</p>
                             <p>
-                                This faction brings in some new abilities. On one side the dragon cult has the combination of Whorshippers and Whorshipped units.
-                                On the other side, Free Warriors have the Inspire ability, allowing them to have the strength of the strongest of them on board.
+                                这个阵营引入了一些新技能。一方面，巨龙教团拥有膜拜者与受膜拜单位的组合。
+                                另一方面，自由战士拥有激励技能，能让他们的战力与场上最强的同伴看齐。
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- SETUP -->
-                <h2 class="content-subhead" id="setup">Setup</h2>
+                <h2 class="content-subhead" id="setup">设置</h2>
 
-                <h3 class="content-subhead">Building your deck</h3>
+                <h3 class="content-subhead">组建你的牌组</h3>
 
                 <p>
-                    To play, each player must chose a faction, a leader and select or prepare a deck of the selected faction.
-                    We have prepared a selection of decks which we think are interesting to play and reasonably balanced.
-                    However, you can constitute your own, the only rules are the following:
+                    开始游戏前，每位玩家需要选择一个阵营、一张领袖牌，并从所选阵营中挑选或组建一副牌组。
+                    我们准备了一批我们认为有趣且相对平衡的预设牌组。
+                    不过你也可以自己组建，唯一的规则如下：
 
                     <ul>
-                        <li><b>Minumum 22 unit cards</b> (heroes included) from the selected faction or neutral cards.</li>
-                        <li><b>Maximum 10 special cards</b></li>
+                        <li><b>至少 22 张单位牌</b>（英雄计算在内），可以来自所选阵营或中立牌。</li>
+                        <li><b>最多 10 张特殊牌</b></li>
                     </ul>
                 </p>
 
                 <p>
-                    <b>Tips:</b>
+                    <b>小贴士：</b>
                     <ul>
-                        <li>The more cards you have in your deck, the less likely you are to draw the best cards and make the combos work. Chose wisely, here less is more.</li>
+                        <li>牌组里的牌越多，你就越不容易抽到最好的牌，组合也越难成型。组牌要慎重，这里少即是多。</li>
                         <li>
-                            Hero cards might look powerfull at first, but in the end they are boring and are not the cards that win games because most of them have a limited impact.
-                            Consequently, don't take too many of those.
+                            英雄牌一开始看起来很强，但最终往往很单调，而且通常影响有限，并不是赢得比赛的主力。
+                            因此，不要放太多英雄牌。
                         </li>
                     </ul>
                 </p>
 
-                <h3 class="content-subhead">Start</h3>
+                <h3 class="content-subhead">开始</h3>
 
                 <p>
-                    A coin toss decides who starts first. Each player shuffles his/her deck and draws 10 cards. Before starting the game, each player can discard up to 2 cards and draw a replacement (aka Mulligan).
-                    The remaining 10 cards will constitute the starting hand of the players, and most likely all the cards the players will have for the game.
+                    由抛硬币决定谁先手。每位玩家洗好自己的牌组，然后抽 10 张牌。开始游戏前，每位玩家可以弃掉最多 2 张牌，并抽等量的替换牌（俗称“换牌”）。
+                    剩下的 10 张牌就是玩家的起始手牌，通常也是他们整局游戏中会拿到的全部牌。
                 </p>
 
-                <h3 class="content-subhead">Rounds</h3>
+                <h3 class="content-subhead">回合</h3>
 
                 <p>
-                    Players take turns either playing a card or using the active ability of their leader or faction (when available).
-                    A player can instead chose to pass and sit out of the rest of the round (not play any hard), while the other player is free to play more cards.
-                    When both players have passed or cannot play any other card, the round ends. The player with the lowest total strength loses a round and a life point.
-                    Each player starts with 2 life points and thus loses the game when losing 2 rounds.
+                    玩家轮流行动，可以打出一张牌，也可以使用领袖或阵营的主动技能（如果有）。
+                    玩家也可以选择过牌，本回合不再出牌，而对手则可以继续打牌。
+                    当双方都过牌，或者都无牌可打时，本回合结束。总战力最低的一方输掉该回合，并失去一点生命。
+                    每位玩家开始时有 2 点生命，输掉 2 个回合就会输掉游戏。
                 </p>
 
-                <p>Note that in case of a draw, both players have the lowest strength and lose a life point. Unless you play as Nilfgaard (wins in case of draws), this is not a desirable situation.</p>
+                <p>如果出现平局，双方的总战力都是最低的，两人都会失去一点生命。除非你选的是尼弗迦德（平局时判其获胜），否则这种情况并不理想。</p>
 
-                <p><b>The players that wins the round plays first in the next round.</b></p>
+                <p><b>赢下该回合的玩家，在下一回合先手。</b></p>
 
                 <p>
-                    Counting the total score can be really bothersome, good thing that here the computer is doing it for us.
-                    But it remains important to understand how it's done in order to anticipate the changes when playing certain cards.
-                    Here are the principles to count the scores.
+                    手动计算总分相当麻烦，好在电脑会替我们完成这项工作。
+                    但理解计分方式仍然很重要，这样你才能预判打出某些牌后的变化。
+                    下面是计分的基本原则。
                 </p>
 
                 <p>
-                    For each row:
+                    对每一排：
                     <ul>
-                        <li>Weather effects always apply first, before anything else. They change the base strength of the unit cards.</li>
-                        <li>Some rare faction/leader abilities also affect the base strength. Weather takes precedence over them, but if no weather effect is active, apply these changes first.</li>
-                        <li>From this point, consider that the strength is calculated from the most specific ability of the card to the more global effects.</li>
-                        <li>First we apply the Tight Bond effects.</li>
-                        <li>Then we apply the various boosts (Morale, Witcher School, Toussaint Wine etc), which simply add up one another, order does not matter.</li>
-                        <li>Last, always last, we apply the row multipler, being the Commander's Horn.</li>
+                        <li>天气效果总是最先结算，它们会改变单位牌的基础战力。</li>
+                        <li>少数阵营或领袖技能也会影响基础战力。如果场上有天气效果，天气优先；如果没有，就先结算这些改变。</li>
+                        <li>从这一步开始，按照从最具体的技能到最宽泛的效果的顺序计算战力。</li>
+                        <li>先结算紧密羁绊效果。</li>
+                        <li>然后结算各种加成（士气鼓舞、猎魔人学派、陶森特葡萄酒等）。这些加成直接相加，顺序无关。</li>
+                        <li>最后，永远是最后一步，结算整排的倍率，也就是指挥号角。</li>
                     </ul>
                 </p>
 
-                <h3 class="content-subhead">That's it, now you know everything you need to play a round of Gwent!</h3>
+                <h3 class="content-subhead">至此，你已经了解了打一局昆特牌所需的全部规则！</h3>
 
             </div>
         </div>
