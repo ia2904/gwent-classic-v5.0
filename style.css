@@ -15,7 +15,7 @@ body {
 
 body {
 	font-size: 0;
-	font-family: Arial Narrow, sans-serif;
+	font-family: Arial Narrow, "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
 	color: goldenrod;
 	background-color: #000;
 }
@@ -49,7 +49,7 @@ main {
     align-items: center;
     justify-content: center;
     gap: 35px;
-    font-family: "Arial Narrow", sans-serif;
+    font-family: "Arial Narrow", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
     box-sizing: border-box;
 }
 
@@ -156,7 +156,7 @@ div.abs {
 }
 
 #version_text {
-    font-family: 'GwentCustom', serif; 
+font-family: 'GwentCustom', "SimSun", "Songti SC", "Noto Serif CJK SC", serif;
     font-size: 1.6rem; 
     color: #5A00A3; 
     text-align: center; 
@@ -918,7 +918,7 @@ min-height: 7vw;
 	height: 3vw;
 	width: 10vw;
 	top: 87%;
-	font-family: Arial Narrow;
+	font-family: Arial Narrow, "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
 	font-size: 1.5vw;
 	color: goldenrod;
 	background-color: #4c390a66;
@@ -1611,7 +1611,7 @@ flex-direction: row-reverse;
     justify-content: center;
 align-items: center;
     text-decoration: none;
-    font-family: "Arial Narrow", sans-serif;
+    font-family: "Arial Narrow", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
     font-size: 10px;
 }
 
@@ -1714,7 +1714,7 @@ text-decoration: none !important;
     height: 100%;
     background-color: rgba(10, 10, 10, .9);
     z-index: 1000;
-    font-family: "Arial Narrow", sans-serif;
+    font-family: "Arial Narrow", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
 }
 
 .gwent-popup-box {
@@ -2865,7 +2865,7 @@ color: #b48c44 !important;
 #button_start {
     font-size: 18px !important; 
     padding: 6px 15px !important;
-    font-family: Arial, sans-serif;
+    font-family: Arial, "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
     text-transform: uppercase;
     margin-top: -30px !important;
     border-radius: .5vw;

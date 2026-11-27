@@ -3064,18 +3064,18 @@ tocar("coin", false);
                 if (player_me.leader.key === "sc_francesca_daisy") {
                     await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await board.toDeck(c.cards[i], c), c => true, true, false, "玩家 1 - 选择 " + myCount +" 张牌放回牌组。");
                 } else {
-                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await player_me.deck.swap(c, c.removeCard(i)), c => true, true, true, "玩家 1 - 选择至多 " + myCount +" 张牌重抽。");
+                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await player_me.deck.swap(c, c.removeCard(i)), c => true, true, true, "玩家 1 - 选择至多 " + myCount +" 张牌重抽。", true);
                 }
                 if (player_op.leader.key === "sc_francesca_daisy") {
                     await ui.queueCarousel(player_op.hand, opCount, async (c, i) => await board.toDeck(c.cards[i], c), c => true, true, false, "玩家 2 - 选择 " + opCount +" 张牌放回牌组。");
                 } else {
-                    await ui.queueCarousel(player_op.hand, opCount, async (c, i) => await player_op.deck.swap(c, c.removeCard(i)), c => true, true, true, "玩家 2 - 选择至多 " + opCount +" 张牌重抽。");
+                    await ui.queueCarousel(player_op.hand, opCount, async (c, i) => await player_op.deck.swap(c, c.removeCard(i)), c => true, true, true, "玩家 2 - 选择至多 " + opCount +" 张牌重抽。", true);
                 }
             } else {
                 if (player_me.leader.key === "sc_francesca_daisy") {
                     await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await board.toDeck(c.cards[i], c), c => true, true, false, "选择 " + myCount +" 张牌放回牌组。");
                 } else {
-                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await player_me.deck.swap(c, c.removeCard(i)), c => true, true, true, "选择至多 " + myCount +" 张牌重抽。");
+                    await ui.queueCarousel(player_me.hand, myCount, async (c, i) => await player_me.deck.swap(c, c.removeCard(i)), c => true, true, true, "选择至多 " + myCount +" 张牌重抽。", true);
                 }
             }
             ui.enablePlayer(false);
@@ -4891,7 +4891,7 @@ navigator.vibrate(50);
 
     // Displays a Carousel menu of filtered container items that match the predicate.
     // Suspends gameplay until the Carousel is closed. Automatically picks random card if activated for AI player
-    async queueCarousel(container, count, action, predicate, bSort, bQuit, title) {
+    async queueCarousel(container, count, action, predicate, bSort, bQuit, title, instant = false) {
         /*if (game.currPlayer && game.currPlayer.controller instanceof ControllerAI) {
             for (let i = 0; i < count; ++i) {
                 let cards = container.cards.reduce((a, c, i) => !predicate || predicate(c) ? a.concat([i]) : a, []);
@@ -4899,7 +4899,7 @@ navigator.vibrate(50);
             }
             return;
         }*/
-        let carousel = new Carousel(container, count, action, predicate, bSort, bQuit, title);
+        let carousel = new Carousel(container, count, action, predicate, bSort, bQuit, title, instant);
         if (Carousel.curr === undefined || Carousel.curr === null) {
             carousel.start();
         } else {
@@ -5391,7 +5391,7 @@ var fimC = false;
 // Clicking the middle card performs the action on that card "count" times
 // Clicking adejacent cards shifts the menu to focus on that card
 class Carousel {
-    constructor(container, count, action, predicate, bSort, bExit = false, title) {
+    constructor(container, count, action, predicate, bSort, bExit = false, title, instant = false) {
         if (count <= 0 || !container || !action || container.cards.length === 0)
             return;
         this.container = container;
@@ -5403,6 +5403,7 @@ class Carousel {
         this.index = 0;
         this.bExit = bExit;
         this.title = title;
+        this.instant = instant;
         this.cancelled = false;
         this.selection = [];
 
@@ -5459,9 +5460,8 @@ Carousel.curr.cancel(); }, false);
         ui.enablePlayer(true);
         tocar("explaining", false);
         fimC = false;
-        setTimeout(function () {
-            var label = document.getElementById("carousel_label");
-            if (label.innerText.indexOf("redraw") > -1 && label.className.indexOf("hide") == -1) tocar("game_start", false);
+        setTimeout(() => {
+            if (this.instant) tocar("game_start", false);
         }, 50);
     }
 
@@ -5482,8 +5482,7 @@ Carousel.curr.cancel(); }, false);
         } catch (err) { }
         // In case of multiple selections, we only do action if not already selected
         if (this.selection.indexOf(this.indices[this.index]) < 0) {
-            var label = document.getElementById("carousel_label");
-            if (label.innerText.indexOf("redraw") > -1 && label.className.indexOf("hide") == -1) {
+            if (this.instant) {
                 tocar("redraw", false);
             } else {
                 this.selection.push(this.indices[this.index]);
@@ -5493,8 +5492,8 @@ Carousel.curr.cancel(); }, false);
                 this.elem.classList.add("hide");
             if (this.count <= 0)
                 ui.enablePlayer(false);
-            // For redraw, we run the action right away
-            if (label.innerText.indexOf("redraw") > -1 && label.className.indexOf("hide") == -1)
+            // For instant selection, we run the action right away
+            if (this.instant)
                 await this.action(this.container, this.indices[this.index]);
             if (this.isLastSelection() && !this.cancelled) {
                 this.exit();
@@ -6700,7 +6699,7 @@ saveDeckInternal() {
         alertBox.style.textAlign = "center";
         alertBox.style.zIndex = "999999";
         alertBox.style.boxShadow = "0 0 15px #000";
-        alertBox.innerHTML = "<h3>Deck Saved!</h3><p style='margin: 5px 0 0 0; color:#fff;'>Saved as: <b>" + finalName + "</b></p>";
+        alertBox.innerHTML = "<h3>卡组已保存</h3><p style='margin: 5px 0 0 0; color:#fff;'>已保存为：<b>" + finalName + "</b></p>";
         
         document.body.appendChild(alertBox);
         setTimeout(() => { alertBox.remove(); }, 1200);
@@ -6734,7 +6733,7 @@ saveDeckInternal() {
             alertBox.style.textAlign = "center";
             alertBox.style.zIndex = "999999";
             alertBox.style.boxShadow = "0 0 15px #000";
-            alertBox.innerHTML = "<h3>No Decks Found</h3><p style='margin: 5px 0 0 0; color:#fff;'>You haven't saved any custom decks internally yet.</p>";
+            alertBox.innerHTML = "<h3>未找到卡组</h3><p style='margin: 5px 0 0 0; color:#fff;'>你还没有在本地保存过自定义卡组。</p>";
             
             document.body.appendChild(alertBox);
             setTimeout(() => { alertBox.remove(); }, 1200);
@@ -6846,7 +6845,7 @@ async loadOPDeckInternal() {
         alertBox.style.textAlign = "center";
         alertBox.style.zIndex = "999999";
         alertBox.style.boxShadow = "0 0 15px #000";
-        alertBox.innerHTML = "<h3>No Decks Found</h3><p style='margin: 5px 0 0 0; color:#fff;'>You haven't saved any custom decks internally yet.</p>";
+        alertBox.innerHTML = "<h3>未找到卡组</h3><p style='margin: 5px 0 0 0; color:#fff;'>你还没有在本地保存过自定义卡组。</p>";
         
         document.body.appendChild(alertBox);
         setTimeout(() => { alertBox.remove(); }, 1200);
@@ -7034,7 +7033,7 @@ class DeckSorter {
         let submitBtn = document.createElement("button");
         submitBtn.setAttribute("id", "drop-submit");
         submitBtn.disabled = true;
-        submitBtn.innerText = "DONE";
+        submitBtn.innerText = "完成";
         submitBtn.addEventListener('click', submitDeckSorter);
         box.appendChild(submitBtn);
 
